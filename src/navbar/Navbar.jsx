@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import Register from '../register/Register';
+import SplashCursor from '../blocks/Animations/SplashCursor/SplashCursor';
 
 function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
