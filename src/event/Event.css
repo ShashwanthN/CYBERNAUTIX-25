@@ -1,20 +1,5 @@
-.event-container {
-  padding: 20px;
+.container-o{
   background-color: black;
-  color: black;
+  height: 100vh;
+  color: white;
 }
-
-h1{
-    color: black;
-}
-
-
-
-li {
-  background: rgba(255, 255, 255, 0.1);
-  margin: 10px 0;
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
