@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Register } from 'react-router-dom';
 import './Navbar.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import Register from '../register/Register'; // Adjust the path as necessary
 
 function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const toggleRegister = () => {
+    setShowRegister(!showRegister);
   };
 
   return (
@@ -34,6 +40,11 @@ function Navbar() {
               <li className="nav-item">
                 <Link className="nav-link" to="/events">
                   <i className="fas fa-calendar-alt icon" /> Event
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/register">
+                  <i className="fas fa-user-plus icon" /> Register
                 </Link>
               </li>
               <li className="nav-item">
@@ -74,6 +85,11 @@ function Navbar() {
             </Link>
           </li>
           <li>
+            <Link to="/register" className="sidebar-link register" onClick={toggleSidebar}>
+              <i className="fas fa-user-plus me-2"></i> Register
+            </Link>
+          </li>
+          <li>
             <Link to="/contact" className="sidebar-link contact" onClick={toggleSidebar}>
               <i className="fas fa-envelope me-2"></i> Contact
             </Link>
@@ -95,6 +111,8 @@ function Navbar() {
         className={`sidebar-overlay ${isSidebarOpen ? 'show' : ''}`}
         onClick={toggleSidebar}
       ></div>
+
+      {showRegister && <Register />}
     </div>
   );
 }

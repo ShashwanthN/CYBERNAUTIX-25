@@ -6,6 +6,7 @@ import Navbar from './navbar/Navbar';
 import SplashCursor from './blocks/Animations/SplashCursor/SplashCursor';
 import Event from './event/Event';
 import Home from './home/Home';
+import Register from './register/Register';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Event />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </div>
   );
