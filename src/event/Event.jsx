@@ -5,7 +5,6 @@ import './Event.css'
 function Event() {
   return (
     <div className='container-o'>
-      
       <h1>Event</h1>
     </div>
   )

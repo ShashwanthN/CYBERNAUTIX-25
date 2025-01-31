@@ -1,16 +1,18 @@
-.home-container {
+.details {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding-top: 10%;
   height: 100vh; /* Full height of the viewport */
   background-color: #000000; /* Light background color */
   text-align: center;
 }
 
-h1, h2, h3 {
-  margin: 10px 0;
-  color: #ffffff; /* Dark text color */
+.clg-details{
+  margin-top: 0.2%;
+  color: #4ddbff; /* Dark text color */
+  font-family: "Alfa Slab One", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 h1 {
