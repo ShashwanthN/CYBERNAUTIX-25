@@ -5,17 +5,27 @@
   --font-family: 'Outfit', sans-serif; /* Adjust to your project's font */
 }
 
+body {
+  background-color: black;
+  margin: 0;
+  padding: 0;
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: auto; /* Allow vertical scrolling */
+}
+
 .register-container {
-  min-height: 90vh; /* Ensure enough height */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Align items to the top */
+  align-items: flex-start;
   padding: 10px;
-  background-color: black; /* Set the background to black */
+  background-color: black;
+  box-sizing: border-box;
 }
 
 .register-card {
-  background: black; /* Set the card background to black */
+  background: black;
   backdrop-filter: blur(8px);
   padding: 20px;
   border-radius: 12px;
@@ -24,10 +34,8 @@
   border: 1px solid rgba(0, 171, 225, 0.2);
   animation: fadeInScale 0.5s ease-out;
   position: relative;
-  overflow-y: scroll;
-  margin-top: 20px; /* Adjust margin to move the form up */
-  max-height: 80vh; /* Limit height to allow scrolling */
-  scrollbar-width: none; /* For Firefox */
+  overflow: hidden; /* Remove scroll from the card itself */
+  margin-top: 20px;
 }
 
 /* Style the scrollbar */
