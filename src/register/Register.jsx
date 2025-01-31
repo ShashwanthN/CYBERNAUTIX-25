@@ -99,82 +99,72 @@ function Register() {
             <div className="form-section">
               <h2>Personal Information</h2>
               <div className="form-group">
-                <label htmlFor="name"></label>
-                <div className="input-icon">
+                <div className="input-group">
+                  <i className="fas fa-user"></i>
                   <input
                     type="text"
-                    id="name"
                     name="name"
                     placeholder="Full Name"
                     value={formData.name}
                     onChange={handleChange}
                     required
                   />
-                  <i className="fas fa-user"></i>
                 </div>
               </div>
 
               <div className="form-group">
-                <label htmlFor="email"></label>
-                <div className="input-icon">
+                <div className="input-group">
+                  <i className="fas fa-envelope"></i>
                   <input
                     type="email"
-                    id="email"
                     name="email"
                     placeholder="Email Address"
                     value={formData.email}
                     onChange={handleChange}
                     required
                   />
-                  <i className="fas fa-envelope"></i>
                 </div>
               </div>
 
               <div className="form-group">
-                <label htmlFor="password"></label>
-                <div className="input-icon">
+                <div className="input-group">
+                  <i className="fas fa-lock"></i>
                   <input
                     type="password"
-                    id="password"
                     name="password"
                     placeholder="Password"
                     value={formData.password}
                     onChange={handleChange}
                     required
                   />
-                  <i className="fas fa-lock"></i>
                 </div>
               </div>
 
               <div className="form-group">
-                <label htmlFor="confirmPassword"></label>
-                <div className="input-icon">
+                <div className="input-group">
+                  <i className="fas fa-lock"></i>
                   <input
                     type="password"
-                    id="confirmPassword"
                     name="confirmPassword"
                     placeholder="Confirm Password"
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     required
                   />
-                  <i className="fas fa-lock"></i>
                 </div>
               </div>
 
               <div className="form-group">
-                <label htmlFor="phone"></label>
-                <div className="input-icon">
+                <div className="input-group">
+                  <i className="fas fa-phone"></i>
                   <input
                     type="tel"
-                    id="phone"
                     name="phone"
                     placeholder="Phone Number"
                     value={formData.phone}
                     onChange={handleChange}
                     required
                   />
-                  <i className="fas fa-phone"></i>
                 </div>
               </div>
             </div>
@@ -182,47 +172,41 @@ function Register() {
             <div className="form-section">
               <h2>College Information</h2>
               <div className="form-group">
-                <label htmlFor="college"></label>
-                <div className="input-icon">
+                <div className="input-group">
+                  <i className="fas fa-university"></i>
                   <input
                     type="text"
-                    id="college"
                     name="college"
                     placeholder="College Name"
                     value={formData.college}
                     onChange={handleChange}
                     required
                   />
-                  <i className="fas fa-university"></i>
                 </div>
               </div>
 
               <div className="form-group">
-                <label htmlFor="department"></label>
-                <div className="input-icon">
+                <div className="input-group">
+                  <i className="fas fa-graduation-cap"></i>
                   <input
                     type="text"
-                    id="department"
                     name="department"
                     placeholder="Department"
                     value={formData.department}
                     onChange={handleChange}
                     required
                   />
-                  <i className="fas fa-graduation-cap"></i>
                 </div>
               </div>
 
               <div className="form-group">
-                <label htmlFor="year">Select Year</label>
-                <div className="input-icon">
-                  <select
-                    id="year"
-                    name="year"
-                    value={formData.year}
+                <div className="input-group">
+                  <i className="fas fa-calendar-alt"></i>
+                  <select 
+                    name="year" 
+                    value={formData.year} 
                     onChange={handleChange}
                     required
-                    className="select-field"
                   >
                     <option value="">Select Year</option>
                     <option value="1">1st Year</option>
@@ -230,7 +214,6 @@ function Register() {
                     <option value="3">3rd Year</option>
                     <option value="4">4th Year</option>
                   </select>
-                  <i className="fas fa-calendar-alt"></i>
                 </div>
               </div>
             </div>
