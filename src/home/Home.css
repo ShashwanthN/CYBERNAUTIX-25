@@ -1,10 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+.home-container {
+  min-height: 100vh; /* Changed from height to min-height */
+  width: 100%;
+  overflow-y: auto; /* Allow vertical scrolling */
+  position: relative; /* Changed from fixed to relative */
+  background: #000; /* Or your desired background */
+}
+
 .details {
+  padding: 2rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  padding-top: 10%;
-  height: 100vh; /* Full height of the viewport */
-  background-color: #000000; /* Light background color */
-  text-align: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .clg-details{
@@ -25,4 +35,157 @@ h2 {
 
 h3 {
   font-size: 1.5rem; /* Smaller font size for "Presents" */
+}
+
+.free-entry{
+  padding-top: 1%;
+  color: aliceblue;
+}
+
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+  padding: 2rem;
+}
+
+.countdown-box {
+  background: rgba(18, 18, 18, 0.95);
+  border-radius: 10px;
+  padding: 2rem;
+  min-width: 180px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.countdown-box:hover {
+  transform: translateY(-5px);
+}
+
+.number {
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: #4ddbff;
+  margin-bottom: 1rem;
+  font-family: 'Arial', sans-serif;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.label {
+  font-size: 1.5rem;
+  color: #69e6ff; /* Pink color for labels */
+  text-transform: capitalize;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* Animation for number changes */
+@keyframes numberChange {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.number {
+  animation: numberChange 0.3s ease-out;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .countdown-container {
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+
+  .countdown-box {
+    min-width: 140px;
+    padding: 1.5rem;
+  }
+
+  .number {
+    font-size: 3rem;
+  }
+
+  .label {
+    font-size: 1.2rem;
+  }
+}
+
+/* Add the split line effect */
+.countdown-value::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 255, 221, 0.3);
+  box-shadow: 0 0 8px #00ffdd;
+}
+
+.countdown-label {
+  font-size: 1.2rem;
+  color:#4ddbff;
+  margin-top: 1rem;
+  letter-spacing: 2px;
+  font-weight: 500;
+  position: relative;
+  padding-top: 0.5rem;
+}
+
+/* Add the underline effect */
+.countdown-label::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #00ffdd;
+  box-shadow: 0 0 8px #00ffdd;
+}
+
+.countdown-title {
+  font-size: 4rem;
+  color:#4ddbff;
+  text-align: center;
+  margin-bottom: 3rem;
+  text-shadow: 0 0 20px #00ffdd;
+  letter-spacing: 8px;
+}
+
+/* Add flip animation */
+@keyframes flipTop {
+  0% { transform: rotateX(0deg); }
+  100% { transform: rotateX(-90deg); }
+}
+
+@keyframes flipBottom {
+  0% { transform: rotateX(90deg); }
+  100% { transform: rotateX(0deg); }
+}
+
+.countdown-value {
+  perspective: 400px;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Optional: Add hover effect */
+.countdown-box:hover .countdown-value {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
 }
