@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css';
+import Event from '../event/Event';
+import Contact from '../contact/Contact';
+import SplitText from '../components/SplitText';
 
 function Home() {
   const [timeLeft, setTimeLeft] = useState({
@@ -8,6 +11,14 @@ function Home() {
     minutes: 0,
     seconds: 0
   });
+
+  const [displayText, setDisplayText] = useState("Cybernautix'25");
+
+  const texts = [
+    "Cybernautix'25",
+    "சைபர்நாட்டிக்ஸ்'25", // Tamil
+    "సైబర్నాటిక్స్'25"  // Telugu
+  ];
 
   useEffect(() => {
     // Set target date to 3 days from now
@@ -32,17 +43,29 @@ function Home() {
       setTimeLeft({ days, hours, minutes, seconds });
     }, 1000);
 
+    const interval = setInterval(() => {
+      setDisplayText(prevText => {
+        const currentIndex = texts.indexOf(prevText);
+        const nextIndex = (currentIndex + 1) % texts.length;
+        return texts[nextIndex];
+      });
+    }, 3000); // Change text every 3 seconds
+
     // Cleanup interval on component unmount
-    return () => clearInterval(timer);
+    return () => {
+      clearInterval(timer);
+      clearInterval(interval);
+    };
   }, []); // Empty dependency array means this effect runs once on mount
 
   return (
+    <div>
     <div className="home-container">
       <div className='details'>
         <h1 className='clg-details'>R.M.K. ENGINEERING COLLEGE</h1>
         <h2 className='clg-details'>DEPARTMENT OF INFORMATION TECHNOLOGY</h2>
         <h3 className='clg-details'>Presents</h3>
-        <h1 className='clg-details sympo'>CYBERNAUTIX'25</h1>
+        <SplitText text={displayText} className='sympo' />
         
         <div className="countdown-container">
           <div className="countdown-box">
@@ -66,6 +89,10 @@ function Home() {
         <h5 className='free-entry'>FREE ENTRY</h5>
       </div>
     </div>
+    <Event/>
+    <Contact/>
+    </div>
+    
   );
 }
 

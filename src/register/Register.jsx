@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
 import './Register.css'; // Ensure you have the corresponding CSS file
 
+function SplitText({ text }) {
+  return (
+    <h1 className="split-text">
+      {text.split('').map((char, index) => (
+        <span key={index} className="split-text-char">
+          {char}
+        </span>
+      ))}
+    </h1>
+  );
+}
+
 function Register() {
   const [formData, setFormData] = useState({
     name: '',
@@ -28,10 +40,10 @@ function Register() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   const handleEventSelection = (e, eventType) => {
@@ -92,28 +104,30 @@ function Register() {
         <div className="register-card">
           <div className="register-header">
             <i className="fas fa-user-plus"></i>
-            <h1>Event Registration</h1>
+            <SplitText text="cybernautix'25" />
           </div>
 
           <form className="register-form" onSubmit={handleSubmit}>
             <div className="form-section">
               <h2>Personal Information</h2>
               <div className="form-group">
-                <div className="input-group">
-                  <i className="fas fa-user"></i>
-                  <input
-                    type="text"
+                <label htmlFor="name">Name</label>
+                <div className="input-icon">
+                  <input 
+                    type="text" 
+                    id="name"
                     name="name"
-                    placeholder="Full Name"
+                    placeholder="Enter your name" 
                     value={formData.name}
                     onChange={handleChange}
-                    required
+                    required 
                   />
+                  <i className="fas fa-user"></i>
                 </div>
               </div>
 
               <div className="form-group">
-                <div className="input-group">
+                <div className="input-icon">
                   <i className="fas fa-envelope"></i>
                   <input
                     type="email"
@@ -127,7 +141,7 @@ function Register() {
               </div>
 
               <div className="form-group">
-                <div className="input-group">
+                <div className="input-icon">
                   <i className="fas fa-lock"></i>
                   <input
                     type="password"
@@ -141,7 +155,7 @@ function Register() {
               </div>
 
               <div className="form-group">
-                <div className="input-group">
+                <div className="input-icon">
                   <i className="fas fa-lock"></i>
                   <input
                     type="password"
@@ -155,7 +169,7 @@ function Register() {
               </div>
 
               <div className="form-group">
-                <div className="input-group">
+                <div className="input-icon">
                   <i className="fas fa-phone"></i>
                   <input
                     type="tel"
@@ -172,7 +186,7 @@ function Register() {
             <div className="form-section">
               <h2>College Information</h2>
               <div className="form-group">
-                <div className="input-group">
+                <div className="input-icon">
                   <i className="fas fa-university"></i>
                   <input
                     type="text"
@@ -186,7 +200,7 @@ function Register() {
               </div>
 
               <div className="form-group">
-                <div className="input-group">
+                <div className="input-icon">
                   <i className="fas fa-graduation-cap"></i>
                   <input
                     type="text"
@@ -200,20 +214,16 @@ function Register() {
               </div>
 
               <div className="form-group">
-                <div className="input-group">
-                  <i className="fas fa-calendar-alt"></i>
-                  <select 
-                    name="year" 
-                    value={formData.year} 
+                <div className="input-icon">
+                  <i className="fas fa-graduation-cap"></i>
+                  <input
+                    type="text"
+                    name="year"
+                    placeholder="Year of study"
+                    value={formData.year}
                     onChange={handleChange}
                     required
-                  >
-                    <option value="">Select Year</option>
-                    <option value="1">1st Year</option>
-                    <option value="2">2nd Year</option>
-                    <option value="3">3rd Year</option>
-                    <option value="4">4th Year</option>
-                  </select>
+                  />
                 </div>
               </div>
             </div>

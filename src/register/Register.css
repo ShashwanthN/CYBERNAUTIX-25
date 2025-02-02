@@ -176,7 +176,7 @@ body {
 }
 
 .input-group select option {
-  background: rgba(22, 31, 109, 0.95);
+  background: #00abe1;
   color: var(--text-color);
 }
 
@@ -313,4 +313,24 @@ body {
     font-size: 1rem;
     padding: 10px;
   }
+}
+
+.split-text {
+  display: flex; /* Use flexbox to align characters */
+  justify-content: center; /* Center the text */
+  font-size: 2.5rem; /* Adjust font size as needed */
+  margin-bottom: 20px; /* Space below the title */
+  color: #00abe1; /* Text color */
+  text-shadow: 0 0 5px rgba(0, 171, 225, 0.5), /* Light glow */
+               0 0 10px rgba(30, 203, 255, 0.5), /* Medium glow */
+               0 0 15px rgba(0, 171, 225, 0.5); /* Strong glow */
+}
+
+.split-text-char {
+  display: inline-block; /* Allow individual characters to be animated */
+  transition: transform 0.3s ease; /* Smooth transition for scaling */
+}
+
+.split-text-char:hover {
+  transform: scale(1.2); /* Scale effect on hover */
 } 

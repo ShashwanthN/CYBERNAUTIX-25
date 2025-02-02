@@ -1,0 +1,27 @@
+.split-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem; /* Add spacing between words */
+    font-family: 'Noto Sans', sans-serif; /* Ensure font compatibility */
+    font-size: 3rem; /* Adjust size as needed */
+    color: #4ddbff;
+    text-shadow: 0 0 10px rgba(0, 171, 225, 0.5);
+  }
+  
+  .split-text-word {
+    display: inline-block;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

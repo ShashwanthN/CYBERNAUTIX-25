@@ -11,6 +11,7 @@ import Contact from './contact/Contact';
 import Bus from './bus/Bus';
 
 
+
 function App() {
   return (
     <div style={{ position: 'relative', overflow: 'hidden' }}>
@@ -22,7 +23,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/contact" element={<Contact />} /> 
         <Route path="/bus" element={<Bus />} />
+
       </Routes>
+      
     </div>
   );
 }
