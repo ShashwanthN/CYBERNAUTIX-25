@@ -9,6 +9,7 @@ import Home from './home/Home';
 import Register from './register/Register';
 import Contact from './contact/Contact';
 import Bus from './bus/Bus';
+import Login from './login/Login';
 
 
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/contact" element={<Contact />} /> 
         <Route path="/bus" element={<Bus />} />
+        <Route path="/login" element={<Login />} />
 
       </Routes>
       
