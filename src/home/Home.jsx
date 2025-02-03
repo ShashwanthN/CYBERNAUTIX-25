@@ -21,9 +21,8 @@ function Home() {
   ];
 
   useEffect(() => {
-    // Set target date to 3 days from now
-    const now = new Date();
-    const targetDate = new Date(now.getTime() + (20 * 60 * 60 * 60 * 1000));
+    // Set target date to March 11, 2025 at 00:00:00 IST
+    const targetDate = new Date('2025-03-17T00:00:00+05:30');
 
     const timer = setInterval(() => {
       const currentTime = new Date();
@@ -31,6 +30,7 @@ function Home() {
 
       if (difference <= 0) {
         clearInterval(timer);
+        // Set all values to 0 when the target date has passed
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
         return;
       }
@@ -85,8 +85,6 @@ function Home() {
             <div className="label smaller-label">Seconds</div>
           </div>
         </div>
-        
-        <h5 className='free-entry'>FREE ENTRY</h5>
       </div>
     </div>
     <Event/>

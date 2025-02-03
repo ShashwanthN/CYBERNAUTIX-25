@@ -1,6 +1,8 @@
 import React from "react";
 import "./Contact.css";
-import { PinContainer } from "../components/3d-pin"; // ✅ Import the 3D-Pin Component
+import logo from'../assets/logo.png'
+ // ✅ Import the 3D-Pin Component
+import TiltedCard from "../blocks/Components/TiltedCard/TiltedCard";
 
 function Contact() {
   return (
@@ -43,23 +45,30 @@ function Contact() {
             </div>
           </div>
 
-          {/* ✅ Wrapped Map inside 3D-Pin */}
+      
           <div className="map-section">
-            <PinContainer title="View on Google Maps" to="https://goo.gl/maps/zDk1zdfhXyA2">
-              <iframe
-                className="map-container"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3881.8968250621356!2d80.13872847492559!3d13.356691106318891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4d807de229f987%3A0x11cc13e2927bfabc!2sR.M.K.%20Engineering%20College!5e0!3m2!1sen!2sin!4v1737395748318!5m2!1sen!2sin"
-                width="600"
-                height="450"
-                style={{ border: 0, borderRadius: "10px" }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </PinContainer>
+           
+              <div className="map-wrapper" style={{ width: '100%', height: '500px' }}>
+                <iframe
+                  className="map-container"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3881.8968250621356!2d80.13872847492559!3d13.356691106318891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4d807de229f987%3A0x11cc13e2927bfabc!2sR.M.K.%20Engineering%20College!5e0!3m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ 
+                    border: 'none',
+                    borderRadius: '10px'
+                  }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
           </div>
         </div>
       </div>
+      <TiltedCard>
+        <img src={logo}/>
+      </TiltedCard>
     </div>
   );
 }
