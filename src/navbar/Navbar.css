@@ -5,7 +5,9 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
 }
-
+.logo{
+  width:9%
+}
 .navbar-brand {
   color: #ffffff !important;
   font-weight: bold;
@@ -27,7 +29,7 @@
   transition: color 0.3s ease;
   border-radius: 8px;
   font-size: 1rem;
-  margin: 0 10px;
+  margin: 0 10px  ;
 }
 
 .nav-link:hover {

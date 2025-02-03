@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import logo from '../assets/logo.png'
 
 function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -14,7 +15,7 @@ function Navbar() {
     <div>
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">MyApp</Link>
+          <img className='logo' src={logo} alt="logo"/>
           
           <button 
             className="navbar-toggler" 
