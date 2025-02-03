@@ -20,13 +20,11 @@
 .clg-details{
   margin-top: 0.2%;
   color: #4ddbff; /* Dark text color */
-  font-family: "Outfit", serif;
-  font-optical-sizing: auto;
+  font-family: "Bevan", serif;
   font-weight: 400;
-  font-style: normal;
-
-  
+  font-style: italic;
 }
+  
 
 .sympo{
   font-size: 3rem; /* Larger font size for main title */
@@ -206,5 +204,47 @@ h3 {
   text-shadow: 0 0 5px rgba(0, 171, 225, 0.5), 
                0 0 10px rgba(0, 171, 225, 0.5), 
                0 0 15px rgba(0, 171, 225, 0.5);
+}
+
+/* Smaller countdown styles */
+.smaller-countdown {
+  transform: scale(0.8);
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 1rem;
+}
+
+.smaller-box {
+  padding: 1.5rem;
+  min-width: 140px;
+}
+
+.smaller-number {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.smaller-label {
+  font-size: 1rem;
+}
+
+/* Update media query for smaller screens */
+@media (max-width: 768px) {
+  .smaller-countdown {
+    transform: scale(0.7);
+  }
+
+  .smaller-box {
+    min-width: 120px;
+    padding: 1rem;
+  }
+
+  .smaller-number {
+    font-size: 2rem;
+  }
+
+  .smaller-label {
+    font-size: 0.8rem;
+  }
 }
                

@@ -12,10 +12,10 @@ function Home() {
     seconds: 0
   });
 
-  const [displayText, setDisplayText] = useState("Cybernautix'25");
+  const [displayText, setDisplayText] = useState("CYBERNAUTIX'25");
 
   const texts = [
-    "Cybernautix'25",
+    "CYBERNAUTIX'25",
     "சைபர்நாட்டிக்ஸ்'25", // Tamil
     "సైబర్నాటిక్స్'25"  // Telugu
   ];
@@ -67,22 +67,22 @@ function Home() {
         <h3 className='clg-details'>Presents</h3>
         <SplitText text={displayText} className='sympo' />
         
-        <div className="countdown-container">
-          <div className="countdown-box">
-            <div className="number">{timeLeft.days}</div>
-            <div className="label">Days</div>
+        <div className="countdown-container smaller-countdown">
+          <div className="countdown-box smaller-box">
+            <div className="number smaller-number">{timeLeft.days}</div>
+            <div className="label smaller-label">Days</div>
           </div>
-          <div className="countdown-box">
-            <div className="number">{timeLeft.hours}</div>
-            <div className="label">Hours</div>
+          <div className="countdown-box smaller-box">
+            <div className="number smaller-number">{timeLeft.hours}</div>
+            <div className="label smaller-label">Hours</div>
           </div>
-          <div className="countdown-box">
-            <div className="number">{timeLeft.minutes}</div>
-            <div className="label">Minutes</div>
+          <div className="countdown-box smaller-box">
+            <div className="number smaller-number">{timeLeft.minutes}</div>
+            <div className="label smaller-label">Minutes</div>
           </div>
-          <div className="countdown-box">
-            <div className="number">{timeLeft.seconds}</div>
-            <div className="label">Seconds</div>
+          <div className="countdown-box smaller-box">
+            <div className="number smaller-number">{timeLeft.seconds}</div>
+            <div className="label smaller-label">Seconds</div>
           </div>
         </div>
         
