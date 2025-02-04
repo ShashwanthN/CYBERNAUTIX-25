@@ -1,74 +1,51 @@
-import React from 'react'
-import './Event.css'
+'use client';
+import React, { useRef } from 'react';
+import './Event.css';
 
 function Event() {
-  const technicalEvents = [
-    {
-      title: "Coding",
-      description: "Put your programming skills to the test! Solve algorithmic problems and coding challenges in a race against the clock.",
-      icon: "💻",
-      rules: [
-        "Languages: C, C++, Java, or Python",
-        "AI usage is strictly prohibited",
-        "Time duration: 2 hours"
-      ]
-    },
-    {
-      title: "Paper Presentation",
-      description: "Showcase your research and presentation skills by discussing innovative ideas on trending topics.",
-      icon: "📑",
-      rules: [
-        "Submit papers 2 days prior",
-        "10-minute presentations",
-        "2-minute Q&A session",
-        "Teams of up to 2 members"
-      ]
-    },
-    {
-      title: "UI/UX Designing",
-      description: "Create intuitive, user-friendly interfaces. Compete to make the most innovative and aesthetic designs.",
-      icon: "🎨",
-      rules: [
-        "Use Figma, Adobe XD, or Sketch",
-        "3-hour duration",
-        "Follow given theme",
-        "Solo or team participation"
-      ]
-    },
-    {
-      title: "CineQuery",
-      description: "A DBMS-based competition where participants craft a SQL story using provided schemas based on a movie theme.",
-      icon: "🎬",
-      rules: [
-        "Teams of 2 members",
-        "Use pre-provided schemas",
-        "Include SQL joins, subqueries, functions",
-        "2-hour duration"
-      ]
-    }
-  ];
+  const firstImage = useRef(null);
+  const secondImage = useRef(null);
+  let requestAnimationFrameId = null;
+  let xPercent = 0;
+  let currentXPercent = 0;
+  const speed = 0.15;
 
-  const nonTechnicalEvents = [
-    {
-      title: "Twist Tales",
-      description: "Unleash your creativity and storytelling skills! Craft a short story with an unexpected twist.",
-      icon: "📚",
-      rules: [
-        "1-hour time limit",
-        "500-700 words limit",
-        "Original content only",
-        "Teams of 2 members"
-      ]
+  const manageMouseMove = (e) => {
+    const { clientX } = e;
+    xPercent = (clientX / window.innerWidth) * 100;
+    
+    if(!requestAnimationFrameId){
+      requestAnimationFrameId = window.requestAnimationFrame(animate);
     }
-  ];
+  }
+
+  const animate = () => {
+    const xPercentDelta = xPercent - currentXPercent;
+    currentXPercent = currentXPercent + (xPercentDelta * speed);
+
+    const firstImagePercent = 66.66 - (currentXPercent * 0.33);
+    const secondImagePercent = 33.33 + (currentXPercent * 0.33);
+
+    if(firstImage.current && secondImage.current) {
+      firstImage.current.style.width = `${firstImagePercent}%`;
+      secondImage.current.style.width = `${secondImagePercent}%`;
+    }
+
+    if(Math.round(xPercent) === Math.round(currentXPercent)){
+      window.cancelAnimationFrame(requestAnimationFrameId);
+      requestAnimationFrameId = null;
+    } else {
+      window.requestAnimationFrame(animate);
+    }
+  }
 
   return (
-    <div className="events-container">
-      <div className="events-wrapper">
-        <div className="event-section">
-          <h2>Technical Events</h2>
-          <div className="event-header">
-            <img width="100%" height="50%" 
+    <div className="events-main-container">
+      <div className="events-main-wrapper" onMouseMove={manageMouseMove}>
+        <div ref={firstImage} className="event-main-section">
+          <h2 className="event-title">Technical Events</h2>
+          <div className="stretchy-wrapper">
+            <img 
               src="https://thumbs.dreamstime.com/b/anatomy-human-body-robot-digital-circuit-technology-ai-generated-anatomy-human-body-robot-digital-circuit-technology-ai-generated-293132183.jpg"
               alt="Technical Events"
               className="event-banner"
@@ -76,11 +53,9 @@ function Event() {
           </div>
         </div>
 
-        <div className="vertical-divider"></div>
-
-        <div className="event-section">
-          <h2>Non-Technical Events</h2>
-          <div className="event-header">
+        <div ref={secondImage} className="event-main-section">
+          <h2 className="event-title">Non-Technical Events</h2>
+          <div className="stretchy-wrapper">
             <img 
               src="https://img.freepik.com/premium-photo/abstract-technological-background-web-events_943281-123058.jpg"
               alt="Non-Technical Events"
@@ -90,7 +65,7 @@ function Event() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Event
+export default Event;

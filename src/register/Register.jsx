@@ -104,7 +104,7 @@ function Register() {
         <div className="register-card">
           <div className="register-header">
             <i className="fas fa-user-plus"></i>
-            <SplitText text="cybernautix'25" />
+            <SplitText text="Cybernautix'25" />
           </div>
 
           <form className="register-form" onSubmit={handleSubmit}>

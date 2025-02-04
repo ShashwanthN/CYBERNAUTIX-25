@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './navbar/Navbar';
+import Loading from './components/Loading';
 
 import Event from './event/Event';
 import Home from './home/Home';
@@ -11,24 +12,33 @@ import Contact from './contact/Contact';
 import Bus from './bus/Bus';
 import Login from './login/Login';
 
-
-
 function App() {
-  return (
-    <div style={{ position: 'relative', overflow: 'hidden' }}>
-      
-      <Navbar/>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/events" element={<Event />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/contact" element={<Contact />} /> 
-        <Route path="/bus" element={<Bus />} />
-        <Route path="/login" element={<Login />} />
+  const [isLoading, setIsLoading] = useState(true);
 
-      </Routes>
-      
-    </div>
+  useEffect(() => {
+    // Hide loading screen after animation duration (1.1s = 500ms delay + 600ms animation)
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <>
+      {isLoading && <Loading />}
+      <div style={{ position: 'relative', overflow: 'hidden' }}>
+        <Navbar/>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/events" element={<Event />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/contact" element={<Contact />} /> 
+          <Route path="/bus" element={<Bus />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 
