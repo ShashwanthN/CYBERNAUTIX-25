@@ -66,9 +66,7 @@ function Contact() {
           </div>
         </div>
       </div>
-      <TiltedCard>
-        <img src={logo}/>
-      </TiltedCard>
+      
     </div>
   );
 }
