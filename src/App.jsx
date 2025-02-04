@@ -11,6 +11,7 @@ import Register from './register/Register';
 import Contact from './contact/Contact';
 import Bus from './bus/Bus';
 import Login from './login/Login';
+import Technical from './event/Technical';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,6 +37,7 @@ function App() {
           <Route path="/contact" element={<Contact />} /> 
           <Route path="/bus" element={<Bus />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/technical" element={<Technical />} />
         </Routes>
       </div>
     </>

@@ -1,50 +1,43 @@
-.loading-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: calc(100vh + 200px);
-  background-color: #000;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.loading-screen svg {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.loading-screen path {
-  fill: #000;
-}
-
-.loading-content {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  transform: translateY(-100px);
-}
-
-.loading-content img {
-  width: 300px;
-  height: 300px;
-  object-fit: contain;
-  animation: spin 2s linear infinite;
-  margin: 0 auto;
-}
-
-.loading-content h1 {
-  font-size: 3rem;
-  margin: 0;
-  color:#4ddbff;
-} 
+.technical-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px;
+  }
+  
+  .technical-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .technical-section img {
+    width: 150px; /* Adjust as needed */
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .technical-section .content {
+    flex: 1;
+  }
+  
+  .reverse {
+    flex-direction: row-reverse;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .technical-section {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .reverse {
+      flex-direction: column;
+    }
+  
+    .technical-section img {
+      width: 100px; /* Smaller images for mobile */
+    }
+  }
+  

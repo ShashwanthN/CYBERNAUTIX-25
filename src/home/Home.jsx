@@ -3,6 +3,8 @@ import './Home.css';
 import Event from '../event/Event';
 import Contact from '../contact/Contact';
 import SplitText from '../components/SplitText';
+import Technical from '../event/Technical';
+
 
 function Home() {
   const [timeLeft, setTimeLeft] = useState({
@@ -89,6 +91,7 @@ function Home() {
     </div>
     <Event/>
     <Contact/>
+
     </div>
     
   );

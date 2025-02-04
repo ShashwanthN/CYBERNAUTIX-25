@@ -1,6 +1,7 @@
 'use client';
 import React, { useRef } from 'react';
 import './Event.css';
+import Technical from './Technical';
 
 function Event() {
   const firstImage = useRef(null);
