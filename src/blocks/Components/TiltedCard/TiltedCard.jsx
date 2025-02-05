@@ -1,9 +1,3 @@
-/*
-	jsrepo 1.30.1
-	Installed from https://reactbits.dev/default/
-	3-2-2025
-*/
-
 import { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import "./TiltedCard.css";
@@ -18,10 +12,10 @@ export default function TiltedCard({
   imageSrc,
   altText = "Tilted card image",
   captionText = "",
-  containerHeight = "300px",
+  containerHeight = "350px",
   containerWidth = "100%",
-  imageHeight = "300px",
-  imageWidth = "300px",
+  imageHeight = "380px",
+  imageWidth = "350px",
   scaleOnHover = 1.1,
   rotateAmplitude = 14,
   showMobileWarning = true,

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import Event from '../event/Event';
 import Contact from '../contact/Contact';
@@ -7,6 +8,7 @@ import Technical from '../event/Technical';
 
 
 function Home() {
+  const navigate = useNavigate();
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -60,6 +62,10 @@ function Home() {
     };
   }, []); // Empty dependency array means this effect runs once on mount
 
+  const handleRegisterClick = () => {
+    navigate('/register');
+  };
+
   return (
     <div>
     <div className="home-container">
@@ -87,11 +93,9 @@ function Home() {
             <div className="label smaller-label">Seconds</div>
           </div>
         </div>
+        <h3 className='ends'>Registration Ends in </h3>
       </div>
     </div>
-    <Event/>
-    <Contact/>
-
     </div>
     
   );

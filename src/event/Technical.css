@@ -1,5 +1,7 @@
-h1{
-    color: aliceblue;
+.heading{
+  text-align: center;
+  padding-bottom: 5%;
+  color: aqua;
 }
 
 .technical-container {
@@ -35,13 +37,13 @@ h1{
 .content h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #333;
+  color:aquamarine
 }
 
 .content p {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: #666;
+  color: aqua;
 }
 
 @media (max-width: 768px) {

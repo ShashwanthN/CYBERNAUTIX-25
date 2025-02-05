@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
 .home-container {
-  min-height: 100vh; /* Changed from height to min-height */
+  max-height: 100vh; /* Changed from height to min-height */
   width: 100%;
   overflow-y: auto; /* Allow vertical scrolling */
   position: relative; /* Changed from fixed to relative */
@@ -21,8 +21,11 @@
   margin-top: 0.2%;
   color: #4ddbff; /* Dark text color */
   font-family: "Bevan", serif;
-  font-weight: 400;
+  font-size:x-large;
   font-style: italic;
+}
+.ends{
+  color:#4ddbff;
 }
   
 

@@ -48,6 +48,7 @@ function Contact() {
           <div className="map-section">
            
               <div className="map-wrapper" style={{ width: '100%', height: '500px' }}>
+              
                 <iframe
                   className="map-container"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3881.8968250621356!2d80.13872847492559!3d13.356691106318891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4d807de229f987%3A0x11cc13e2927bfabc!2sR.M.K.%20Engineering%20College!5e0!3m2!1sen!2sin"
@@ -61,6 +62,7 @@ function Contact() {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
+              
               </div>
           </div>
         </div>

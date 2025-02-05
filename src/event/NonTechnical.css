@@ -1,0 +1,63 @@
+.heading{
+    text-align: center;
+    padding-bottom: 5%;
+    color: aqua;
+  }
+  
+  .technical-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+  
+  .technical-section {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    padding: 2rem;
+  }
+  
+  .technical-section.reverse {
+    flex-direction: row-reverse;
+  }
+  
+  .technical-image {
+    width: 400px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .content {
+    flex: 1;
+  }
+  
+  .content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color:aquamarine
+  }
+  
+  .content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: aqua;
+  }
+  
+  @media (max-width: 768px) {
+    .technical-section {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .technical-section.reverse {
+      flex-direction: column;
+    }
+  
+    .technical-image {
+      width: 100%;
+      max-width: 300px;
+    }
+  }

@@ -1,11 +1,12 @@
 'use client';
 import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Event.css';
-import Technical from './Technical';
 
 function Event() {
   const firstImage = useRef(null);
   const secondImage = useRef(null);
+  const navigate = useNavigate();
   let requestAnimationFrameId = null;
   let xPercent = 0;
   let currentXPercent = 0;
@@ -40,10 +41,23 @@ function Event() {
     }
   }
 
+  const handleTechnicalClick = () => {
+    navigate('/tech');
+  }
+
+  const handleNonTechnicalClick = () => {
+    navigate('/nontech');
+  }
+
   return (
     <div className="events-main-container">
       <div className="events-main-wrapper" onMouseMove={manageMouseMove}>
-        <div ref={firstImage} className="event-main-section">
+        <div 
+          ref={firstImage} 
+          className="event-main-section"
+          onClick={handleTechnicalClick}
+          style={{ cursor: 'pointer' }}
+        >
           <h2 className="event-title">Technical Events</h2>
           <div className="stretchy-wrapper">
             <img 
@@ -54,7 +68,12 @@ function Event() {
           </div>
         </div>
 
-        <div ref={secondImage} className="event-main-section">
+        <div 
+          ref={secondImage} 
+          className="event-main-section"
+          onClick={handleNonTechnicalClick}
+          style={{ cursor: 'pointer' }}
+        >
           <h2 className="event-title">Non-Technical Events</h2>
           <div className="stretchy-wrapper">
             <img 
