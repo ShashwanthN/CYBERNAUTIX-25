@@ -1,5 +1,4 @@
 import './Technical.css';
-import logo from '../assets/logo.png';
 
 const Technical = () => {
     return (

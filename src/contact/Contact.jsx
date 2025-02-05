@@ -1,6 +1,5 @@
 import React from "react";
 import "./Contact.css";
-import logo from'../assets/logo.png'
  // ✅ Import the 3D-Pin Component
 import TiltedCard from "../blocks/Components/TiltedCard/TiltedCard";
 
