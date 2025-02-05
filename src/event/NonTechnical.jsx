@@ -19,7 +19,7 @@ function NonTecnical() {
               <TiltedCard imageSrc={tt}/>
             </div>
             <div className="content" style={{ flex: '1' }}>
-              <h2>CODING</h2>
+              <h2>TWIST TALES</h2>
               <p className='des'>Unleash your creativity and storytelling skills! Participants craft a 
                 short story with an unexpected twist based on a given prompt.
               </p>
