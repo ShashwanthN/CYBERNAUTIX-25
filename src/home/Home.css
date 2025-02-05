@@ -255,4 +255,59 @@ h3 {
   font-size: 4.5rem; /* Adjust this value as needed */
  
 }
+
+.event-info {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin: 2rem 0;
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+}
+
+.info-icon {
+  font-size: 2.5rem;
+  color: #4ddbff;
+  transition: all 0.3s ease;
+}
+
+.glow-effect {
+  filter: drop-shadow(0 0 8px #4ddbff);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    filter: drop-shadow(0 0 8px #4ddbff);
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 12px #4ddbff);
+    transform: scale(1.1);
+  }
+  100% {
+    filter: drop-shadow(0 0 8px #4ddbff);
+    transform: scale(1);
+  }
+}
+
+.info-item h3 {
+  color: #4ddbff;
+  margin: 0;
+  font-size: 1.2rem;
+  text-shadow: 0 0 10px rgba(77, 219, 255, 0.5);
+}
+
+/* Hover effect */
+.info-item:hover .info-icon {
+  transform: translateY(-5px);
+  filter: drop-shadow(0 0 15px #4ddbff);
+}
                
