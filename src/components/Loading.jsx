@@ -11,6 +11,9 @@ function Loading() {
   let start;
 
   useEffect(() => {
+    // Reset scroll position to top
+    window.scrollTo(0, 0);
+    
     setPath(initialCurve);
     setTimeout(() => {
       requestAnimationFrame(animate);
@@ -67,7 +70,6 @@ function Loading() {
       </svg>
       <div className="loading-content">
         <img src={rmkIcon} alt="RMK Loading icon" />
-        
       </div>
     </div>
   );
