@@ -7,6 +7,7 @@ import SplitText from '../components/SplitText';
 import Technical from '../event/Technical';
 
 
+
 function Home() {
   const navigate = useNavigate();
   const [timeLeft, setTimeLeft] = useState({
@@ -62,9 +63,7 @@ function Home() {
     };
   }, []); // Empty dependency array means this effect runs once on mount
 
-  const handleRegisterClick = () => {
-    navigate('/register');
-  };
+  
 
   return (
     <div>
@@ -73,7 +72,7 @@ function Home() {
         <h1 className='clg-details'>R.M.K. ENGINEERING COLLEGE</h1>
         <h2 className='clg-details'>DEPARTMENT OF INFORMATION TECHNOLOGY</h2>
         <h3 className='clg-details'>Presents</h3>
-        <SplitText text={displayText} className='sympo' />
+        <SplitText text={displayText} />
         
         <div className="countdown-container smaller-countdown">
           <div className="countdown-box smaller-box">
@@ -96,6 +95,9 @@ function Home() {
         <h3 className='ends'>Registration Ends in </h3>
       </div>
     </div>
+    
+    
+
     </div>
     
   );

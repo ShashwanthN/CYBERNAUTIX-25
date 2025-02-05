@@ -5,7 +5,7 @@
   width: 100%;
   overflow-y: auto; /* Allow vertical scrolling */
   position: relative; /* Changed from fixed to relative */
-  background: #000; /* Or your desired background */
+  /* Or your desired background */
 }
 
 .details {
@@ -30,7 +30,7 @@
   
 
 .sympo{
-  font-size: 3rem; /* Larger font size for main title */
+  font-size: 4rem; /* Larger font size for main title */
 }
 
 h1 {
@@ -249,5 +249,10 @@ h3 {
   .smaller-label {
     font-size: 0.8rem;
   }
+}
+
+.large-title {
+  font-size: 4.5rem; /* Adjust this value as needed */
+ 
 }
                

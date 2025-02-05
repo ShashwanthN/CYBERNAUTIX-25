@@ -14,7 +14,7 @@ const Technical = () => {
 
   return (
     <div className="technical-container">
-      <h1 className='heading'>TECHNICAL EVENTS</h1>
+      <h1 className='heading venus-font'>TECHNICAL EVENTS</h1>
       {/* First section - Image on left, text on right */}
       <section className="technical-section">
         <div className="image-container">
