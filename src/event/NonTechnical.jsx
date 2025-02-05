@@ -7,13 +7,15 @@ import TiltedCard from '../blocks/Components/TiltedCard/TiltedCard'
 function NonTecnical() {
   return (
     
-        <div className="technical-container">
+        <div className="technical-container" style={{ position: 'relative', zIndex: 1 }}>
           <h1 className='heading'>NON TECHNICAL EVENTS</h1>
           <section className="technical-section" style={{
             display: 'flex',
             alignItems: 'center',
             gap: '2rem',
-            padding: '2rem'
+            padding: '2rem',
+            position: 'relative',
+            zIndex: 2
           }}>
             <div style={{ flex: '1' }}>
               <TiltedCard imageSrc={tt}/>

@@ -9,7 +9,7 @@ function Contact() {
       <div className="page-content contact-page">
         <div className="contact-container">
           <div className="contact-form-section">
-            <h1 className="contact-title">Contact Us</h1>
+            <h1 className="contact-title" style={{ position: 'relative', zIndex: 3 }}>Contact Us</h1>
             <form className="contact-form">
               <div className="form-group">
                 <label>Name</label>
@@ -45,9 +45,9 @@ function Contact() {
           </div>
 
       
-          <div className="map-section">
+          <div className="map-section" style={{ height: '500px', position: 'relative', zIndex: 1 }}>
            
-              <div className="map-wrapper" style={{ width: '100%', height: '500px' }}>
+              <div className="map-wrapper" style={{ width: '100%', height: '100%' }}>
               
                 <iframe
                   className="map-container"
@@ -56,7 +56,11 @@ function Contact() {
                   height="100%"
                   style={{ 
                     border: 'none',
-                    borderRadius: '10px'
+                    borderRadius: '10px',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    zIndex: 2
                   }}
                   allowFullScreen
                   loading="lazy"
