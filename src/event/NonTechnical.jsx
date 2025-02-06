@@ -1,10 +1,13 @@
 import React from 'react'
 import './NonTechnical.css'
+import {useNavigate} from 'react-router-dom';
 import tt from'../assets/twistTales.jpg'
 import TiltedCard from '../blocks/Components/TiltedCard/TiltedCard'
 
 
 function NonTecnical() {
+  const navigate = useNavigate();
+
   const handleRegisterClick = () => {
     navigate('/register');
   };
