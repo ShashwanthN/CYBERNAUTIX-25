@@ -121,25 +121,58 @@
 
 
 @media (max-width: 991px) {
-  .navbar {
-    padding: 0.8rem 1.5rem;
-  }
-
-  .nav-link {
-    padding: 0.6rem;
-  }
-
-  .sidebar {
-    width: 80%;
-  }
-}
-
-@media (max-width: 480px) {
-  .logo {
-    width: 140px;
-  }
-
   .sidebar {
     width: 100%;
+    height: auto;
+    bottom: 0;
+    top: auto;
+    right: 0;
+    padding-top: 0;
+    background: rgba(15, 23, 42, 0.95);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+
+  .sidebar-header {
+    display: none;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.8rem 0;
+  }
+
+  .sidebar-nav li {
+    list-style: none;
+  }
+
+  .sidebar-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    color: #ffffff;
+  }
+
+  .sidebar-link i {
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+  }
+
+  .sidebar-overlay {
+    display: none;
+  }
+
+  .navbar-toggler {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 1200;
+    background: rgba(15, 23, 42, 0.9);
+    padding: 12px 14px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 }
