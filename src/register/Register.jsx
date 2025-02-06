@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import './Register.css'; // Ensure you have the corresponding CSS file
+import { auth } from '../backend/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { db } from '../backend/firebase';
+import { setDoc,doc,collection } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 function SplitText({ text }) {
   return (
@@ -14,6 +19,10 @@ function SplitText({ text }) {
 }
 
 function Register() {
+
+  const nav = useNavigate();
+
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -81,23 +90,56 @@ function Register() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     const totalEvents = formData.technicalEvents.length + formData.nonTechnicalEvents.length;
-    if (totalEvents !== 2) {
-      alert('Please select exactly 2 events to register');
+    
+    if (formData.confirmPassword !== formData.password) {
+      alert('Passwords do not match');
       return;
     }
-
+  
     if (formData.technicalEvents.length === 1 && formData.nonTechnicalEvents.length === 1) {
       alert('Please select both events from either Technical or Non-Technical category');
       return;
     }
-
+  
     console.log('Form submitted:', formData);
+  
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+      const user = userCredential.user;
+  
+      if (user) {
+        const userDocRef = doc(db, "Users", user.uid); // Reference to "Users" collection
+  
+        await setDoc(userDocRef, {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          college: formData.college,
+          department: formData.department,
+          password:formData.password,
+          year: formData.year,
+          no_of_events: totalEvents,
+          technicalEvents: formData.technicalEvents,
+          nonTechnicalEvents: formData.nonTechnicalEvents,
+          unique_id: user.uid
+        });
+  
+        console.log("User registered and data stored successfully.");
+        alert('Registered successfully');
+        const userId = userCredential.user.uid;
+        nav(`/user/${userId}`);
+        
+      }
+    } catch (error) {
+      console.error("Error storing data:", error.message);
+      alert(error.message);
+    }
   };
-
+  
   return (
     <div className="page-content register-page">
       <div className="register-container">

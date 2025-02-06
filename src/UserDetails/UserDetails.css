@@ -1,0 +1,67 @@
+/* UserDetails.css */
+
+/* Container for user profile */
+.user-profile {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Header for the profile */
+.user-profile h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Profile container for details */
+.profile-container {
+    margin-bottom: 20px;
+}
+
+/* Styling for each profile detail */
+.profile-container p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Make font-size responsive for mobile */
+@media (max-width: 600px) {
+    .profile-container p {
+        font-size: 16px;
+    }
+
+    .download-btn {
+        font-size: 14px;
+    }
+}
+
+/* Styling for strong text in profile */
+.profile-container strong {
+    font-weight: bold;
+}
+
+/* Button for downloading PDF */
+.download-btn {
+    display: block;
+    max-width: 200px;  /* Control the button width */
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin: 20px auto; /* Center the button */
+    border-radius: 5px;
+}
+
+.download-btn:hover {
+    background-color: #45a049;
+}
+
+/* Add focus state for accessibility */
+.download-btn:focus {
+    outline: 2px solid #4CAF50;
+    outline-offset: 2px;
+}

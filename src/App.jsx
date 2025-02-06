@@ -13,6 +13,8 @@ import Bus from './bus/Bus';
 import Login from './login/Login';
 import Technical from './event/Technical';
 import NonTecnical from './event/NonTechnical';
+import AdminDashboard from './AdminPage/AdminDashboard';
+import UserDetails from './UserDetails/UserDetails';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,11 +37,13 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/events" element={<Event />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/contact" element={<Contact />} /> 
+          <Route path="/contact" element={<Contact />} />
           <Route path="/bus" element={<Bus />} />
           <Route path="/login" element={<Login />} />
           <Route path="/tech" element={<Technical />} />
           <Route path="/nontech" element={<NonTecnical/>} />
+          <Route path='/admin' element={<AdminDashboard/>} />
+          <Route path="/user/:userId" element={<UserDetails />} />
         </Routes>
       </div>
     </>
