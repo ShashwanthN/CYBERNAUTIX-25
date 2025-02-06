@@ -1,12 +1,13 @@
 /* PC Navigation Styles */
 .navbar {
-  background-color: #000000 !important;
+
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
+  
 }
 .logo{
-  width:10%
+  width: 250px;
 }
 .navbar-brand {
   color: #ffffff !important;

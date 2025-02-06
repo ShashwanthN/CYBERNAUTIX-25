@@ -5,6 +5,9 @@ import Event from '../event/Event';
 import Contact from '../contact/Contact';
 import SplitText from '../components/SplitText';
 import Technical from '../event/Technical';
+import { BsCalendarEventFill } from 'react-icons/bs'; // Better calendar icon
+import { FaPiggyBank } from 'react-icons/fa';
+
 
 
 function Home() {
@@ -62,9 +65,7 @@ function Home() {
     };
   }, []); // Empty dependency array means this effect runs once on mount
 
-  const handleRegisterClick = () => {
-    navigate('/register');
-  };
+  
 
   return (
     <div>
@@ -73,7 +74,7 @@ function Home() {
         <h1 className='clg-details'>R.M.K. ENGINEERING COLLEGE</h1>
         <h2 className='clg-details'>DEPARTMENT OF INFORMATION TECHNOLOGY</h2>
         <h3 className='clg-details'>Presents</h3>
-        <SplitText text={displayText} className='sympo' />
+        <SplitText text={displayText} />
         
         <div className="countdown-container smaller-countdown">
           <div className="countdown-box smaller-box">
@@ -93,9 +94,22 @@ function Home() {
             <div className="label smaller-label">Seconds</div>
           </div>
         </div>
-        <h3 className='ends'>Registration Ends in </h3>
+        
+      </div>
+      <div className="event-info">
+        <div className="info-item">
+          <BsCalendarEventFill className="info-icon glow-effect" />
+          <h3>17 March 2025</h3>
+        </div>
+        <div className="info-item">
+          <FaPiggyBank className="info-icon glow-effect" />
+          <h3>Free Entry</h3>
+        </div>
       </div>
     </div>
+    
+    
+
     </div>
     
   );
