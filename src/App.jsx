@@ -14,12 +14,14 @@ import Technical from './event/Technical';
 import NonTecnical from './event/NonTechnical';
 import AdminDashboard from './AdminPage/AdminDashboard';
 import UserDetails from './UserDetails/UserDetails';
+import ParticlesComponent from './blocks/background/ParticlesComponent';
+
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Hide loading screen after animation duration (1.1s = 500ms delay + 600ms animation)
+    // Hide loading screen after animation duration (1.1s = 500ms delay + 600ms animation)uh
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1100);
