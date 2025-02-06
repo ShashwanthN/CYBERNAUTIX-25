@@ -5,6 +5,9 @@ import TiltedCard from '../blocks/Components/TiltedCard/TiltedCard'
 
 
 function NonTecnical() {
+  const handleRegisterClick = () => {
+    navigate('/register');
+  };
   return (
     
         <div className="technical-container" style={{ position: 'relative', zIndex: 1 }}>
@@ -30,6 +33,13 @@ function NonTecnical() {
               <p>Word limit: 500-700 words.</p>
               <p>Teams of 2 members.</p>
               <p>Time limit: 1 hour.</p>
+              <button 
+            type="button" 
+            className="btn btn-outline-info"
+            onClick={handleRegisterClick}
+          >
+            Register now
+          </button>
             </div>
           </section>
         </div>
