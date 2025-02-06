@@ -74,7 +74,7 @@ function Event() {
           onClick={handleNonTechnicalClick}
           style={{ cursor: 'pointer' }}
         >
-          <h2 className="event-title">Non-Technical Events</h2>
+          <h2 className="event-title">Surprise Events</h2>
           <div className="stretchy-wrapper">
             <img 
               src="https://img.freepik.com/premium-photo/abstract-technological-background-web-events_943281-123058.jpg"

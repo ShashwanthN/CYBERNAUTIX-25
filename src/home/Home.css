@@ -5,20 +5,21 @@
   width: 100%;
   overflow-y: auto; /* Allow vertical scrolling */
   position: relative; /* Changed from fixed to relative */
+  padding-top: 0; /* Removed padding-top completely */
   /* Or your desired background */
 }
 
 .details {
-  padding: 1rem;
+  padding: 0.25rem; /* Further reduced padding */
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.25rem; /* Further reduced gap */
 }
 
 .clg-details{
-  margin-top: 0.2%;
+  margin-top: 0; /* Remove top margin */
   color: #4ddbff; /* Dark text color */
   font-family: "Bevan", serif;
   font-size:x-large;
@@ -53,9 +54,9 @@ h3 {
 .countdown-container {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin: 2rem 0;
-  padding: 2rem;
+  gap: 1.5rem; /* Reduced gap */
+  margin: 0.5rem 0; /* Further reduced margin */
+  padding: 1rem; /* Reduced padding */
 }
 
 .countdown-box {
@@ -309,5 +310,53 @@ h3 {
 .info-item:hover .info-icon {
   transform: translateY(-5px);
   filter: drop-shadow(0 0 15px #4ddbff);
+}
+
+/* Add these new styles for the calendar GIF */
+.calendar-gif {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+  /* Updated filter to match #4ddbff color */
+  filter: brightness(0) saturate(100%) invert(75%) sepia(66%) saturate(1095%) hue-rotate(157deg) brightness(101%) contrast(101%);
+}
+
+/* Update hover effect to include the GIF */
+.info-item:hover .calendar-gif {
+  transform: translateY(-5px);
+  /* Updated hover filter to maintain #4ddbff color with glow effect */
+  filter: brightness(0) saturate(100%) invert(75%) sepia(66%) saturate(1095%) hue-rotate(157deg) brightness(101%) contrast(101%) drop-shadow(0 0 15px #4ddbff);
+}
+
+.register-button-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.register-button {
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  background: transparent;
+  color: #4ddbff;
+  border: 2px solid #4ddbff;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.register-button:hover {
+  background: rgba(77, 219, 255, 0.1);
+  box-shadow: 0 0 20px rgba(77, 219, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.register-button:active {
+  transform: translateY(0);
 }
                

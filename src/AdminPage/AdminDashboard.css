@@ -22,12 +22,16 @@
     background-color: #1e1e1e;
     padding: 10px;
     border-radius: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 .user-table {
     width: 100%;
     border-collapse: collapse;
     background-color: #1e1e1e;
+    position: relative;
+    z-index: 2;
 }
 
 .user-table th,

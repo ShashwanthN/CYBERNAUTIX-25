@@ -2,9 +2,9 @@
 
 /* Container for user profile */
 .user-profile {
-    max-width: 600px;
-    margin: 0 auto;
     padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
     font-family: Arial, sans-serif;
 }
 
@@ -16,13 +16,21 @@
 
 /* Profile container for details */
 .profile-container {
-    margin-bottom: 20px;
+    background-color: #ffffff; /* Change to solid white background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Increased shadow for better depth */
+    margin: 20px 0;
+    position: relative; /* Ensure container stays above background */
+    z-index: 1; /* Bring content forward */
 }
 
 /* Styling for each profile detail */
 .profile-container p {
-    font-size: 18px;
-    margin-bottom: 10px;
+    color: #000000; /* Pure black text */
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: 500; /* Slightly bolder text */
 }
 
 /* Make font-size responsive for mobile */
@@ -43,24 +51,25 @@
 
 /* Button for downloading PDF */
 .download-btn {
-    display: block;
-    max-width: 200px;  /* Control the button width */
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
+    background-color: #007bff;
     color: white;
-    font-size: 16px;
+    padding: 10px 20px;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
-    margin: 20px auto; /* Center the button */
-    border-radius: 5px;
+    font-size: 16px;
+    display: block; /* Ensure button is displayed as block */
+    margin: 20px 0; /* Add some margin */
+    z-index: 2; /* Make sure button stays above other elements */
+    position: relative; /* Ensure z-index works */
 }
 
 .download-btn:hover {
-    background-color: #45a049;
+    background-color: #0056b3;
+    transform: translateY(-1px); /* Slight lift effect on hover */
+    transition: all 0.2s ease;
 }
 
-/* Add focus state for accessibility */
 .download-btn:focus {
     outline: 2px solid #4CAF50;
     outline-offset: 2px;

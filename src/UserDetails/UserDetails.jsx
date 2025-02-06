@@ -9,6 +9,7 @@ import './UserDetails.css';
 function UserDetails() {
     const { userId } = useParams();  // Get userId from the URL
     const [user, setUser] = useState(null);
+    const Id = userId.substring(0, 6);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -43,7 +44,7 @@ function UserDetails() {
             ['College', user.college],
             ['Department', user.department],
             ['Year', user.year],
-            ['Unique Id', userId], 
+            ['Unique Id', Id], 
             ['Total Events', user.no_of_events],
             ['Technical Events', user.technicalEvents.join(', ')],
             ['Non-Technical Events', user.nonTechnicalEvents.join(', ')],
@@ -66,7 +67,7 @@ function UserDetails() {
                 <p><strong>College:</strong> {user.college}</p>
                 <p><strong>Department:</strong> {user.department}</p>
                 <p><strong>Year:</strong> {user.year}</p>
-                <p><strong>UniqueId</strong> {user.uid}</p>
+                <p><strong>UniqueId</strong> {Id}</p>
                 <p><strong>Total Events:</strong> {user.no_of_events}</p>
                 <p><strong>Technical Events:</strong> {user.technicalEvents.join(', ')}</p>
                 <p><strong>Non-Technical Events:</strong> {user.nonTechnicalEvents.join(', ')}</p>

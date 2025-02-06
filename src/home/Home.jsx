@@ -65,7 +65,9 @@ function Home() {
     };
   }, []); // Empty dependency array means this effect runs once on mount
 
-  
+  const handleRegisterClick = () => {
+    navigate('/register');  // Navigate to register page
+  };
 
   return (
     <div>
@@ -105,6 +107,14 @@ function Home() {
           <FaPiggyBank className="info-icon glow-effect" />
           <h3>Free Entry</h3>
         </div>
+      </div>
+      <div className="register-button-container">
+        <button 
+          className="register-button"
+          onClick={handleRegisterClick}
+        >
+          Register Now
+        </button>
       </div>
     </div>
     

@@ -14,7 +14,7 @@ function NonTecnical() {
   return (
     
         <div className="technical-container" style={{ position: 'relative', zIndex: 1 }}>
-          <h1 className='heading'>NON TECHNICAL EVENTS</h1>
+          <h1 className='heading'>SURPRISE EVENTS</h1>
           <section className="technical-section" style={{
             display: 'flex',
             alignItems: 'center',
