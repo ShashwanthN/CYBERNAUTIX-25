@@ -5,8 +5,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 0rem;
+  
   margin-top: -6rem;
+  
 }
 
 .events-main-wrapper {
@@ -17,6 +18,7 @@
   height: 500px;
   gap: 2rem;
   justify-content: center;
+  padding-top: 120px;
 }
 
 .event-main-section {
