@@ -19,6 +19,7 @@ import { Meteors } from "@/components/magicui/meteors";
 import { Particles } from './components/magicui/particles';
 import { WarpBackground } from './components/magicui/warp-background';
 import { AnimatedGridPattern } from './components/magicui/animated-grid-pattern';
+import { BackgroundLines } from './components/ui/background-lines';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -68,8 +69,8 @@ function App() {
         </div> */}
        
         <div className="fixed inset-0 overflow-hidden pointer-events-none">
-          <Meteors 
-            number={20}
+          <BackgroundLines 
+           
           />
         </div>
         {/* <div className="fixed opacity-50 inset-0 overflow-hidden pointer-events-none">
