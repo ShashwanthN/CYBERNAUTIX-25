@@ -34,23 +34,22 @@ function App() {
       {isLoading && <Loading />}
       
       <div style={{ position: 'relative', overflow: 'hidden' }}>
-      <ParticlesComponent/>
+        <ParticlesComponent/>
         <Navbar />
-        
-  
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/events" element={<Event />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/bus" element={<Bus />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/tech" element={<Technical />} />
-          <Route path="/nontech" element={<NonTecnical/>} />
-          <Route path='/admin' element={<AdminDashboard/>} />
-          <Route path="/user/:userId" element={<UserDetails />} />
-        </Routes>
+        <div className="page-wrapper">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/events" element={<Event />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/bus" element={<Bus />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/tech" element={<Technical />} />
+            <Route path="/nontech" element={<NonTecnical/>} />
+            <Route path='/admin' element={<AdminDashboard/>} />
+            <Route path="/user/:userId" element={<UserDetails />} />
+          </Routes>
+        </div>
       </div>
     </>
   );

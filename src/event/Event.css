@@ -1,4 +1,4 @@
-.events-main-container {
+.ev-main-container {
   background-color: black;
   min-height: 100vh;
   padding: 6rem;
@@ -10,7 +10,7 @@
   
 }
 
-.events-main-wrapper {
+.ev-main-wrapper {
   display: flex;
   align-items: flex-start;
   width: 100%;
@@ -21,27 +21,27 @@
   padding-top: 120px;
 }
 
-.event-main-section {
+.ev-main-section {
   width: 40%;
   height: 100%;
   transition: width 0.05s ease-out;
 }
 
-.event-title {
+.ev-main-title {
   color: white;
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
   text-align: center;
 }
 
-.stretchy-wrapper {
+.ev-stretchy-wrapper {
   width: 100%;
   height: 100%;
   position: relative;
   padding-bottom: 56.25%;
 }
 
-.event-banner {
+.ev-banner-image {
   position: absolute;
   top: 0;
   left: 0;
@@ -59,7 +59,7 @@
 }
 
 @media (max-width: 768px) {
-  .events-main-wrapper {
+  .ev-main-wrapper {
     flex-direction: column;
     height: auto;
     gap: 1rem;
@@ -70,7 +70,7 @@
     margin: 1rem 0;
   }
   
-  .event-title {
+  .ev-main-title {
     font-size: 2rem;
   }
   

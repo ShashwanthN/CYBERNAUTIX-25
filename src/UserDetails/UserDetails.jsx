@@ -58,9 +58,9 @@ function UserDetails() {
     if (!user) return <p>Loading user details...</p>;
 
     return (
-        <div className="user-profile">
+        <div className="ud-user-profile">
             <h1>User Profile</h1>
-            <div className="profile-container">
+            <div className="ud-profile-container">
                 <p><strong>Name:</strong> {user.name}</p>
                 <p><strong>Email:</strong> {user.email}</p>
                 <p><strong>Phone:</strong> {user.phone}</p>
@@ -72,7 +72,7 @@ function UserDetails() {
                 <p><strong>Technical Events:</strong> {user.technicalEvents.join(', ')}</p>
                 <p><strong>Non-Technical Events:</strong> {user.nonTechnicalEvents.join(', ')}</p>
             </div>
-            <button className="download-btn" onClick={downloadPDF}>Download as PDF</button>
+            <button className="ud-download-btn" onClick={downloadPDF}>Download as PDF</button>
         </div>
     );
 }

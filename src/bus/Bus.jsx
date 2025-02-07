@@ -43,39 +43,35 @@ function Bus() {
   );
 
   return (
-    <div className="page-container fade-in">
-      <div className="page-content bus-page">
-        <div className="bus-container">
-          <h1 className="bus-title">Bus Routes</h1>
-          
-          <div className="search-container">
-            <input
-              type="text"
-              placeholder="Search by place or bus number..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="search-input"
-            />
-            <i className="fas fa-search search-icon"></i>
-          </div>
+    <div className="bus-main-container">
+      <h1 className="bus-main-title">Bus Routes</h1>
+      
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search by place or bus number..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+        <i className="fas fa-search search-icon"></i>
+      </div>
 
-          <div className="bus-routes">
-            {filteredRoutes.map((route, index) => (
-              <div key={index} className="route-card">
-                <div className="route-header">
-                  <div className="place-info">
-                    <h2>{route.place}</h2>
-                    <span className="bus-number">Bus No: {route.busNumber}</span>
-                  </div>
-                  <i className="fas fa-bus"></i>
-                </div>
-                <div className="route-details">
-                  <p>{route.stops}</p>
-                </div>
+      <div className="bus-routes-list">
+        {filteredRoutes.map((route, index) => (
+          <div key={index} className="route-card">
+            <div className="route-header">
+              <div className="place-info">
+                <h2>{route.place}</h2>
+                <span className="bus-number">Bus No: {route.busNumber}</span>
               </div>
-            ))}
+              <i className="fas fa-bus"></i>
+            </div>
+            <div className="route-details">
+              <p>{route.stops}</p>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );

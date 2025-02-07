@@ -50,15 +50,15 @@ function Event() {
   }
 
   return (
-    <div className="events-main-container">
-      <div className="events-main-wrapper" onMouseMove={manageMouseMove}>
+    <div className="ev-main-container">
+      <div className="ev-main-wrapper" onMouseMove={manageMouseMove}>
         <div 
           ref={firstImage} 
           className="event-main-section"
           onClick={handleTechnicalClick}
           style={{ cursor: 'pointer' }}
         >
-          <h2 className="event-title">Technical Events</h2>
+          <h2 className="ev-main-title">Technical Events</h2>
           <div className="stretchy-wrapper">
             <img 
               src="https://thumbs.dreamstime.com/b/anatomy-human-body-robot-digital-circuit-technology-ai-generated-anatomy-human-body-robot-digital-circuit-technology-ai-generated-293132183.jpg"
@@ -74,7 +74,7 @@ function Event() {
           onClick={handleNonTechnicalClick}
           style={{ cursor: 'pointer' }}
         >
-          <h2 className="event-title">Surprise Events</h2>
+          <h2 className="ev-main-title">Surprise Events</h2>
           <div className="stretchy-wrapper">
             <img 
               src="https://img.freepik.com/premium-photo/abstract-technological-background-web-events_943281-123058.jpg"
