@@ -21,10 +21,10 @@ function AdminDashboard() {
     }, []);
 
     return (
-        <div className="admin-dashboard">
-            <h1 className="dashboard-title">Admin Dashboard</h1>
-            <div className="table-container">
-                <table className="user-table">
+        <div className="ad-admin-dashboard">
+            <h1 className="ad-dashboard-title">Admin Dashboard</h1>
+            <div className="ad-table-container">
+                <table className="ad-user-table">
                     <thead>
                         <tr>
                             <th>Name</th>

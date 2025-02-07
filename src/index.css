@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/* Add these base styles */
+.page-wrapper {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+/* Main content containers */
+.home-container,
+.ct-main-container,
+.bus-main-container,
+.register-container,
+.login-container,
+.ev-main-container {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Navbar should be above everything */
+.navbar {
+  position: relative;
+  z-index: 50;
+}

@@ -1,7 +1,7 @@
 /* UserDetails.css */
 
 /* Container for user profile */
-.user-profile {
+.ud-user-profile {
     padding: 20px;
     max-width: 800px;
     margin: 0 auto;
@@ -9,13 +9,13 @@
 }
 
 /* Header for the profile */
-.user-profile h1 {
+.ud-user-profile h1 {
     text-align: center;
     margin-bottom: 20px;
 }
 
 /* Profile container for details */
-.profile-container {
+.ud-profile-container {
     background-color: #ffffff; /* Change to solid white background */
     padding: 20px;
     border-radius: 8px;
@@ -26,7 +26,7 @@
 }
 
 /* Styling for each profile detail */
-.profile-container p {
+.ud-profile-container p {
     color: #000000; /* Pure black text */
     margin: 10px 0;
     font-size: 16px;
@@ -35,22 +35,22 @@
 
 /* Make font-size responsive for mobile */
 @media (max-width: 600px) {
-    .profile-container p {
+    .ud-profile-container p {
         font-size: 16px;
     }
 
-    .download-btn {
+    .ud-download-btn {
         font-size: 14px;
     }
 }
 
 /* Styling for strong text in profile */
-.profile-container strong {
+.ud-profile-container strong {
     font-weight: bold;
 }
 
 /* Button for downloading PDF */
-.download-btn {
+.ud-download-btn {
     background-color: #007bff;
     color: white;
     padding: 10px 20px;
@@ -64,13 +64,20 @@
     position: relative; /* Ensure z-index works */
 }
 
-.download-btn:hover {
+.ud-download-btn:hover {
     background-color: #0056b3;
     transform: translateY(-1px); /* Slight lift effect on hover */
     transition: all 0.2s ease;
 }
 
-.download-btn:focus {
+.ud-download-btn:focus {
     outline: 2px solid #4CAF50;
     outline-offset: 2px;
+}
+
+.ud-info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
 }

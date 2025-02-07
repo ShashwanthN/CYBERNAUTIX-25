@@ -1,14 +1,14 @@
 /* AdminDashboard.css */
 
 /* General Styling */
-.admin-dashboard {
+.ad-admin-dashboard {
     font-family: 'Arial', sans-serif;
     background-color: #121212;
     color: #fff;
     padding: 20px;
 }
 
-.dashboard-title {
+.ad-dashboard-title {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 20px;
@@ -16,7 +16,7 @@
 }
 
 /* Table Styling */
-.table-container {
+.ad-table-container {
     width: 100%;
     overflow-x: auto;
     background-color: #1e1e1e;
@@ -26,7 +26,7 @@
     z-index: 1;
 }
 
-.user-table {
+.ad-user-table {
     width: 100%;
     border-collapse: collapse;
     background-color: #1e1e1e;
@@ -34,39 +34,39 @@
     z-index: 2;
 }
 
-.user-table th,
-.user-table td {
+.ad-user-table th,
+.ad-user-table td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #333;
 }
 
-.user-table th {
+.ad-user-table th {
     background-color: #292929;
     color: #bbb;
     text-transform: uppercase;
 }
 
-.user-table tbody tr {
+.ad-user-table tbody tr {
     transition: background-color 0.3s;
 }
 
-.user-table tbody tr:nth-child(even) {
+.ad-user-table tbody tr:nth-child(even) {
     background-color: #252525;
 }
 
-.user-table tbody tr:hover {
+.ad-user-table tbody tr:hover {
     background-color: #333;
 }
 
 /* Online Users */
-.online-user {
+.ad-online-user {
     color: #4caf50;
     font-weight: bold;
 }
 
 /* Gray Strip Differentiation */
-.data-row {
+.ad-data-row {
     border-left: 5px solid #444;
 }
 
@@ -74,12 +74,12 @@
 @media (max-width: 1024px) {
 
     /* Tablets */
-    .dashboard-title {
+    .ad-dashboard-title {
         font-size: 1.5rem;
     }
 
-    .user-table th,
-    .user-table td {
+    .ad-user-table th,
+    .ad-user-table td {
         padding: 8px;
         font-size: 0.9rem;
     }
@@ -88,23 +88,29 @@
 @media (max-width: 768px) {
 
     /* Mobile */
-    .table-container {
+    .ad-table-container {
         padding: 5px;
     }
 
-    .dashboard-title {
+    .ad-dashboard-title {
         font-size: 1.2rem;
     }
 
-    .user-table th,
-    .user-table td {
+    .ad-user-table th,
+    .ad-user-table td {
         padding: 6px;
         font-size: 0.8rem;
     }
 
-    .user-table {
+    .ad-user-table {
         display: block;
         overflow-x: auto;
         white-space: nowrap;
     }
+}
+
+.ad-table-header {
+    background-color: #292929;
+    color: #bbb;
+    text-transform: uppercase;
 }
