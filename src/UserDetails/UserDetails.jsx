@@ -63,7 +63,7 @@ function UserDetails() {
             <div className="ud-profile-container">
                 <p><strong>Name:</strong> {user.name}</p>
                 <p><strong>Email:</strong> {user.email}</p>
-                <p><strong>Phone:</strong> {user.phone}</p>
+                <p><strong>Phone:</strong> {user.phone}</p>     
                 <p><strong>College:</strong> {user.college}</p>
                 <p><strong>Department:</strong> {user.department}</p>
                 <p><strong>Year:</strong> {user.year}</p>
