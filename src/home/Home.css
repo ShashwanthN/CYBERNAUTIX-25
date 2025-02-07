@@ -5,7 +5,7 @@
   width: 100%;
   overflow-y: auto; /* Allow vertical scrolling */
   position: relative; /* Changed from fixed to relative */
-  padding-top: 0; /* Removed padding-top completely */
+  padding-top: 140px; /* Removed padding-top completely */
   /* Or your desired background */
 }
 
