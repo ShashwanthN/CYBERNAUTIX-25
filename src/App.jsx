@@ -34,7 +34,7 @@ function App() {
       {isLoading && <Loading />}
       
       <div style={{ position: 'relative', overflow: 'hidden' }}>
-        <ParticlesComponent/>
+        {/* <ParticlesComponent/> */}
         <Navbar />
         <div className="page-wrapper">
           <Routes>
