@@ -7,49 +7,6 @@
    and their media queries should be removed */
 
 /* Keep only the loading-related styles */
-.loading-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: #000;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.loading-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.loading-content img {
-  width: 300px;
-  height: 300px;
-  object-fit: contain;
-  /* Remove spin animation */
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .technical-section {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .reverse {
-    flex-direction: column;
-  }
-
-  .technical-section img {
-    width: 100px; /* Smaller images for mobile */
-  }
-}
-  
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap');

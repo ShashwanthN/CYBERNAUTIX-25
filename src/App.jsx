@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './navbar/Navbar';
@@ -15,26 +15,69 @@ import NonTecnical from './event/NonTechnical';
 import AdminDashboard from './AdminPage/AdminDashboard';
 import UserDetails from './UserDetails/UserDetails';
 import ParticlesComponent from './blocks/background/ParticlesComponent';
-
+import { Meteors } from "@/components/magicui/meteors";
+import { Particles } from './components/magicui/particles';
+import { WarpBackground } from './components/magicui/warp-background';
+import { AnimatedGridPattern } from './components/magicui/animated-grid-pattern';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
-    // Hide loading screen after animation duration (1.1s = 500ms delay + 600ms animation)uh
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1100);
+    // Only show loading screen on home page ('/')
+    if (location.pathname === '/') {
+      // Check if this is the first visit or a page reload
+      const isFirstVisit = !sessionStorage.getItem('visited');
+      const isPageReload = performance.navigation.type === 1;
 
-    return () => clearTimeout(timer);
-  }, []);
+      if (isFirstVisit || isPageReload) {
+        setIsLoading(true);
+        sessionStorage.setItem('visited', 'true');
+        
+        // Hide loading screen after animation
+        const timer = setTimeout(() => {
+          setIsLoading(false);
+        }, 1500); // Adjust timing as needed
+
+        return () => clearTimeout(timer);
+      }
+    } else {
+      setIsLoading(false);
+    }
+  }, [location.pathname]);
 
   return (
     <>
-      {isLoading && <Loading />}
+      {isLoading && location.pathname === '/' && <Loading />}
       
-      <div style={{ position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'fixed', overflow: 'hidden', minHeight: '100vh', width: '100vw' }}>
         {/* <ParticlesComponent/> */}
+        
+        {/* <div className="fixed blur-sm inset-0 w-screen h-screen overflow-hidden">
+          <WarpBackground
+            perspective={80}
+            beamsPerSide={8}
+            beamSize={2}
+            beamDelayMax={2}
+            beamDelayMin={0}
+            beamDuration={2}
+            gridColor="transparent"
+            className="w-full h-full scale-110"
+          />
+        </div> */}
+       
+        <div className="fixed inset-0 overflow-hidden pointer-events-none">
+          <Meteors 
+            number={20}
+          />
+        </div>
+        {/* <div className="fixed opacity-50 inset-0 overflow-hidden pointer-events-none">
+          <AnimatedGridPattern 
+            
+          /> 
+        </div> */}
+
         <Navbar />
         <div className="page-wrapper">
           <Routes>
