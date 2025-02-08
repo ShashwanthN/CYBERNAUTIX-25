@@ -5,13 +5,10 @@ import uiux_img from '../assets/uiux_img.jpg';
 import cq from '../assets/cq.jpg';
 
 import TiltedCard from '../blocks/Components/TiltedCard/TiltedCard';
-import { useNavigate } from 'react-router-dom';
 
-const Technical = () => {
-  const navigate = useNavigate();
-
+const Technical = ({ onNavigate }) => {
   const handleRegisterClick = () => {
-    navigate('/register');
+    onNavigate('/register');
   };
 
   return (

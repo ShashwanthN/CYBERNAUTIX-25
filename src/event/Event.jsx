@@ -1,12 +1,10 @@
 'use client';
 import React, { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './Event.css';
 
-function Event() {
+const Event = ({ onNavigate }) => {
   const firstImage = useRef(null);
   const secondImage = useRef(null);
-  const navigate = useNavigate();
   let requestAnimationFrameId = null;
   let xPercent = 0;
   let currentXPercent = 0;
@@ -42,11 +40,11 @@ function Event() {
   }
 
   const handleTechnicalClick = () => {
-    navigate('/tech');
+    onNavigate('/tech');
   }
 
   const handleNonTechnicalClick = () => {
-    navigate('/nontech');
+    onNavigate('/nontech');
   }
 
   return (

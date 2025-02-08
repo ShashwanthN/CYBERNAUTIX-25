@@ -97,7 +97,7 @@ function Home() {
                     backgroundColor="transparent"
                     className="w-full h-full"
                   >
-                    <div className="text-9xl pl-20 font-['Arial'] text-[#00FF9F] w-full relative halo">
+                    <div className="text-9xl pl-20 font-['Arial'] text-[#00FF9F] w-full relative ">
                       CYBERNAUTIX
                       <div className="absolute inset-0 w-full h-full">
                         {/* <SparklesCore
@@ -171,6 +171,7 @@ function Home() {
             </div>
           </div>
         </div>
+        
 
         <div className="event-info mt-8">
           <div className="info-item">

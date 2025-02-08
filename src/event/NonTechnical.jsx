@@ -5,12 +5,11 @@ import tt from'../assets/twistTales.jpg'
 import TiltedCard from '../blocks/Components/TiltedCard/TiltedCard'
 
 
-function NonTecnical() {
-  const navigate = useNavigate();
-
+const NonTecnical = ({ onNavigate }) => {
   const handleRegisterClick = () => {
-    navigate('/register');
+    onNavigate('/register');
   };
+
   return (
     
         <div className="technical-container" style={{ position: 'relative', zIndex: 1 }}>

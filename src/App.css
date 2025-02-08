@@ -34,4 +34,192 @@ body {
   transform: translateX(-100%);
 }
 
+/* IDE Layout */
+.ide-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  font-family: 'Consolas', monospace;
+}
+
+.ide-titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  background: #3c3c3c;
+  -webkit-app-region: drag;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.menu-items span {
+  margin-right: 15px;
+  -webkit-app-region: no-drag;
+  cursor: pointer;
+}
+
+.window-controls button {
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 0 10px;
+  -webkit-app-region: no-drag;
+}
+
+.ide-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.file-tree {
+  width: 250px;
+  background: #252526;
+  border-right: 1px solid #333;
+  padding: 10px;
+}
+
+.tree-header {
+  font-size: 11px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: #858585;
+}
+
+.file-item {
+  padding: 5px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+
+.file-item:hover {
+  background: #2a2d2e;
+}
+
+.file-item.active {
+  background: #37373d;
+}
+
+.file-icon {
+  margin-right: 8px;
+}
+
+.editor-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ide-tabs {
+  display: flex;
+  background: #2d2d2d;
+  border-bottom: 1px solid #333;
+  height: 35px;
+}
+
+.tab-item {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  background: #1e1e1e;
+  border-right: 1px solid #333;
+  font-size: 12px;
+}
+
+.tab-item.active {
+  background: #252526;
+  border-bottom: 1px solid #007acc;
+}
+
+.tab-close {
+  margin-left: 8px;
+  opacity: 0.6;
+}
+
+.code-editor {
+  flex: 1;
+  padding: 0;
+  overflow: auto;
+  position: relative;
+}
+
+.editor-content {
+  max-width: none;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+}
+
+.editor-content > * {
+  height: 100%;
+  width: 100%;
+}
+
+.ide-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.ide-dialog {
+  background: #252526;
+  padding: 2rem;
+  border-radius: 4px;
+  border: 1px solid #007acc;
+  max-width: 400px;
+  color: #d4d4d4;
+}
+
+.ide-dialog h3 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.1rem;
+  color: #ff6b6b;
+}
+
+.dialog-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.proceed-button {
+  background: #007acc;
+  border: none;
+  padding: 0.5rem 1rem;
+  color: white;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.cancel-button {
+  background: #5a5a5a;
+  border: none;
+  padding: 0.5rem 1rem;
+  color: white;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.proceed-button:hover {
+  background: #0062a3;
+}
+
+.cancel-button:hover {
+  background: #4a4a4a;
+}
+
 
