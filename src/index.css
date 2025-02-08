@@ -27,6 +27,7 @@
   position: relative;
   z-index: 50;
 }
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -54,6 +55,11 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --color-1: 0 100% 63%;
+    --color-2: 270 100% 63%;
+    --color-3: 210 100% 63%;
+    --color-4: 195 100% 63%;
+    --color-5: 90 100% 63%;
   }
   .dark {
     --background: 240 10% 3.9%;
@@ -80,7 +86,31 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --color-1: 0 100% 63%;
+    --color-2: 270 100% 63%;
+    --color-3: 210 100% 63%;
+    --color-4: 195 100% 63%;
+    --color-5: 90 100% 63%;
   }
+}
+
+.clip-half-circle {
+  clip-path: circle(50% at 100% 50%);
+}
+
+/* Add these transitions to your CSS */
+.page-wrapper {
+  transition: transform 0.5s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.page-slide-left {
+  transform: translateX(-20px);
+  opacity: 0;
+}
+
+.page-slide-right {
+  transform: translateX(20px);
+  opacity: 0;
 }
 @layer base {
   * {

@@ -20,6 +20,10 @@ import { Particles } from './components/magicui/particles';
 import { WarpBackground } from './components/magicui/warp-background';
 import { AnimatedGridPattern } from './components/magicui/animated-grid-pattern';
 import { BackgroundLines } from './components/ui/background-lines';
+import { Spotlight } from './components/ui/spotlight-new';
+import { Vortex } from './components/ui/vortex';
+import { AuroraBackground } from './components/ui/aurora-background';
+
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -39,7 +43,7 @@ function App() {
         // Hide loading screen after animation
         const timer = setTimeout(() => {
           setIsLoading(false);
-        }, 1500); // Adjust timing as needed
+        }, 3000); // Adjust timing as needed
 
         return () => clearTimeout(timer);
       }
@@ -50,7 +54,7 @@ function App() {
 
   return (
     <>
-      {isLoading && location.pathname === '/' && <Loading />}
+      {/* {isLoading && location.pathname === '/' && <Loading />} */}
       
       <div style={{ position: 'fixed', overflow: 'hidden', minHeight: '100vh', width: '100vw' }}>
         {/* <ParticlesComponent/> */}
@@ -67,19 +71,32 @@ function App() {
             className="w-full h-full scale-110"
           />
         </div> */}
-       
-        <div className="fixed inset-0 overflow-hidden pointer-events-none">
-          <BackgroundLines 
-           
+       <div className="fixed inset-0 overflow-hidden pointer-events-none">
+          <Meteors 
+            number={20}
           />
         </div>
+        {/* <div className="fixed inset-0 overflow-hidden bg-black">
+          <AuroraBackground 
+            // particleCount={500}
+            // baseHue={195}
+            // rangeHue={30}
+            // baseSpeed={0.1}
+            // rangeSpeed={2}
+            // baseRadius={1.5}
+            // rangeRadius={1}
+            // backgroundColor="rgba(0,0,0,0.95)"
+          />
+        </div> */}
         {/* <div className="fixed opacity-50 inset-0 overflow-hidden pointer-events-none">
           <AnimatedGridPattern 
             
           /> 
         </div> */}
 
-        <Navbar />
+        {/* <Navbar /> */}
+      
+        
         <div className="page-wrapper">
           <Routes>
             <Route path="/" element={<Home />} />

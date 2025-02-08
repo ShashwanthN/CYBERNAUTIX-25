@@ -3,15 +3,14 @@ import { useCallback, useEffect, useRef } from "react";
 
 import { cn } from "@/lib/utils";
 
-const morphTime = 0.2;
-const cooldownTime = 0.05;
+const morphTime = 1.5;
+const cooldownTime = 0.5;
 
 const useMorphingText = (texts) => {
   const textIndexRef = useRef(0);
   const morphRef = useRef(0);
   const cooldownRef = useRef(0);
   const timeRef = useRef(new Date());
-  const completedRef = useRef(false);
 
   const text1Ref = useRef(null);
   const text2Ref = useRef(null);
@@ -32,8 +31,6 @@ const useMorphingText = (texts) => {
   }, [texts]);
 
   const doMorph = useCallback(() => {
-    if (completedRef.current) return;
-    
     morphRef.current -= cooldownRef.current;
     cooldownRef.current = 0;
 
@@ -48,19 +45,8 @@ const useMorphingText = (texts) => {
 
     if (fraction === 1) {
       textIndexRef.current++;
-      if (textIndexRef.current >= texts.length - 1) {
-        completedRef.current = true;
-        // Set final text state
-        const [current1, current2] = [text1Ref.current, text2Ref.current];
-        if (current1 && current2) {
-          current2.style.filter = "blur(0px)";
-          current2.style.opacity = "100%";
-          current1.style.filter = "blur(0px)";
-          current1.style.opacity = "0%";
-        }
-      }
     }
-  }, [setStyles, texts.length]);
+  }, [setStyles]);
 
   const doCooldown = useCallback(() => {
     morphRef.current = 0;
@@ -102,10 +88,10 @@ const Texts = ({ texts }) => {
   const { text1Ref, text2Ref } = useMorphingText(texts);
   return (<>
     <span
-      className="absolute left-1/2 top-0 -translate-x-1/2 inline-block w-auto"
+      className="absolute inset-x-0 top-0 m-auto inline-block w-full"
       ref={text1Ref} />
     <span
-      className="absolute left-1/2 top-0 -translate-x-1/2 inline-block w-auto"
+      className="absolute inset-x-0 top-0 m-auto inline-block w-full"
       ref={text2Ref} />
   </>);
 };
@@ -135,7 +121,7 @@ export const MorphingText = ({
 }) => (
   <div
     className={cn(
-      "relative mx-auto h-16 w-full max-w-screen-md text-center font-sans text-[40pt] font-bold leading-none [filter:url(#threshold)] md:h-24 lg:text-[6rem] overflow-visible",
+      "relative mx-auto h-16 w-full max-w-screen-md text-center font-sans text-[40pt] font-bold leading-none [filter:url(#threshold)] md:h-24 lg:text-[6rem]",
       className
     )}>
     <Texts texts={texts} />

@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Venus+Rising&display=swap');
+
 .heading{
     text-align: center;
     padding-bottom: 5%;
     color: aqua;
     padding-top: 110px;
   }
-  @import url('https://fonts.googleapis.com/css2?family=Venus+Rising&display=swap');
+ 
   
   .venus-font {
     font-family: 'Venus Rising', sans-serif;
