@@ -1,84 +1,77 @@
 'use client';
-import React, { useRef } from 'react';
-import './Event.css';
+import React, { useRef, useEffect, useState } from 'react';
 
 const Event = ({ onNavigate }) => {
   const firstImage = useRef(null);
   const secondImage = useRef(null);
-  let requestAnimationFrameId = null;
-  let xPercent = 0;
-  let currentXPercent = 0;
-  const speed = 0.15;
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const manageMouseMove = (e) => {
-    const { clientX } = e;
-    xPercent = (clientX / window.innerWidth) * 100;
+    if (isMobile) return;
     
-    if(!requestAnimationFrameId){
-      requestAnimationFrameId = window.requestAnimationFrame(animate);
-    }
-  }
-
-  const animate = () => {
-    const xPercentDelta = xPercent - currentXPercent;
-    currentXPercent = currentXPercent + (xPercentDelta * speed);
-
-    const firstImagePercent = 66.66 - (currentXPercent * 0.33);
-    const secondImagePercent = 33.33 + (currentXPercent * 0.33);
-
-    if(firstImage.current && secondImage.current) {
+    const { clientX } = e;
+    const xPercent = (clientX / window.innerWidth) * 100;
+    
+    if (firstImage.current && secondImage.current) {
+      const firstImagePercent = 66.66 - (xPercent * 0.33);
+      const secondImagePercent = 33.33 + (xPercent * 0.33);
+      
       firstImage.current.style.width = `${firstImagePercent}%`;
       secondImage.current.style.width = `${secondImagePercent}%`;
     }
-
-    if(Math.round(xPercent) === Math.round(currentXPercent)){
-      window.cancelAnimationFrame(requestAnimationFrameId);
-      requestAnimationFrameId = null;
-    } else {
-      window.requestAnimationFrame(animate);
-    }
-  }
-
-  const handleTechnicalClick = () => {
-    onNavigate('/tech');
-  }
-
-  const handleNonTechnicalClick = () => {
-    onNavigate('/nontech');
   }
 
   return (
-    <div className="ev-main-container">
-      <div className="ev-main-wrapper" onMouseMove={manageMouseMove}>
+    <div className="h-[100dvh] w-full  pt-16 md:pt-0 overflow-hidden">
+      <div 
+        className="flex flex-col md:flex-row h-[calc(100%-4rem)] md:h-full w-full relative"
+        onMouseMove={manageMouseMove}
+      >
+        {/* Technical Events Section */}
         <div 
-          ref={firstImage} 
-          className="event-main-section"
-          onClick={handleTechnicalClick}
-          style={{ cursor: 'pointer' }}
+          ref={firstImage}
+          onClick={() => onNavigate('/tech')}
+          className="w-full md:w-2/3 h-1/2 md:h-full relative group cursor-pointer transition-all duration-300 hover:opacity-90"
         >
-          <h2 className="ev-main-title">Technical Events</h2>
-          <div className="stretchy-wrapper">
-            <img 
-              src="https://thumbs.dreamstime.com/b/anatomy-human-body-robot-digital-circuit-technology-ai-generated-anatomy-human-body-robot-digital-circuit-technology-ai-generated-293132183.jpg"
-              alt="Technical Events"
-              className="event-banner"
-            />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30 z-10" />
+          <img 
+            src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070"
+            alt="Technical Events"
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 flex items-center justify-center z-20">
+            <h2 className="text-white text-4xl md:text-6xl font-bold tracking-tighter border-4 border-white p-4 transform -rotate-2 hover:rotate-0 transition-transform duration-300">
+              TECHNICAL
+            </h2>
           </div>
         </div>
 
+        {/* Non-Technical Events Section */}
         <div 
-          ref={secondImage} 
-          className="event-main-section"
-          onClick={handleNonTechnicalClick}
-          style={{ cursor: 'pointer' }}
+          ref={secondImage}
+          onClick={() => onNavigate('/nontech')}
+          className="w-full md:w-1/3 h-1/2 md:h-full relative group cursor-pointer transition-all duration-300 hover:opacity-90"
         >
-          <h2 className="ev-main-title">Surprise Events</h2>
-          <div className="stretchy-wrapper">
-            <img 
-              src="https://img.freepik.com/premium-photo/abstract-technological-background-web-events_943281-123058.jpg"
-              alt="Non-Technical Events"
-              className="event-banner"
-            />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30 z-10" />
+          <img 
+            src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070"
+            alt="Non-Technical Events"
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 flex items-center justify-center z-20">
+            <h2 className="text-white text-4xl md:text-6xl font-bold tracking-tighter border-4 border-white p-4 transform rotate-2 hover:rotate-0 transition-transform duration-300">
+              SURPRISE
+            </h2>
           </div>
         </div>
       </div>

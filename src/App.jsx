@@ -18,6 +18,9 @@ import { IDEFileTree } from './components/ide/IDEFileTree';
 import { IDETabs } from './components/ide/IDETabs';
 import { IDETitleBar } from './components/ide/IDETitleBar';
 import EventPage from './event/Event';
+import { StatusBar } from './components/ide/StatusBar';
+import { useMediaQuery } from './hooks/useMediaQuery';
+import Navbar from './navbar/Navbar';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,6 +29,7 @@ function App() {
   const [openFiles, setOpenFiles] = useState(['/']);
   const [tabHistory, setTabHistory] = useState([activeTab]);
   const navigate = useNavigate();
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   // File structure for the sidebar
   const files = [
@@ -97,28 +101,35 @@ function App() {
 
   return (
     <div className="ide-container">
-      <IDETitleBar />
+      {isMobile && <Navbar onNavigate={handleInternalNavigation} />}
+      {!isMobile && <IDETitleBar />}
       
       <div className="ide-content">
-        <IDEFileTree 
-          files={files} 
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          openFiles={openFiles}
-          setOpenFiles={setOpenFiles}
-        />
-        
-        <div className="editor-container">
-          <IDETabs
-            files={openFiles}
+        {!isMobile && (
+          <IDEFileTree 
+            files={files} 
             activeTab={activeTab}
             setActiveTab={setActiveTab}
+            openFiles={openFiles}
             setOpenFiles={setOpenFiles}
-            tabHistory={tabHistory}
           />
+        )}
+
+        <div className="editor-container">
+          {!isMobile && (
+            <IDETabs
+              files={openFiles}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+              setOpenFiles={setOpenFiles}
+              tabHistory={tabHistory}
+            />
+          )}
           
           <div className="code-editor">
-            <div className="editor-content">
+            <div className="editor-content" style={{ 
+              padding: isMobile ? '48px 0 0 0' : '10px'
+            }}>
               <div className="fixed inset-0 overflow-hidden pointer-events-none">
                 <Meteors number={20} />
               </div>
@@ -139,6 +150,8 @@ function App() {
           </div>
         </div>
       </div>
+      
+      {!isMobile && <StatusBar />}
     </div>
   );
 }

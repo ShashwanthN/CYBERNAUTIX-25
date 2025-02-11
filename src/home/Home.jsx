@@ -13,6 +13,7 @@ import { MorphingTextDemo } from "./morph";
 import { SparklesCore } from "../components/ui/sparkles";
 import { AuroraText } from "@/components/magicui/aurora-text";
 import { Vortex } from "../components/ui/vortex";
+import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
 
 
 function Home() {
@@ -73,122 +74,178 @@ function Home() {
   };
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full h-screen overflow-hidden">
       <div className="bg-black">
-        <RetroGrid className="absolute  top-0 left-0 w-full h-full opacity-20" />
+        <RetroGrid className="absolute top-0 left-0 w-full h-full opacity-20" />
       </div>
       
-      <div className="home-container relative z-10 min-h-screen flex flex-col justify-center">
-        <div className="details">
-          <div className="flex justify-between items-center w-full gap-8">
+      <div className="home-container relative z-10 flex flex-col justify-center items-center h-screen">
+        <div className="details w-full max-w-[1440px] h-full min-h-0">
+          <div className="flex flex-col lg:flex-row justify-between items-center w-full gap-8 h-full min-h-0">
             <motion.div
-              className="flex-1"
+              className="flex-1 w-full lg:w-auto"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <div className="flex flex-col">
-                <div className="flex flex-col w-fit relative">
-                  <Vortex
-                    baseHue={120}
-                    rangeHue={40}
-                    baseSpeed={0.1}
-                    rangeSpeed={2}
-                    backgroundColor="transparent"
-                    className="w-full h-full"
-                  >
-                    <div className="text-9xl pl-20 font-['Arial'] text-[#00FF9F] w-full relative ">
-                      CYBERNAUTIX
-                      <div className="absolute inset-0 w-full h-full">
-                        {/* <SparklesCore
-                          background="transparent"
-                          minSize={0.4}
-                          maxSize={1}
-                          particleDensity={600}
-                          className="w-full h-full"
-                          particleColor="rgba(0, 255, 159, 0.5)"
-                        /> */}
-                      </div>
-                    </div>
-                  </Vortex>
-                  <div className="text-9xl text-[#00FF9F] text-right w-[100%] relative">
-                    2025
-                    <div className="absolute inset-0 w-full h-full">
-                      {/* <SparklesCore
-                        background="transparent"
-                        minSize={0.4}
-                        maxSize={1}
-                        particleDensity={300}
-                        className="w-full h-full"
-                        particleColor="rgba(0, 255, 159, 0.5)"
-                      /> */}
-                    </div>
-                  </div>
-                </div>
                 <motion.div
-                  className="text-left space-y-2 mt-4"
+                  className="lg:text-left space-y-1 sm:space-y-2 mb-4 sm:mb-8 px-4 lg:ml-2 sm:text-center"
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.5 }}
                 >
-                  <h1 className="text-sm text-white/80 font-light">
+                  <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 font-light tracking-wider">
                     R.M.K. ENGINEERING COLLEGE
                   </h1>
-                  <h2 className="text-xs text-white/70 font-light">
+                  <h2 className="text-sm sm:text-base md:text-lg lg:text-xl text-white/70 font-light tracking-wider">
                     DEPARTMENT OF INFORMATION TECHNOLOGY
                   </h2>
-                  <h3 className="text-xs text-white/60 italic">Presents</h3>
+                  <h3 className="text-xs sm:text-sm md:text-base lg:text-lg text-white/60 italic">Presents</h3>
                 </motion.div>
+
+                <div className="flex flex-col w-full mt-20 lg:mt-0 md:mt-0 relative">
+                  <Vortex
+                    baseHue={120}
+                    rangeHue={40}
+                    rangeSpeed={0.7}
+                    baseRadius={1}
+                    particleCount={500}
+                    backgroundColor="transparent"
+                    className="w-full h-full"
+                  >
+                    <div className="text-6xl sm:text-5xl md:text-6xl lg:text-8xl lg:px-4 md:px-4 font-bold lg:tracking-widest font-mono text-[#00FF9F] inline-block relative text-center lg:text-left">
+                      {"CYBERNAUTIX".split("").map((char, index) => (
+                        <span 
+                          key={index}
+                          className="inline-block lg:transform-none"
+                          style={{ 
+                            transform: `translateY(${
+                              Math.sin((index / 5) * Math.PI / 1.5) * 
+                              (window.innerWidth < 640 ? 4 : 0) // Only apply on mobile
+                            }px)`
+                          }}
+                        >
+                          {char}
+                        </span>
+                      ))}
+                      <div className="text-5xl sm:text-5xl md:text-6xl lg:text-8xl font-extralight italic text-[#00FF9F] w-full sm:text-center lg:text-right">
+                        2025
+                      </div>
+                    </div>
+                  </Vortex>
+                </div>
+                
+                <motion.div
+                  className="px-4 mt-12 sm:mt-16 md:mt-20"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.7 }}
+                >
+                  <button 
+                    className="relative group bg-transparent border-2 border-[#00FF9F] hover:bg-[#00FF9F]/10 text-[#00FF9F] px-8 py-3 transition-all duration-300"
+                    onClick={handleRegisterClick}
+                  >
+                    {/* Corner accents */}
+                    <span className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-[#00FF9F]"></span>
+                    <span className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-[#00FF9F]"></span>
+                    <span className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-[#00FF9F]"></span>
+                    <span className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-[#00FF9F]"></span>
+                    
+                    {/* Glitch effect spans */}
+                    <span className="absolute inset-0 block opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-[#00FF9F] blur-[2px]"></span>
+                    <span className="absolute inset-0 block opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-[#00FF9F] blur-[4px]"></span>
+                    
+                    {/* Button text */}
+                    <span className="relative font-mono text-lg  tracking-wider">REGISTER NOW</span>
+                  </button>
+                  <div className=" flex flex-col mt-4 text-[#00ff9f] w-full">
+                    <div className="flex justify-between pr-20 w-full">
+                      <motion.div
+                        className="pt-20 text-xl sm:text-2xl text-[#00ff9f] text-center lg:text-left"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 1 }}
+                      >
+                        {Array.from("Free Entry").map((char, index) => (
+                          <motion.span
+                            key={index}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{
+                              duration: 0.1,
+                              delay: 1 + index * 0.1,
+                              ease: "easeOut"
+                            }}
+                          >
+                            {char}
+                          </motion.span>
+                        ))}
+                      </motion.div>
+                      <motion.div
+                        className="pt-20 text-xl sm:text-2xl text-center lg:text-right"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 2 }}
+                      >
+                        {Array.from("March 17 2025").map((char, index) => (
+                          <motion.span
+                            key={index}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{
+                              duration: 0.1,
+                              delay: 2 + index * 0.1,
+                              ease: "easeOut"
+                            }}
+                          >
+                            {char}
+                          </motion.span>
+                        ))}
+                      </motion.div>
+                    </div>
+                  </div>
+                </motion.div>
+                
               </div>
+              
             </motion.div>
-            <div className="flex items-start pr-4">
-              <div className="flex flex-col gap-4 items-start">
+
+            <div className="flex items-center justify-center sm:w-3/4 lg:w-auto lg:px-4 h-full">
+              <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 w-full items-center justify-center">
                 <div className="countdown-item">
-                  <span className="countdown font-mono text-[12rem] text-white/60">
+                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-8xl text-white/60">
                     <span style={{ "--value": timeLeft.days }}></span>
                   </span>
-                  <span className="text-2xl text-white">DAYS</span>
+                  <span className="text-xs sm:text-sm lg:text-md text-white">DAYS</span>
                 </div>
                 <div className="countdown-item">
-                  <span className="countdown font-mono text-[12rem] text-white/40">
+                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-8xl text-white/40">
                     <span style={{ "--value": timeLeft.hours }}></span>
                   </span>
-                  <span className="text-2xl text-white/80">HOURS</span>
+                  <span className="text-xs sm:text-sm lg:text-md text-white/80">HOURS</span>
                 </div>
                 <div className="countdown-item">
-                  <span className="countdown font-mono text-[12rem] text-white/20">
+                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-8xl text-white/20">
                     <span style={{ "--value": timeLeft.minutes }}></span>
                   </span>
-                  <span className="text-2xl text-white/60">MINUTES</span>
+                  <span className="text-xs sm:text-sm lg:text-md text-white/60">MINUTES</span>
                 </div>
                 <div className="countdown-item">
-                  <span className="countdown font-mono text-[12rem] text-white/10">
+                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-8xl text-white/10">
                     <span style={{ "--value": timeLeft.seconds }}></span>
                   </span>
-                  <span className="text-2xl text-white/40">SECONDS</span>
+                  <span className="text-xs sm:text-sm lg:text-md text-white/40">SECONDS</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
         
-
-        <div className="event-info mt-8">
-          <div className="info-item">
-            <BsCalendarEventFill className="info-icon glow-effect" />
-            <h3>17 March 2025</h3>
-          </div>
-          <div className="info-item">
-            <FaPiggyBank className="info-icon glow-effect" />
-            <h3>Free Entry</h3>
-          </div>
-        </div>
-
-        <div className="register-button-container">
-          <button className="register-button" onClick={handleRegisterClick}>
-            Register Now
-          </button>
-        </div>
+        {/* <VelocityScroll className="fixed bottom-0 left-0 right-0 pb-2 z-20">
+          <span className="text-white text-lg md:text-2xl">March 17 2025 - </span>
+          <span className="text-white text-lg md:text-2xl">Free Entry</span>
+        </VelocityScroll> */}
       </div>
     </div>
   );

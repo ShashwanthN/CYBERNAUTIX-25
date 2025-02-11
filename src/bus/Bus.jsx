@@ -1,5 +1,33 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { FiSearch, FiArrowRight, FiMapPin } from 'react-icons/fi';
 import './Bus.css'; // Ensure you have the corresponding CSS file
+
+const BusCard = ({ route }) => (
+  <motion.div 
+    whileHover={{ scale: 1.02 }}
+    className="border-2 border-[#00ff9f]/30 bg-gray-900/20 backdrop-blur-sm rounded-none p-4 sm:p-6 mb-4 shadow-lg shadow-[#00ff9f]/10"
+  >
+    <div className="flex justify-between items-start mb-4">
+      <div>
+        <h2 className="text-2xl font-bold bg-gradient-to-r from-[#00ff9f] to-[#00cc7a] bg-clip-text text-transparent">
+          {route.place}
+        </h2>
+        <p className="text-[#00ff9f] font-mono mt-1">BUS {route.busNumber}</p>
+      </div>
+      <FiMapPin className="text-[#00ff9f] w-8 h-8" />
+    </div>
+    
+    <div className="space-y-2">
+      {route.stops.split('-').map((stop, index) => (
+        <div key={index} className="flex items-start">
+          <div className="w-2 h-2 bg-[#00ff9f] mt-2 mr-3 flex-shrink-0" />
+          <p className="text-xs md:text-sm leading-relaxed">{stop.trim()}</p>
+        </div>
+      ))}
+    </div>
+  </motion.div>
+);
 
 function Bus() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -37,41 +65,44 @@ function Bus() {
     }
   ];
 
-  const filteredRoutes = busRoutes.filter(route => 
-    route.place.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    route.busNumber.includes(searchTerm)
-  );
+  const filteredRoutes = busRoutes.filter(route => {
+    const searchText = `${route.place} ${route.busNumber} ${route.stops}`.toLowerCase();
+    return searchText.includes(searchTerm.toLowerCase());
+  });
 
   return (
-    <div className="bus-main-container">
-      <h1 className="bus-main-title">Bus Routes</h1>
-      
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search by place or bus number..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-input"
-        />
-        <i className="fas fa-search search-icon"></i>
-      </div>
+    <div className="min-h-screen p-4 sm:p-6 lg:p-8 bg-transparent">
+      <div className="max-w-7xl mx-auto">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-4xl md:text-5xl font-bold text-[#00ff9f] mb-6 sm:mb-8 text-center"
+        >
+          BUS ROUTES
+        </motion.h1>
 
-      <div className="bus-routes-list">
-        {filteredRoutes.map((route, index) => (
-          <div key={index} className="route-card">
-            <div className="route-header">
-              <div className="place-info">
-                <h2>{route.place}</h2>
-                <span className="bus-number">Bus No: {route.busNumber}</span>
-              </div>
-              <i className="fas fa-bus"></i>
-            </div>
-            <div className="route-details">
-              <p>{route.stops}</p>
-            </div>
+        <div className="relative mb-8 sm:mb-12">
+          <FiSearch className="absolute left-4 top-4 text-[#00ff9f] w-6 h-6" />
+          <input
+            type="text"
+            placeholder="Search routes..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full pl-12 pr-6 py-4 bg-gray-800/20 border-2 border-[#00ff9f]/30 text-gray-100 placeholder-gray-400/80 focus:outline-none focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50"
+          />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          {filteredRoutes.map((route, index) => (
+            <BusCard key={index} route={route} />
+          ))}
+        </div>
+
+        {filteredRoutes.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-xl text-[#00ff9f]/80">No routes found matching your search</p>
           </div>
-        ))}
+        )}
       </div>
     </div>
   );

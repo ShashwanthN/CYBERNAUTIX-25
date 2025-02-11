@@ -1,6 +1,14 @@
+:root {
+  --file-tree-width: 250px;
+  --titlebar-height: 30px;
+  --statusbar-height: 22px;
+  --ide-font: 'Consolas', monospace;
+}
+
 body {
   margin: 0;
   overflow: hidden; /* Prevent scrolling */
+  touch-action: none; /* Prevent mobile zoom gestures */
 }
 
 .page-wrapper {
@@ -41,14 +49,20 @@ body {
   height: 100vh;
   background: #1e1e1e;
   color: #d4d4d4;
-  font-family: 'Consolas', monospace;
+  font-family: var(--ide-font);
+  zoom: 1; /* Prevent zoom scaling */
+  transform: scale(1);
+  transform-origin: top left;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .ide-titlebar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 30px;
+  height: var(--titlebar-height);
   background: #3c3c3c;
   -webkit-app-region: drag;
   padding: 0 10px;
@@ -76,7 +90,7 @@ body {
 }
 
 .file-tree {
-  width: 250px;
+  width: var(--file-tree-width);
   background: #252526;
   border-right: 1px solid #333;
   padding: 10px;
@@ -220,6 +234,96 @@ body {
 
 .cancel-button:hover {
   background: #4a4a4a;
+}
+
+/* Status Bar Styles */
+.status-bar {
+  background: #0078D4;
+  border-top: 1px solid #333;
+  color: #cccccc;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  height: var(--statusbar-height);
+  font-size: 12px;
+  align-items: center;
+}
+
+.status-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 5px;
+}
+
+.divider {
+  width: 1px;
+  height: 15px;
+  background: #fefefe;
+  margin: 0 5px;
+}
+
+.icon {
+  font-size: 14px;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+/* Add these media queries at the end */
+@media (max-width: 768px) {
+  :root {
+    --file-tree-width: 200px;
+  }
+  
+  .ide-container {
+    padding-top: px;
+  }
+  
+  .editor-container {
+    margin-left: 0;
+  }
+  
+  .file-tree {
+    width: var(--file-tree-width);
+  }
+  
+  .tab-item {
+    padding: 0 10px;
+    font-size: 11px;
+  }
+  
+  .status-bar {
+    font-size: 10px;
+    padding: 0 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ide-tabs {
+    height: 30px;
+  }
+  
+  .tab-item {
+    min-width: 100px;
+  }
+  
+  .code-editor {
+    padding: 10px;
+  }
+  
+  .file-item {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
 }
 
 

@@ -62,3 +62,24 @@
     max-width: 300px;
   }
 }
+
+.repeating-pattern {
+  white-space: nowrap;
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .repeating-pattern {
+    font-size: 1rem;
+  }
+}
