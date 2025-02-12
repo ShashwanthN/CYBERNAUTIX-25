@@ -19,11 +19,13 @@ const useMorphingText = (texts) => {
     const [current1, current2] = [text1Ref.current, text2Ref.current];
     if (!current1 || !current2) return;
 
-    current2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+    const blur2 = Math.min(8 / (fraction || 0.0001) - 8, 100);
+    current2.style.filter = `blur(${blur2}px)`;
     current2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
 
     const invertedFraction = 1 - fraction;
-    current1.style.filter = `blur(${Math.min(8 / invertedFraction - 8, 100)}px)`;
+    const blur1 = Math.min(8 / (invertedFraction || 0.0001) - 8, 100);
+    current1.style.filter = `blur(${blur1}px)`;
     current1.style.opacity = `${Math.pow(invertedFraction, 0.4) * 100}%`;
 
     current1.textContent = texts[textIndexRef.current % texts.length];
@@ -52,9 +54,9 @@ const useMorphingText = (texts) => {
     morphRef.current = 0;
     const [current1, current2] = [text1Ref.current, text2Ref.current];
     if (current1 && current2) {
-      current2.style.filter = "blur(0px)";
+      current2.style.filter = "none";
       current2.style.opacity = "100%";
-      current1.style.filter = "blur(0px)";
+      current1.style.filter = "none";
       current1.style.opacity = "0%";
     }
   }, []);

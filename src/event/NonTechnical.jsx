@@ -11,7 +11,7 @@ const NonTechnical = ({ onNavigate }) => {
 
   return (
     <div className="min-h-screen bg-zinc-900 pt-4 px-4 pb-20 md:pt-8 md:px-8 md:pb-32 lg:mt-0 mt-2 relative">
-      {/* Caution Tape Decoration */}
+      {/* Caution Tape Decorat ion */}
       <div className="absolute bottom-0 left-0 w-full h-12 bg-yellow-400 transform -rotate-6 flex items-center justify-center overflow-hidden">
         <div className="text-black font-bold text-xl tracking-wider repeating-pattern whitespace-nowrap overflow-hidden">
           CONFIDENTIAL ⚠️ TOP SECRET ⚠️ CONFIDENTIAL ⚠️ TOP SECRET

@@ -14,6 +14,9 @@ import { SparklesCore } from "../components/ui/sparkles";
 import { AuroraText } from "@/components/magicui/aurora-text";
 import { Vortex } from "../components/ui/vortex";
 import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
+import { HyperText } from "@/components/magicui/hyper-text";
+import { SpinningText } from "@/components/magicui/spinning-text";
+import { MorphingText } from "@/components/magicui/morphing-text";
 
 
 function Home() {
@@ -27,7 +30,13 @@ function Home() {
 
   const [displayText, setDisplayText] = useState("CYBERNAUTIX'25");
 
-  const texts = ["CYBERNAUTIX'25"];
+  const texts = [
+    "CYBERNAUTIX",
+    "സൈബർനോട്ടിക്സ്", // Malayalam
+    "சைபர்நாட்டிக்ஸ்",  // Tamil
+    "సైబర్నాటిక్స్",   // Telugu
+    "ಸೈಬರ್ನಾಟಿಕ್ಸ್"    // Kannada
+  ];
 
   useEffect(() => {
     // Set target date to March 11, 2025 at 00:00:00 IST
@@ -78,6 +87,15 @@ function Home() {
       <div className="bg-black">
         <RetroGrid className="absolute top-0 left-0 w-full h-full opacity-20" />
       </div>
+      {/* <SpinningText 
+        reverse 
+        className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none opacity-50 z-0"
+        duration={20}
+        radius={40}
+        fontSize={2.5}
+      >
+        learn more • earn more • grow more •
+      </SpinningText> */}
       
       <div className="home-container relative z-10 flex flex-col justify-center items-center h-screen">
         <div className="details w-full max-w-[1440px] h-full min-h-0">
@@ -114,22 +132,32 @@ function Home() {
                     backgroundColor="transparent"
                     className="w-full h-full"
                   >
-                    <div className="text-6xl sm:text-5xl md:text-6xl lg:text-8xl lg:px-4 md:px-4 font-bold lg:tracking-widest font-mono text-[#00FF9F] inline-block relative text-center lg:text-left">
-                      {"CYBERNAUTIX".split("").map((char, index) => (
-                        <span 
-                          key={index}
-                          className="inline-block lg:transform-none"
-                          style={{ 
-                            transform: `translateY(${
-                              Math.sin((index / 5) * Math.PI / 1.5) * 
-                              (window.innerWidth < 640 ? 4 : 0) // Only apply on mobile
-                            }px)`
-                          }}
-                        >
-                          {char}
-                        </span>
-                      ))}
-                      <div className="text-5xl sm:text-5xl md:text-6xl lg:text-8xl font-extralight italic text-[#00FF9F] w-full sm:text-center lg:text-right">
+                    <div className="text-6xl sm:text-5xl md:text-6xl lg:text-8xl lg:px-4 font-bold lg:tracking-widest font-mono text-[#00FF9F] inline-block relative text-center lg:text-left">
+                      {/* Mobile View */}
+                      <div className="block lg:hidden">
+                        {"CYBERNAUTIX".split("").map((char, index) => (
+                          <span 
+                            key={index}
+                            className="inline-block"
+                            style={{ 
+                              transform: `translateY(${
+                                Math.sin((index / 5) * Math.PI / 1.5) * 4
+                              }px)`
+                            }}
+                          >
+                            {char}
+                          </span>
+                        ))}
+                      </div>
+                      
+                      {/* Desktop View */}
+                      <div className="hidden lg:block">
+                        <MorphingText 
+                          texts={texts}
+                          className="!text-[#00FF9F] !font-mono !text-6xl sm:!text-5xl md:!text-6xl lg:!text-8xl"
+                        />
+                      </div>
+                      <div className="text-5xl lg:mt-4 sm:text-5xl md:text-6xl lg:text-8xl font-extralight italic text-[#00FF9F] w-full sm:text-center lg:text-right">
                         2025
                       </div>
                     </div>
@@ -214,25 +242,25 @@ function Home() {
             <div className="flex items-center justify-center sm:w-3/4 lg:w-auto lg:px-4 h-full">
               <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 w-full items-center justify-center">
                 <div className="countdown-item">
-                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-8xl text-white/60">
+                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-9xl text-white/60">
                     <span style={{ "--value": timeLeft.days }}></span>
                   </span>
                   <span className="text-xs sm:text-sm lg:text-md text-white">DAYS</span>
                 </div>
                 <div className="countdown-item">
-                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-8xl text-white/40">
+                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-9xl text-white/40">
                     <span style={{ "--value": timeLeft.hours }}></span>
                   </span>
                   <span className="text-xs sm:text-sm lg:text-md text-white/80">HOURS</span>
                 </div>
                 <div className="countdown-item">
-                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-8xl text-white/20">
+                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-9xl text-white/20">
                     <span style={{ "--value": timeLeft.minutes }}></span>
                   </span>
                   <span className="text-xs sm:text-sm lg:text-md text-white/60">MINUTES</span>
                 </div>
                 <div className="countdown-item">
-                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-8xl text-white/10">
+                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-9xl text-white/10">
                     <span style={{ "--value": timeLeft.seconds }}></span>
                   </span>
                   <span className="text-xs sm:text-sm lg:text-md text-white/40">SECONDS</span>
