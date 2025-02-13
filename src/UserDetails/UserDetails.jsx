@@ -1,35 +1,58 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { db } from '../backend/firebase';
 import { doc, getDoc } from 'firebase/firestore';
-import { useParams } from 'react-router-dom';  // Import useParams to get the userId from the URL
+import { useNavigate } from 'react-router-dom';  // Import useParams to get the userId from the URL and useNavigate for navigation
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import './UserDetails.css';
 
-function UserDetails() {
-    const { userId } = useParams();  // Get userId from the URL
+function UserDetails({ onNavigate }) {
+    const nav = useNavigate();
     const [user, setUser] = useState(null);
-    const Id = userId.substring(0, 6);
-
+    
     useEffect(() => {
-        const fetchUser = async () => {
+        let isMounted = true;
+        
+        const fetchData = async () => {
+            const userData = localStorage.getItem('user');
+            if (!userData) {
+                nav('/login');
+                return;
+            }
+
+            const { uid, expires } = JSON.parse(userData);
+            if (Date.now() > expires) {
+                localStorage.removeItem('user');
+                nav('/login');
+                return;
+            }
+
             try {
-                const userRef = doc(db, 'Users', userId);
+                const userRef = doc(db, 'Users', uid);
                 const userSnap = await getDoc(userRef);
-                if (userSnap.exists()) {
-                    setUser(userSnap.data());
+                if (userSnap.exists() && isMounted) {
+                    const userData = userSnap.data();
+                    setUser(userData);
+                    if (onNavigate) {
+                        onNavigate(`/user/${userData.unique_id}`);
+                    }
                 } else {
                     console.log('No such user!');
+                    nav('/login');
                 }
             } catch (error) {
-                console.error('Error fetching user data: ', error);
+                if (isMounted) {
+                    console.error('Error fetching user data: ', error);
+                    nav('/login');
+                }
             }
         };
 
-        if (userId) {
-            fetchUser();
-        }
-    }, [userId]);
+        fetchData();
+        return () => {
+            isMounted = false; // Cleanup to prevent state updates on unmounted component
+        };
+    }, [nav, onNavigate]);
 
     const downloadPDF = () => {
         const doc = new jsPDF();
@@ -44,12 +67,11 @@ function UserDetails() {
             ['College', user.college],
             ['Department', user.department],
             ['Year', user.year],
-            ['Unique Id', Id], 
+            ['Unique Id', user.unique_id?.substring(0, 6)],
             ['Total Events', user.no_of_events],
             ['Technical Events', user.technicalEvents.join(', ')],
             ['Non-Technical Events', user.nonTechnicalEvents.join(', ')],
         ];
-
 
         doc.autoTable({ startY: 30, head: [['Field', 'Value']], body: userDetails });
         doc.save('Cybernautix-25.pdf');
@@ -67,7 +89,7 @@ function UserDetails() {
                 <p><strong>College:</strong> {user.college}</p>
                 <p><strong>Department:</strong> {user.department}</p>
                 <p><strong>Year:</strong> {user.year}</p>
-                <p><strong>UniqueId</strong> {Id}</p>
+                <p><strong>UniqueId:</strong> {user.unique_id?.substring(0, 6)}</p>
                 <p><strong>Total Events:</strong> {user.no_of_events}</p>
                 <p><strong>Technical Events:</strong> {user.technicalEvents.join(', ')}</p>
                 <p><strong>Non-Technical Events:</strong> {user.nonTechnicalEvents.join(', ')}</p>

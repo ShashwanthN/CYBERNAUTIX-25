@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -21,6 +21,7 @@ import EventPage from './event/Event';
 import { StatusBar } from './components/ide/StatusBar';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import Navbar from './navbar/Navbar';
+import { auth } from './backend/firebase';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,18 +31,27 @@ function App() {
   const [tabHistory, setTabHistory] = useState([activeTab]);
   const navigate = useNavigate();
   const isMobile = useMediaQuery('(max-width: 768px)');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // File structure for the sidebar
-  const files = [
-    { name: 'Home', path: '/', extension: 'jsx' },
-    { name: 'Events', path: '/events', extension: 'jsx' },
-    { name: 'Technical', path: '/tech', extension: 'jsx' },
-    { name: 'Non-Technical', path: '/nontech', extension: 'jsx' },
-    { name: 'Register', path: '/register', extension: 'jsx' },
-    { name: 'Contact', path: '/contact', extension: 'jsx' },
-    { name: 'Bus', path: '/bus', extension: 'jsx' },
-    { name: 'Login', path: '/login', extension: 'jsx' },
-  ];
+  const getAvailableFiles = useCallback(() => {
+    const baseFiles = [
+      { name: 'Home', path: '/', extension: 'jsx' },
+      { name: 'Events', path: '/events', extension: 'jsx' },
+      { name: 'Technical', path: '/tech', extension: 'jsx' },
+      { name: 'Non-Technical', path: '/nontech', extension: 'jsx' },
+      { name: 'Register', path: '/register', extension: 'jsx' },
+      { name: 'Contact', path: '/contact', extension: 'jsx' },
+      { name: 'Bus', path: '/bus', extension: 'jsx' },
+      { name: 'Login', path: '/login', extension: 'jsx' },
+    ];
+
+    if (isLoggedIn) {
+      return [...baseFiles, { name: 'User Details', path: '/user/:userId', extension: 'jsx' }];
+    }
+
+    return baseFiles;
+  }, [isLoggedIn]);
 
   useEffect(() => {
     // Only show loading screen on home page ('/')
@@ -90,28 +100,84 @@ function App() {
     }
   }, [activeTab, navigate, location.pathname]);
 
-  // Add a function to handle internal navigation
-  const handleInternalNavigation = (path) => {
-    if (!openFiles.includes(path)) {
-      setOpenFiles(prev => [...prev, path]);
+  // Add useEffect to check login status on app load
+  useEffect(() => {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      const { expires } = JSON.parse(userData);
+      if (Date.now() < expires) {
+        setIsLoggedIn(true);
+      } else {
+        localStorage.removeItem('user');
+      }
     }
-    setActiveTab(path);
+  }, []);
+
+  // Update handleInternalNavigation to handle user details path
+  const handleInternalNavigation = useCallback((path) => {
+    // Convert user details path to actual URL
+    if (path === '/user/:userId') {
+        const userData = localStorage.getItem('user');
+        if (userData) {
+            const { unique_id } = JSON.parse(userData);
+            path = `/user/${unique_id}`;
+        } else {
+            navigate('/login');
+            return;
+        }
+    }
+
+    // Normalize path for tab system
+    const normalizedPath = path.startsWith('/user/') ? '/user/:userId' : path;
+    
+    setOpenFiles(prev => {
+        const exists = prev.some(p => 
+            p === normalizedPath || 
+            (normalizedPath === '/user/:userId' && p.startsWith('/user/'))
+        );
+        return exists ? prev : [...prev, normalizedPath];
+    });
+    
+    setActiveTab(normalizedPath);
     navigate(path);
-  };
+  }, [navigate, setOpenFiles, setActiveTab]);
+
+  // Update the handleLogout function to be in App.jsx and pass it down
+  const handleLogout = useCallback(async () => {
+    try {
+      await auth.signOut();
+      localStorage.removeItem('user');
+      setIsLoggedIn(false);
+      // Remove user-related tabs and set active tab to home
+      setOpenFiles(prev => prev.filter(p => !p.startsWith('/user/')));
+      setActiveTab('/');
+      navigate('/login');
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  }, [navigate, setOpenFiles, setActiveTab]);
 
   return (
     <div className="ide-container">
-      {isMobile && <Navbar onNavigate={handleInternalNavigation} />}
+      {isMobile && (
+        <Navbar 
+          onNavigate={handleInternalNavigation} 
+          isLoggedIn={isLoggedIn}
+          onLogout={handleLogout}
+        />
+      )}
       {!isMobile && <IDETitleBar />}
       
       <div className="ide-content">
         {!isMobile && (
           <IDEFileTree 
-            files={files} 
+            files={getAvailableFiles()} 
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             openFiles={openFiles}
             setOpenFiles={setOpenFiles}
+            isLoggedIn={isLoggedIn}
+            onLogout={handleLogout}
           />
         )}
 
@@ -142,9 +208,14 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/bus" element={<Bus />} />
-                <Route path="/login" element={<Login />} />
+                <Route path="/login" element={
+                  <Login 
+                    onLogin={() => setIsLoggedIn(true)} 
+                    onNavigate={handleInternalNavigation}
+                  />
+                } />
                 <Route path='/admin' element={<AdminDashboard/>} />
-                <Route path="/user/:userId" element={<UserDetails />} />
+                <Route path="/user/:userId" element={<UserDetails onNavigate={handleInternalNavigation} />} />
               </Routes>
             </div>
           </div>

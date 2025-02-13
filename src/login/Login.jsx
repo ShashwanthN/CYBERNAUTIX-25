@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { auth } from '../backend/firebase';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../backend/firebase';
 
-function Login() {
+function Login({ onLogin, onNavigate }) {
   const nav = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
@@ -20,7 +22,21 @@ function Login() {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password);
       const userId = userCredential.user.uid;
-      nav(`/user/${userId}`);
+      
+      // Get user data to access unique_id
+      const userRef = doc(db, 'Users', userId);
+      const userSnap = await getDoc(userRef);
+      const userData = userSnap.data();
+      
+      // Store login state for 3 days
+      localStorage.setItem('user', JSON.stringify({
+        uid: userId,
+        unique_id: userData.unique_id,
+        expires: Date.now() + 3 * 24 * 60 * 60 * 1000
+      }));
+      
+      onLogin(); // Update parent state
+      onNavigate(`/user/${userData.unique_id}`);
     } catch (error) {
       console.error('Error logging in:', error);
       alert(error.message);
@@ -36,13 +52,13 @@ function Login() {
 
   return (
     <div className="max-h-screen bg-gradient-to-br from-gray-900 to-black flex items-center justify-center p-4">
-      <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 h-3/4">
+      <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 min-h-3/4">
         
         {/* Left side - 3D illustration */}
-        <div className="hidden lg:flex flex-col justify-center items-center relative">
-          <div className="relative w-full aspect-square">
+        <div className="hidden lg:flex h-full flex-col justify-center items-center relative">
+          <div className="relative w-full h-full aspect-square">
             {/* Decorative elements */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-purple-500/20 rounded-2xl backdrop-blur-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-purple-500/20 backdrop-blur-3xl"></div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-gradient-to-tr from-blue-500 to-purple-500 rounded-xl animate-float"></div>
             <div className="absolute top-1/4 right-1/4 w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-400 rounded-lg animate-pulse"></div>
             <div className="absolute bottom-1/4 left-1/3 w-20 h-20 bg-gradient-to-br from-purple-400 to-pink-400 rounded-lg animate-bounce"></div>
@@ -51,7 +67,7 @@ function Login() {
 
         {/* Right side - Login form */}
         <div className="w-full max-w-md mx-auto">
-          <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-8 shadow-2xl ">
+          <div className="bg-white/5 backdrop-blur-xl  p-8 shadow-2xl ">
             <div className="mb-8 text-center">
               <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
                 Welcome Back

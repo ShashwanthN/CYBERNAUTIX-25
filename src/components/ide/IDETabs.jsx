@@ -9,12 +9,22 @@ export const IDETabs = ({ files, activeTab, setActiveTab, setOpenFiles, tabHisto
     setOpenFiles(prev => {
       const newOpenFiles = prev.filter(p => p !== path);
       
+      // Handle dynamic routes pattern matching
+      const isDynamicUserRoute = path.startsWith('/user/');
+      const cleanPath = isDynamicUserRoute ? '/user/:userId' : path;
+
       if (activeTab === path) {
         const validHistory = tabHistory
-          .filter(p => newOpenFiles.includes(p))
+          .filter(p => newOpenFiles.includes(p) || (isDynamicUserRoute && newOpenFiles.includes(cleanPath)))
           .reverse();
         const newActive = validHistory.length > 0 ? validHistory[0] : '/';
         setActiveTab(newActive);
+      }
+      
+      // Remove the generic route if no specific instances exist
+      if (isDynamicUserRoute) {
+        const hasOtherUserTabs = newOpenFiles.some(p => p.startsWith('/user/'));
+        return hasOtherUserTabs ? newOpenFiles : newOpenFiles.filter(p => p !== '/user/:userId');
       }
       
       return newOpenFiles;
@@ -31,7 +41,9 @@ export const IDETabs = ({ files, activeTab, setActiveTab, setOpenFiles, tabHisto
           onClick={() => setActiveTab(file)}
         >
           <span className="tab-name">
-            {file === '/' ? 'Home' : file.split('/').pop()}
+            {file === '/' ? 'Home' : 
+             file === '/user/:userId' ? 'User Details' : 
+             file.split('/').pop()}
           </span>
           <FiX 
             className="ml-2 opacity-60 hover:opacity-100 transition-opacity"
