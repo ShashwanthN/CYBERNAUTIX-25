@@ -1,8 +1,8 @@
 import './Technical.css';
-import logo from '../assets/coding_img.jpg';
-import pp from '../assets/paper_img.jpg';
-import uiux_img from '../assets/uiux_img.jpg';
-import cq from '../assets/cq.jpg';
+import logo from '../assets/coding_img.png';
+import pp from '../assets/paper_img.png';
+import uiux_img from '../assets/uiux_img.png';
+import cq from '../assets/cq.png';
 import { motion } from 'framer-motion';
 
 import TiltedCard from '../blocks/Components/TiltedCard/TiltedCard';

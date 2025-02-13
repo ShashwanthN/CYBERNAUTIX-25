@@ -7,7 +7,7 @@ module.exports = {
     './pages/**/*.{js,jsx}',
     './components/**/*.{js,jsx}',
     './app/**/*.{js,jsx}',
-    './src/**/*.{js,jsx}',
+    './src/**/*.{js,jsx,ts,tsx}',
   ],
   prefix: "",
   theme: {
@@ -186,6 +186,10 @@ module.exports = {
   					bottom: '50%',
   					right: '25%'
   				}
+  			},
+  			float: {
+  				'0%, 100%': { transform: 'translate(-50%, -50%) translateY(-10px)' },
+  				'50%': { transform: 'translate(-50%, -50%) translateY(10px)' },
   			}
   		},
   		animation: {
@@ -193,7 +197,8 @@ module.exports = {
   			'accordion-up': 'accordion-up 0.2s ease-out',
   			meteor: 'meteor 5s linear infinite',
   			aurora: 'aurora 60s linear infinite',
-  			grid: 'grid 15s linear infinite'
+  			grid: 'grid 15s linear infinite',
+  			'float': 'float 6s ease-in-out infinite',
   		},
   		fontFamily: {
   			poppins: [

@@ -32,7 +32,6 @@ function Home() {
 
   const texts = [
     "CYBERNAUTIX",
-    "സൈബർനോട്ടിക്സ്", // Malayalam
     "சைபர்நாட்டிக்ஸ்",  // Tamil
     "సైబర్నాటిక్స్",   // Telugu
     "ಸೈಬರ್ನಾಟಿಕ್ಸ್"    // Kannada
@@ -242,25 +241,25 @@ function Home() {
             <div className="flex items-center justify-center sm:w-3/4 lg:w-auto lg:px-4 h-full">
               <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 w-full items-center justify-center">
                 <div className="countdown-item">
-                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-9xl text-white/60">
+                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-8xl text-white/60">
                     <span style={{ "--value": timeLeft.days }}></span>
                   </span>
                   <span className="text-xs sm:text-sm lg:text-md text-white">DAYS</span>
                 </div>
                 <div className="countdown-item">
-                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-9xl text-white/40">
+                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-8xl text-white/40">
                     <span style={{ "--value": timeLeft.hours }}></span>
                   </span>
                   <span className="text-xs sm:text-sm lg:text-md text-white/80">HOURS</span>
                 </div>
                 <div className="countdown-item">
-                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-9xl text-white/20">
+                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-8xl text-white/20">
                     <span style={{ "--value": timeLeft.minutes }}></span>
                   </span>
                   <span className="text-xs sm:text-sm lg:text-md text-white/60">MINUTES</span>
                 </div>
                 <div className="countdown-item">
-                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-9xl text-white/10">
+                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-8xl text-white/10">
                     <span style={{ "--value": timeLeft.seconds }}></span>
                   </span>
                   <span className="text-xs sm:text-sm lg:text-md text-white/40">SECONDS</span>
