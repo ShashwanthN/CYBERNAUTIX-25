@@ -28,12 +28,12 @@ const EventPill = ({ children, checked, onChange, name, value, eventType }) => (
       onChange={(e) => onChange(e, eventType)}
       className="peer absolute opacity-0"
     />
-    <div className={`p-4 rounded-none border-2 ${
+    <div className={`p-6 ml-1 rounded-none border-2 ${
       checked 
         ? 'border-[#00ff9f] bg-[#00ff9f]/10 shadow-lg shadow-[#00ff9f]/20'
         : 'border-gray-600 hover:border-[#00ff9f]'
     } transition-all`}>
-      <span className={`text-lg ${checked ? 'text-indigo-300' : 'text-gray-300'}`}>
+      <span className={`text-md ${checked ? 'text-indigo-300' : 'text-gray-300'}`}>
         {children}
       </span>
     </div>
@@ -58,9 +58,9 @@ function Register() {
   });
 
   const technicalEvents = [
-    "Paper Presentation",
-    "Coding",
-    "UI/UX Designing",
+    "Paper Present Research X",
+    "Coding InnovateX",
+    "UI/UX RepliCraft",
     "Cinequery"
   ];
 
@@ -126,7 +126,7 @@ function Register() {
     }
   
     // Check: if Paper Presentation or Cinequery is selected, team name must be provided
-    if ((formData.technicalEvents.includes("Paper Presentation") || 
+    if ((formData.technicalEvents.includes("Paper Present Research X") || 
          formData.technicalEvents.includes("Cinequery")) && 
         formData.teamName.trim() === "") {
       alert("Please enter your team name");
@@ -322,7 +322,7 @@ function Register() {
                 <h3 className="text-xl font-semibold text-[#00ff9f]">Technical Events</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                   {technicalEvents.map(event => {
-                    if (event === "Paper Presentation" || event === "Cinequery") {
+                    if (event === "Paper Present Research X" || event === "Cinequery") {
                       return (
                         <div key={event} className="space-y-2">
                           <EventPill
@@ -342,23 +342,23 @@ function Register() {
                                 placeholder="Team Name"
                                 value={formData.teamName}
                                 onChange={handleChange}
-                                className="pt-2 pr-10 pb-2 pl-2 mt-2 ml-0 bg-gray-800/50 rounded-none border border-gray-700 focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50 text-gray-100 placeholder-gray-400 transition-all flex-grow"
+                                className="w-full pt-2 pr-4 pb-2 pl-2 bg-gray-800/50 rounded-none border border-gray-700 focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50 text-gray-100 placeholder-gray-400 transition-all"
                               />
-                              {event === "Paper Presentation" && (
-                                <div className="flex items-center space-x-3">
+                              {event === "Paper Present Research X" && (
+                                <div className="flex items-center space-x-2">
                                   <input 
                                     type="text"
                                     name="paperDetails"
                                     placeholder="G-drive link"
                                     value={formData.paperDetails}
                                     onChange={handleChange}
-                                    className="pt-2 pr-10 pb-2 pl-2 mt-2 ml-0 bg-gray-800/50 rounded-none border border-gray-700 focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50 text-gray-100 placeholder-gray-400 transition-all flex-grow"
+                                    className="w-full pt-2 pr-4 pb-2 pl-2 bg-gray-800/50 rounded-none border border-gray-700 focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50 text-gray-100 placeholder-gray-400 transition-all"
                                   />
                                   <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    type="submit"
-                                    className="py-2 mt-2 px-4 bg-gradient-to-r from-[#00ff9f] to-[#00cc7a] font-bold text-md text-white"
+                                    type="button"
+                                    className="whitespace-nowrap py-2 px-4 bg-gradient-to-r from-[#00ff9f] to-[#00cc7a] font-bold text-md text-white"
                                   >
                                     Submit
                                   </motion.button>
