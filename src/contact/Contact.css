@@ -24,7 +24,7 @@
 }
 
 .ct-main-title {
-  color: #00abe1;
+  color: #00FF9F;
   font-size: 2.5rem;
   margin-bottom: 30px;
   text-align: center;
@@ -68,7 +68,7 @@
 .ct-form-input:focus,
 .ct-form-textarea:focus {
   outline: none;
-  border-color: #00abe1;
+  border-color: #00FF9F;
   box-shadow: 0 0 10px rgba(0, 171, 225, 0.2);
 }
 
@@ -79,8 +79,8 @@
 
 .ct-submit-btn {
   background: transparent;
-  border: 1px solid #00abe1;
-  color: #00abe1;
+  border: 1px solid #00FF9F;
+  color: #00FF9F;
   padding: 12px 30px;
   border-radius: 25px;
   cursor: pointer;
@@ -134,7 +134,7 @@
 }
 
 .ct-info-item i {
-  color: #00abe1;
+  color: #00FF9F;
 }
 
 @keyframes fadeIn {
@@ -209,5 +209,5 @@
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   color: #fff;
-  border: 1px solid #00abe1;
+  border: 1px solid #00FF9F;
 }
