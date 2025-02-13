@@ -6,22 +6,22 @@ import './Bus.css'; // Ensure you have the corresponding CSS file
 const BusCard = ({ route }) => (
   <motion.div 
     whileHover={{ scale: 1.02 }}
-    className="border-2 border-[#00ff9f]/30 bg-gray-900/20 backdrop-blur-sm rounded-none p-4 sm:p-6 mb-4 shadow-lg shadow-[#00ff9f]/10"
+    className="border-2 border-[#00ff9f]/30 bg-gray-900/20 backdrop-blur-sm rounded-none p-5 m-2 shadow-lg shadow-[#00ff9f]/10"
   >
-    <div className="flex justify-between items-start mb-4">
+    <div className="flex items-start mb-4">
       <div>
         <h2 className="text-2xl font-bold bg-gradient-to-r from-[#00ff9f] to-[#00cc7a] bg-clip-text text-transparent">
           {route.place}
         </h2>
         <p className="text-[#00ff9f] font-mono mt-1">BUS {route.busNumber}</p>
       </div>
-      <FiMapPin className="text-[#00ff9f] w-8 h-8" />
+      <FiMapPin className="text-[#00ff9f] ml-auto w-8 h-8" />
     </div>
     
-    <div className="space-y-2">
+    <div className="space-y-1">
       {route.stops.split('-').map((stop, index) => (
         <div key={index} className="flex items-start">
-          <div className="w-2 h-2 bg-[#00ff9f] mt-2 mr-3 flex-shrink-0" />
+          <div className="w-2 h-2 bg-[#00ff9f] mt-2 mr-4 flex-shrink-0" />
           <p className="text-xs md:text-sm leading-relaxed">{stop.trim()}</p>
         </div>
       ))}
@@ -70,19 +70,40 @@ function Bus() {
     return searchText.includes(searchTerm.toLowerCase());
   });
 
+  // Animation variants for staggered text effect
+  const headerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1, // Adjust the time between letter animations as needed
+      }
+    }
+  };
+
+  const letterVariant = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
-    <div className="min-h-screen p-4 sm:p-6 lg:p-8 bg-transparent">
+    <div className="min-h-screen p-2 sm:p-6 lg:p-1 bg-transparent">
       <div className="max-w-7xl mx-auto">
+        {/* Animated header: BUS ROUTES with each letter appearing sequentially */}
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          variants={headerVariants}
+          initial="hidden"
+          animate="visible"
           className="text-4xl md:text-5xl font-bold text-[#00ff9f] mb-6 sm:mb-8 text-center"
         >
-          BUS ROUTES
+          {"BUS ROUTES".split("").map((char, index) => (
+            <motion.span key={index} variants={letterVariant}>
+              {char === " " ? "\u00A0" : char}
+            </motion.span>
+          ))}
         </motion.h1>
 
-        <div className="relative mb-8 sm:mb-12">
-          <FiSearch className="absolute left-4 top-4 text-[#00ff9f] w-6 h-6" />
+        <div className="relative mb-4 sm:mb-12">
+          <FiSearch className="absolute left-4 top-6 text-[#00ff9f] w-6 h-6" />
           <input
             type="text"
             placeholder="Search routes..."
@@ -100,7 +121,9 @@ function Bus() {
 
         {filteredRoutes.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-xl text-[#00ff9f]/80">No routes found matching your search</p>
+            <p className="text-xl text-[#00ff9f]/80">
+              No routes found matching your search
+            </p>
           </div>
         )}
       </div>
