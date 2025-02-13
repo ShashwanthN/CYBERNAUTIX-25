@@ -58,9 +58,9 @@ function Register() {
   });
 
   const technicalEvents = [
-    "Paper Present Research X",
-    "Coding InnovateX",
-    "UI/UX RepliCraft",
+    "Research X",
+    "InnovateX",
+    "RepliCraft",
     "Cinequery"
   ];
 
@@ -99,7 +99,7 @@ function Register() {
         const index = currentTechnical.indexOf(value);
         if (index > -1) currentTechnical.splice(index, 1);
         // Clear the paper details when Paper Presentation is unchecked
-        if (value === 'Paper Presentation') {
+        if (value === 'Research X') {
           setFormData(prevState => ({ ...prevState, paperDetails: '' }));
         }
       } else {
@@ -126,7 +126,7 @@ function Register() {
     }
   
     // Check: if Paper Presentation or Cinequery is selected, team name must be provided
-    if ((formData.technicalEvents.includes("Paper Present Research X") || 
+    if ((formData.technicalEvents.includes("Research X") || 
          formData.technicalEvents.includes("Cinequery")) && 
         formData.teamName.trim() === "") {
       alert("Please enter your team name");
@@ -322,7 +322,7 @@ function Register() {
                 <h3 className="text-xl font-semibold text-[#00ff9f]">Technical Events</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                   {technicalEvents.map(event => {
-                    if (event === "Paper Present Research X" || event === "Cinequery") {
+                    if (event === "Research X" || event === "Cinequery") {
                       return (
                         <div key={event} className="space-y-2">
                           <EventPill
@@ -344,7 +344,7 @@ function Register() {
                                 onChange={handleChange}
                                 className="w-full pt-2 pr-4 pb-2 pl-2 bg-gray-800/50 rounded-none border border-gray-700 focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50 text-gray-100 placeholder-gray-400 transition-all"
                               />
-                              {event === "Paper Present Research X" && (
+                              {event === "Research X" && (
                                 <div className="flex items-center space-x-2">
                                   <input 
                                     type="text"
