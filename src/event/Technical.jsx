@@ -4,6 +4,7 @@ import pp from '../assets/paper_img.png';
 import uiux_img from '../assets/uiux_img.png';
 import cq from '../assets/cq.png';
 import { motion } from 'framer-motion';
+import { Phone } from 'lucide-react';
 
 import TiltedCard from '../blocks/Components/TiltedCard/TiltedCard';
 
@@ -12,7 +13,7 @@ const Technical = ({ onNavigate }) => {
     onNavigate('/register');
   };
 
-  const EventSection = ({ imageSrc, title, description, rules, reverse }) => (
+  const EventSection = ({ imageSrc, title, description, rules, contactName, contactNumber, reverse }) => (
     <motion.section 
       className={`group relative flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} 
       gap-6 p-4 md:p-8 overflow-hidden`}
@@ -44,6 +45,15 @@ const Technical = ({ onNavigate }) => {
           </ul>
         </div>
 
+        {/* Contact Name and Number */}
+        <div className="mt-4">
+          <h3 className="text-emerald-400/80 text-lg font-semibold">{contactName}</h3>
+          <div className="flex items-center gap-2 text-emerald-300">
+            <Phone className="w-5 h-5 text-emerald-400" />
+            <span className="text-sm md:text-base">{contactNumber}</span>
+          </div>
+        </div>
+
         <button
           onClick={handleRegisterClick}
           className="mt-4 px-6 py-2.5 rounded-full bg-emerald-400/10 border border-emerald-400/30 
@@ -67,36 +77,42 @@ const Technical = ({ onNavigate }) => {
       <div className="space-y-20 md:space-y-32">
         <EventSection
           imageSrc={logo}
-          title="Coding Challenge"
+          title="InnovateX"
           description="Put your programming skills to the test! Solve algorithmic problems and coding challenges in a race against the clock."
           rules={[
             "Languages: C, C++, Java, Python",
             "AI usage strictly prohibited",
             "2 hour time limit"
           ]}
+          contactName="Chokkalingam"
+          contactNumber="9894703845"
         />
 
         <EventSection
           imageSrc={pp}
-          title="Paper Presentation"
-          description="Showcase your research and presentation skills by discussing innovative ideas on trending topics."
+          title="Research X"
+          description="Showcase your research and paper presentation skills by discussing innovative ideas on trending topics."
           rules={[
             "Submission 2 days prior",
             "10 minute presentation limit",
             "Teams of 2 allowed"
           ]}
+          contactName="Shai Kumar"
+          contactNumber="9941746227"
           reverse
         />
 
         <EventSection
           imageSrc={uiux_img}
-          title="UI/UX Design"
+          title="RepliCraft"
           description="Dive into the world of design and create intuitive, user-friendly interfaces."
           rules={[
             "Figma/Adobe XD/Sketch",
             "3 hour duration",
             "Theme-based design"
           ]}
+          contactName="Rohit Vijayan"
+          contactNumber="9986913189"
         />
 
         <EventSection
@@ -108,6 +124,8 @@ const Technical = ({ onNavigate }) => {
             "Pre-provided schemas only",
             "2 member teams"
           ]}
+          contactName="Sudhir Raja"
+          contactNumber="9042162169"
           reverse
         />
       </div>
