@@ -3,13 +3,13 @@ import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Loading from './components/Loading';
-import Home from './home/Home';
+import Home from './home/Home'; // Changed to Home      
 import Register from './register/Register';
 import Contact from './contact/Contact';
 import Bus from './bus/Bus';
 import Login from './login/Login';
 import Technical from './event/Technical';
-import NonTecnical from './event/NonTechnical';
+import SupriseEvent from './event/SupriseEvent';
 import AdminDashboard from './AdminPage/AdminDashboard';
 import UserDetails from './UserDetails/UserDetails';
 import { Meteors } from "@/components/magicui/meteors";
@@ -36,7 +36,7 @@ function App() {
     { name: 'Home', path: '/', extension: 'jsx' },
     { name: 'Events', path: '/events', extension: 'jsx' },
     { name: 'Technical', path: '/tech', extension: 'jsx' },
-    { name: 'Non-Technical', path: '/nontech', extension: 'jsx' },
+    { name: 'Suprise Event', path: '/suprise', extension: 'jsx' },
     { name: 'Register', path: '/register', extension: 'jsx' },
     { name: 'Contact', path: '/contact', extension: 'jsx' },
     { name: 'Bus', path: '/bus', extension: 'jsx' },
@@ -138,7 +138,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/events" element={<EventPage onNavigate={handleInternalNavigation} />} />
                 <Route path="/tech" element={<Technical onNavigate={handleInternalNavigation} />} />
-                <Route path="/nontech" element={<NonTecnical onNavigate={handleInternalNavigation} />} />
+                <Route path="/suprise" element={<SupriseEvent onNavigate={handleInternalNavigation} />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/bus" element={<Bus />} />
