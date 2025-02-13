@@ -39,7 +39,7 @@ function App() {
       { name: 'Home', path: '/', extension: 'jsx' },
       { name: 'Events', path: '/events', extension: 'jsx' },
       { name: 'Technical', path: '/tech', extension: 'jsx' },
-      { name: 'Non-Technical', path: '/nontech', extension: 'jsx' },
+      { name: 'Surprise-Event', path: '/suprise', extension: 'jsx' },
       { name: 'Register', path: '/register', extension: 'jsx' },
       { name: 'Contact', path: '/contact', extension: 'jsx' },
       { name: 'Bus', path: '/bus', extension: 'jsx' },
@@ -196,9 +196,7 @@ function App() {
             <div className="editor-content" style={{ 
               padding: isMobile ? '48px 0 0 0' : '10px'
             }}>
-              <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                <Meteors number={20} />
-              </div>
+              
               
               <Routes>
                 <Route path="/" element={<Home />} />

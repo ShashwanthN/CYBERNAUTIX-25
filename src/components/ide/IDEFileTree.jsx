@@ -19,8 +19,8 @@ export const IDEFileTree = ({ files, activeTab, setActiveTab, openFiles, setOpen
   };
 
   return (
-    <div className="w-full min-w-[150px] max-w-[200px] bg-[#252526] border-r border-[#333] p-2.5 flex flex-col justify-between">
-      <div>
+    <div className="w-full min-w-[150px] max-w-[200px] bg-[#252526] border-r border-[#333] p-2.5 h-full flex flex-col">
+      <div className='flex flex-col flex-grow'>
         <div className="text-xs uppercase mb-2.5 text-[#858585]">EXPLORER</div>
         {files.map((file) => (
           <div
@@ -39,9 +39,9 @@ export const IDEFileTree = ({ files, activeTab, setActiveTab, openFiles, setOpen
       
       {isLoggedIn && (
         <div 
-          className="mt-4 p-2 text-xs cursor-pointer hover:bg-[#2a2d2e] flex items-center"
+          className="py-1.5 px-2.5 cursor-pointer flex items-center text-xs hover:bg-[#2a2d2e] mt-auto"
           onClick={onLogout}
-        >
+        > 
           <FiLogOut className="mr-2" />
           Logout
         </div>

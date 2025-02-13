@@ -17,6 +17,7 @@ import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
 import { HyperText } from "@/components/magicui/hyper-text";
 import { SpinningText } from "@/components/magicui/spinning-text";
 import { MorphingText } from "@/components/magicui/morphing-text";
+import { Meteors } from "@/components/magicui/meteors";
 
 
 function Home() {
@@ -83,6 +84,9 @@ function Home() {
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+                <Meteors number={20} />
+              </div>
       <div className="bg-black">
         <RetroGrid className="absolute top-0 left-0 w-full h-full opacity-20" />
       </div>
