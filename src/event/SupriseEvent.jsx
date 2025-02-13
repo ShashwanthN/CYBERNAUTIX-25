@@ -1,5 +1,5 @@
 import React from 'react'
-import './NonTechnical.css'
+import './SupriseEvent.css'
 import {useNavigate} from 'react-router-dom';
 import confidentialStamp from '../assets/confidential-stamp.png'
 import TiltedCard from '../blocks/Components/TiltedCard/TiltedCard'

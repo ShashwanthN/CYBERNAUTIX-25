@@ -114,14 +114,7 @@ function Login({ onLogin, onNavigate }) {
               </button>
             </form>
 
-            <div className="mt-6 text-center">
-              <p className="text-gray-400">
-                Don't have an account?{' '}
-                <a href="/signup" className="text-blue-400 hover:text-blue-300 transition-colors">
-                  Sign up
-                </a>
-              </p>
-            </div>
+            
           </div>
         </div>
       </div>

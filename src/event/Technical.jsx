@@ -60,7 +60,7 @@ const Technical = ({ onNavigate }) => {
   return (
     <div className="relative max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-20">
       <h1 className="text-5xl md:text-7xl font-bold text-center mb-16 md:mb-24 
-        bg-gradient-to-r from-emerald-300 to-cyan-400 bg-clip-text text-transparent">
+        bg-gradient-to-r from-[#00FF9F] to-[#00FF9F] bg-clip-text text-transparent">
         Technical Events
       </h1>
 
