@@ -52,7 +52,9 @@ function Register() {
     department: '',
     year: '',
     technicalEvents: [],
-    nonTechnicalEvents: []
+    nonTechnicalEvents: [],
+    paperDetails: '',  // For Paper Presentation drive link
+    teamName: ''      // New field for team name
   });
 
   const technicalEvents = [
@@ -68,10 +70,10 @@ function Register() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData(prevState => ({
+      ...prevState,
       [name]: value,
-    });
+    }));
   };
 
   const handleEventSelection = (e, eventType) => {
@@ -96,6 +98,10 @@ function Register() {
       if (eventType === 'technicalEvents') {
         const index = currentTechnical.indexOf(value);
         if (index > -1) currentTechnical.splice(index, 1);
+        // Clear the paper details when Paper Presentation is unchecked
+        if (value === 'Paper Presentation') {
+          setFormData(prevState => ({ ...prevState, paperDetails: '' }));
+        }
       } else {
         const index = currentNonTechnical.indexOf(value);
         if (index > -1) currentNonTechnical.splice(index, 1);
@@ -119,6 +125,14 @@ function Register() {
       return;
     }
   
+    // Check: if Paper Presentation or Cinequery is selected, team name must be provided
+    if ((formData.technicalEvents.includes("Paper Presentation") || 
+         formData.technicalEvents.includes("Cinequery")) && 
+        formData.teamName.trim() === "") {
+      alert("Please enter your team name");
+      return;
+    }
+  
     if (formData.technicalEvents.length === 1 && formData.nonTechnicalEvents.length === 1) {
       alert('Please select both events from either Technical or Non-Technical category');
       return;
@@ -139,11 +153,13 @@ function Register() {
           phone: formData.phone,
           college: formData.college,
           department: formData.department,
-          password:formData.password,
+          password: formData.password,
           year: formData.year,
           no_of_events: totalEvents,
           technicalEvents: formData.technicalEvents,
           nonTechnicalEvents: formData.nonTechnicalEvents,
+          paperDetails: formData.paperDetails,  // store paper presentation details
+          teamName: formData.teamName,  // Add team name to database
           unique_id: user.uid
         });
   
@@ -151,7 +167,6 @@ function Register() {
         alert('Registered successfully');
         const userId = userCredential.user.uid;
         navigate(`/user/${userId}`);
-        
       }
     } catch (error) {
       console.error("Error storing data:", error.message);
@@ -160,7 +175,7 @@ function Register() {
   };
   
   return (
-    <div className="min-h-screen pb-4 py-2  sm:px-6 lg:px-4">
+    <div className="min-h-screen pb-4 py-2 sm:px-6 lg:px-4">
       <div className="max-w-7xl mx-auto h-full">
         {/* <NeonText>Cybernautix '25 Registration</NeonText> */}
         
@@ -306,23 +321,73 @@ function Register() {
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-[#00ff9f]">Technical Events</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {technicalEvents.map(event => (
-                    <EventPill
-                      key={event}
-                      name="technicalEvents"
-                      value={event}
-                      checked={formData.technicalEvents.includes(event)}
-                      onChange={handleEventSelection}
-                      eventType="technicalEvents"
-                    >
-                      {event}
-                    </EventPill>
-                  ))}
+                  {technicalEvents.map(event => {
+                    if (event === "Paper Presentation" || event === "Cinequery") {
+                      return (
+                        <div key={event} className="space-y-2">
+                          <EventPill
+                            name="technicalEvents"
+                            value={event}
+                            checked={formData.technicalEvents.includes(event)}
+                            onChange={handleEventSelection}
+                            eventType="technicalEvents"
+                          >
+                            {event}
+                          </EventPill>
+                          {formData.technicalEvents.includes(event) && (
+                            <div className="flex flex-col space-y-2">
+                              <input 
+                                type="text"
+                                name="teamName"
+                                placeholder="Team Name"
+                                value={formData.teamName}
+                                onChange={handleChange}
+                                className="pt-2 pr-10 pb-2 pl-2 mt-2 ml-0 bg-gray-800/50 rounded-none border border-gray-700 focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50 text-gray-100 placeholder-gray-400 transition-all flex-grow"
+                              />
+                              {event === "Paper Presentation" && (
+                                <div className="flex items-center space-x-3">
+                                  <input 
+                                    type="text"
+                                    name="paperDetails"
+                                    placeholder="G-drive link"
+                                    value={formData.paperDetails}
+                                    onChange={handleChange}
+                                    className="pt-2 pr-10 pb-2 pl-2 mt-2 ml-0 bg-gray-800/50 rounded-none border border-gray-700 focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50 text-gray-100 placeholder-gray-400 transition-all flex-grow"
+                                  />
+                                  <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    type="submit"
+                                    className="py-2 mt-2 px-4 bg-gradient-to-r from-[#00ff9f] to-[#00cc7a] font-bold text-md text-white"
+                                  >
+                                    Submit
+                                  </motion.button>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    } else {
+                      return (
+                        <EventPill
+                          key={event}
+                          name="technicalEvents"
+                          value={event}
+                          checked={formData.technicalEvents.includes(event)}
+                          onChange={handleEventSelection}
+                          eventType="technicalEvents"
+                        >
+                          {event}
+                        </EventPill>
+                      );
+                    }
+                  })}
                 </div>
               </div>
 
               <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-[#00ff9f]">Non-Technical Events</h3>
+                <h3 className="text-xl font-semibold text-[#00ff9f]">Suprise Events</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {nonTechnicalEvents.map(event => (
                     <EventPill
