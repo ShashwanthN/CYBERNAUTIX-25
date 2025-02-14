@@ -92,6 +92,12 @@
     --color-4: 195 100% 63%;
     --color-5: 90 100% 63%;
   }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 .clip-half-circle {
@@ -111,13 +117,5 @@
 .page-slide-right {
   transform: translateX(20px);
   opacity: 0;
-}
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
 }
 

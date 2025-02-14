@@ -1,30 +1,55 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FiSearch, FiArrowRight, FiMapPin } from 'react-icons/fi';
 import './Bus.css'; // Ensure you have the corresponding CSS file
 
 const BusCard = ({ route }) => (
   <motion.div 
-    whileHover={{ scale: 1.02 }}
-    className="border-2 border-[#00ff9f]/30 bg-gray-900/20 backdrop-blur-sm rounded-none p-5 m-2 shadow-lg shadow-[#00ff9f]/10"
+    whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(0,255,159,0.2)" }}
+    className="relative border-2 border-[#00ff9f]/20 bg-gray-900/30 backdrop-blur-sm rounded-xl p-4 sm:p-6 mb-4 transition-all"
   >
-    <div className="flex items-start mb-4">
-      <div>
-        <h2 className="text-2xl font-bold bg-gradient-to-r from-[#00ff9f] to-[#00cc7a] bg-clip-text text-transparent">
-          {route.place}
-        </h2>
-        <p className="text-[#00ff9f] font-mono mt-1">BUS {route.busNumber}</p>
-      </div>
-      <FiMapPin className="text-[#00ff9f] ml-auto w-8 h-8" />
-    </div>
-    
-    <div className="space-y-1">
-      {route.stops.split('-').map((stop, index) => (
-        <div key={index} className="flex items-start">
-          <div className="w-2 h-2 bg-[#00ff9f] mt-2 mr-4 flex-shrink-0" />
-          <p className="text-xs md:text-sm leading-relaxed">{stop.trim()}</p>
+    <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+      <div className="flex-shrink-0">
+        <div className="w-10 h-10 sm:w-14 sm:h-14 bg-[#00ff9f]/10 rounded-lg flex items-center justify-center">
+          <span className="text-xl sm:text-2xl font-bold text-[#00ff9f]">#{route.busNumber}</span>
         </div>
-      ))}
+      </div>
+      <div className="flex-grow">
+        <h2 className="text-lg sm:text-xl font-semibold text-white">{route.place}</h2>
+        <div className="flex items-center gap-2 mt-1">
+          <FiMapPin className="text-[#00ff9f] w-3 h-3 sm:w-4 sm:h-4" />
+          <span className="text-xs sm:text-sm text-[#00ff9f]/80">Route Details</span>
+        </div>
+      </div>
+      <FiArrowRight className="text-[#00ff9f] w-5 h-5 sm:w-6 sm:h-6 ml-2" />
+    </div>
+
+    <div className="space-y-3 relative pl-3 sm:pl-4 border-l-2 border-[#00ff9f]/20">
+      {route.stops.split('-').map((stop, index) => {
+        const [timeMatch] = stop.match(/\(([^)]+)\)/g) || [];
+        const stopText = stop.replace(/\(([^)]+)\)/g, '').trim();
+        
+        return (
+          <div key={index} className="relative flex items-start group">
+            <div className="absolute w-2 h-2 sm:w-3 sm:h-3 bg-[#00ff9f] rounded-full -left-[7px] sm:-left-[9px] top-2 border-2 border-[#00ff9f]/30" />
+            <div className="flex-1 ml-3 sm:ml-4">
+              <div className="flex flex-wrap sm:flex-nowrap justify-between items-start gap-1">
+                <span className="text-xs sm:text-sm font-medium text-white break-words">
+                  {stopText}
+                </span>
+                {timeMatch && (
+                  <span className="text-[10px] sm:text-xs text-[#00ff9f]/70 bg-[#00ff9f]/10 px-2 py-1 rounded-md flex-shrink-0">
+                    {timeMatch.replace(/[()]/g, '')}
+                  </span>
+                )}
+              </div>
+              {index < route.stops.split('-').length - 1 && (
+                <div className="h-[1px] bg-[#00ff9f]/10 w-full my-2" />
+              )}
+            </div>
+          </div>
+        )
+      })}
     </div>
   </motion.div>
 );
@@ -172,14 +197,13 @@ function Bus() {
   };
 
   return (
-    <div className="min-h-screen p-2 sm:p-6 lg:p-1 bg-transparent">
-      <div className="max-w-7xl mx-auto">
-        {/* Animated header: BUS ROUTES with each letter appearing sequentially */}
+    <div className="h-screen p-4 sm:p-8 bg-gradient-to-br from-gray-900/50 to-gray-900 overflow-y-auto">
+      <div className="max-w-4xl mx-auto min-h-full">
         <motion.h1
           variants={headerVariants}
           initial="hidden"
           animate="visible"
-          className="text-4xl md:text-5xl font-bold text-[#00ff9f] mb-6 sm:mb-8 text-center"
+          className="text-4xl md:text-5xl font-bold text-[#00ff9f] mb-8 text-center drop-shadow-lg"
         >
           {"BUS ROUTES".split("").map((char, index) => (
             <motion.span key={index} variants={letterVariant}>
@@ -188,29 +212,66 @@ function Bus() {
           ))}
         </motion.h1>
 
-        <div className="relative mb-4 sm:mb-12">
-          <FiSearch className="absolute left-4 top-6 text-[#00ff9f] w-6 h-6" />
-          <input
-            type="text"
-            placeholder="Search routes..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-12 pr-6 py-4 bg-gray-800/20 border-2 border-[#00ff9f]/30 text-gray-100 placeholder-gray-400/80 focus:outline-none focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50"
-          />
+        <div className="mb-8 relative group">
+          <div className="flex items-center gap-2 mb-4">
+            <FiSearch className="text-[#00ff9f] w-5 h-5" />
+            <span className="text-sm text-[#00ff9f]/80">Search by location, bus number, or stop</span>
+          </div>
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Try 'Koyambedu' or '175'..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-12 pr-6 py-4 bg-gray-800/40 backdrop-blur-lg rounded-xl border-2 border-[#00ff9f]/20 text-gray-100 placeholder-gray-400/80 focus:outline-none focus:border-[#00ff9f] focus:ring-4 focus:ring-[#00ff9f]/20 transition-all"
+            />
+            <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[#00ff9f] w-5 h-5" />
+            {searchTerm && (
+              <button
+                onClick={() => setSearchTerm('')}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-[#00ff9f]/50 hover:text-[#00ff9f] transition-colors"
+              >
+                ×
+              </button>
+            )}
+          </div>
+          <div className="mt-2 text-sm text-[#00ff9f]/50">
+            Showing {filteredRoutes.length} route{filteredRoutes.length !== 1 && 's'}
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-          {filteredRoutes.map((route, index) => (
-            <BusCard key={index} route={route} />
-          ))}
-        </div>
+        <motion.div 
+          layout
+          className="space-y-6"
+        >
+          <AnimatePresence>
+            {filteredRoutes.map((route, index) => (
+              <motion.div
+                key={route.busNumber}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+              >
+                <BusCard route={route} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
         {filteredRoutes.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-xl text-[#00ff9f]/80">
-              No routes found matching your search
-            </p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-16"
+          >
+            <div className="mb-4 text-[#00ff9f]/30">
+              <FiSearch className="w-16 h-16 mx-auto" />
+            </div>
+            <h3 className="text-xl text-[#00ff9f]/80 mb-2">No routes found</h3>
+            <p className="text-[#00ff9f]/50">Try searching for a different location or bus number</p>
+          </motion.div>
         )}
       </div>
     </div>
