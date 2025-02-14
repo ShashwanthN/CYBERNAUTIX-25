@@ -197,6 +197,27 @@ function Home({ onNavigate }) {
                   </button>
                   <div className=" flex flex-col mt-4 text-[#00ff9f] w-full">
                     <div className="flex justify-between pr-20 w-full">
+                    <motion.div
+                        className="pt-20 text-xl sm:text-2xl text-center lg:text-right"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 2 }}
+                      >
+                        {Array.from("Win up to ₹2,000").map((char, index) => (
+                          <motion.span
+                            key={index}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{
+                              duration: 0.1,
+                              delay: 2 + index * 0.1,
+                              ease: "easeOut"
+                            }}
+                          >
+                            {char}
+                          </motion.span>
+                        ))}
+                      </motion.div>
                       <motion.div
                         className="pt-20 text-xl sm:text-2xl text-[#00ff9f] text-center lg:text-left"
                         initial={{ opacity: 0 }}

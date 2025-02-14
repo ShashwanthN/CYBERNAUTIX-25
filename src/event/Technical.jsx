@@ -45,20 +45,20 @@ const Technical = ({ onNavigate }) => {
           </ul>
         </div>
 
-        <div className="pt-2 border-t border-emerald-400/10">
-          <div className="flex items-center justify-between text-xs md:text-sm">
-            <div>
+        <div className="pt-4 border-t border-emerald-400/10">
+          <div className="flex items-center justify-between gap-4 text-xs md:text-sm p-2">
+            <div className="space-y-1.5">
               <p className="text-emerald-400/80 font-medium">{contactName}</p>
-              <div className="flex items-center gap-1.5 text-emerald-300/90">
-                <Phone className="w-4 h-4 text-emerald-400/80" />
+              <div className="flex items-center gap-2 text-emerald-300/90">
+                <Phone className="w-3.5 h-3.5 text-emerald-400/80" />
                 <span>{contactNumber}</span>
               </div>
             </div>
             <button
               onClick={handleRegisterClick}
-              className="px-4 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 
-              text-emerald-300 hover:bg-emerald-400/15 transition-all flex items-center gap-1.5 
-              text-xs md:text-sm"
+              className="px-5 py-2 rounded-full bg-emerald-400/10 border border-emerald-400/20 
+              text-emerald-300 hover:bg-emerald-400/15 transition-all flex items-center gap-2 
+              text-xs md:text-sm whitespace-nowrap"
             >
               Register
               <span className="group-hover:translate-x-0.5 transition-transform">→</span>
@@ -71,10 +71,14 @@ const Technical = ({ onNavigate }) => {
 
   return (
     <div className="relative max-w-7xl mx-auto px-4 md:px-8 py-12 ">
-      <h1 className="text-5xl md:text-7xl font-bold text-center mb-16 md:mb-24 
+      <h1 className="text-5xl md:text-7xl font-bold text-center mb-4 md:mb-8 
         bg-gradient-to-r from-[#00FF9F] to-[#00FF9F] bg-clip-text text-transparent">
         Technical Events
       </h1>
+      <div className="text-lg md:text-2xl font-light text-center mb-14 md:mb-22 
+        bg-gradient-to-r from-[#00FF9F] to-[#00FF9F] bg-clip-text text-transparent">
+        Technical Events
+      </div>
 
       <div className="space-y-20 md:space-y-32">
         <EventSection

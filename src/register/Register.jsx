@@ -44,7 +44,7 @@ const EventPill = ({ children, checked, onChange, name, value, eventType }) => (
   </motion.label>
 );
 
-function Register() {
+function Register({ onLogin }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
@@ -57,10 +57,11 @@ function Register() {
     year: '',
     technicalEvents: [],
     nonTechnicalEvents: [],
-    paperDetails: '',  // For Paper Presentation drive link
-    teamName: ''      // New field for team name
+    paperDetails: '',
+    teamNames: {}
   });
   const [formError, setFormError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const technicalEvents = [
     "Research X",
@@ -70,7 +71,7 @@ function Register() {
   ];
 
   const nonTechnicalEvents = [
-    "Twist Tales"
+    "Surprise Event"
   ];
 
   const handleChange = (e) => {
@@ -85,7 +86,7 @@ function Register() {
     const { value, checked } = e.target;
     const currentTechnical = eventType === 'technicalEvents' ? [...formData.technicalEvents] : formData.technicalEvents;
     const currentNonTechnical = eventType === 'nonTechnicalEvents' ? [...formData.nonTechnicalEvents] : formData.nonTechnicalEvents;
-
+    
     if (checked) {
       const totalSelected = currentTechnical.length + currentNonTechnical.length;
       if (totalSelected >= 2) {
@@ -103,10 +104,14 @@ function Register() {
       if (eventType === 'technicalEvents') {
         const index = currentTechnical.indexOf(value);
         if (index > -1) currentTechnical.splice(index, 1);
-        // Clear the paper details when Paper Presentation is unchecked
-        if (value === 'Research X') {
-          setFormData(prevState => ({ ...prevState, paperDetails: '' }));
-        }
+        // Clear the team name and paper details when event is unchecked
+        const updatedTeamNames = { ...formData.teamNames };
+        delete updatedTeamNames[value];
+        setFormData(prevState => ({ 
+          ...prevState, 
+          teamNames: updatedTeamNames,
+          paperDetails: value === 'Research X' ? '' : prevState.paperDetails 
+        }));
       } else {
         const index = currentNonTechnical.indexOf(value);
         if (index > -1) currentNonTechnical.splice(index, 1);
@@ -120,38 +125,29 @@ function Register() {
     }));
   };
 
+  const handleTeamNameChange = (event, eventName) => {
+    setFormData(prevState => ({
+      ...prevState,
+      teamNames: {
+        ...prevState.teamNames,
+        [eventName]: event.target.value
+      }
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormError('');
+    setIsSubmitting(true);
     
-    const totalEvents = formData.technicalEvents.length + formData.nonTechnicalEvents.length;
-    
-    if (formData.confirmPassword !== formData.password) {
-      alert('Passwords do not match');
-      return;
-    }
-  
-    // Check: if Paper Presentation or Cinequery is selected, team name must be provided
-    if ((formData.technicalEvents.includes("Research X") || 
-         formData.technicalEvents.includes("Cinequery")) && 
-        formData.teamName.trim() === "") {
-      alert("Please enter your team name");
-      return;
-    }
-  
-    if (formData.technicalEvents.length === 1 && formData.nonTechnicalEvents.length === 1) {
-      alert('Please select both events from either Technical or Non-Technical category');
-      return;
-    }
-  
-    console.log('Form submitted:', formData);
-  
+    let user; // Declare user outside try block
+
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
-      const user = userCredential.user;
-  
+      user = userCredential.user;
+
       if (user) {
-        const userDocRef = doc(db, "Users", user.uid); // Reference to "Users" collection
+        const userDocRef = doc(db, "Users", user.uid);
   
         await setDoc(userDocRef, {
           name: formData.name,
@@ -161,29 +157,46 @@ function Register() {
           department: formData.department,
           password: formData.password,
           year: formData.year,
-          no_of_events: totalEvents,
+          no_of_events: formData.technicalEvents.length + formData.nonTechnicalEvents.length,
           technicalEvents: formData.technicalEvents,
           nonTechnicalEvents: formData.nonTechnicalEvents,
-          paperDetails: formData.paperDetails,  // store paper presentation details
-          teamName: formData.teamName,  // Add team name to database
+          paperDetails: formData.paperDetails,
+          teamNames: formData.teamNames,
           unique_id: user.uid
         });
-  
+
+        // Update login state and navigation
+        localStorage.setItem('user', JSON.stringify({
+          uid: user.uid,
+          unique_id: user.uid,
+          expires: Date.now() + (3 * 24 * 60 * 60 * 1000)
+        }));
+
+        if (onLogin) {
+          onLogin(`/user/${user.uid}`); // Pass the correct path to onLogin
+        }
+        
         console.log("User registered and data stored successfully.");
         alert('Registered successfully');
-        const userId = userCredential.user.uid;
-        navigate(`/user/${userId}`);
       }
     } catch (error) {
       console.error("Error storing data:", error.message);
       alert(error.message);
+      if (user) {
+        // If user was created but other errors occurred
+        navigate(`/user/${user.uid}`);
+      } else {
+        setFormError('Registration failed. Please try again.');
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
   
   return (
     <div className="h-screen overflow-hidden bg-gradient-to-br from-gray-900 to-black relative">
       {/* Animated Background Elements */}
-      <div className="absolute h-full w-full inset-0 z-0 fixed">
+      <div className="absolute h-full w-full inset-0 z-0">
         <div className="absolute inset-0 bg-[linear-gradient(40deg,rgba(0,255,128,0.05)_0%,rgba(0,0,0,0)_50%,rgba(0,255,128,0.05)_100%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,128,0.1),transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,128,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,128,0.1)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
@@ -306,19 +319,17 @@ function Register() {
                         >
                           <input 
                             type="text"
-                            name="teamName"
                             placeholder="Team Name"
-                            value={formData.teamName}
-                            onChange={handleChange}
+                            value={formData.teamNames[event] || ''}
+                            onChange={(e) => handleTeamNameChange(e, event)}
                             className="w-full px-4 py-2.5 bg-black/30 rounded-lg border border-gray-700 focus:border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
                           />
-                          {event === 'Paper Present Research X' && (
+                          {event === 'Research X' && (
                             <input 
                               type="text"
-                              name="paperDetails"
                               placeholder="Research Paper Drive Link"
-                              value={formData.paperDetails}
-                              onChange={handleChange}
+                              value={formData.paperDetails || ''}
+                              onChange={(e) => setFormData(prev => ({ ...prev, paperDetails: e.target.value }))}
                               className="w-full px-4 py-2.5 bg-black/30 rounded-lg border border-gray-700 focus:border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
                             />
                           )}
@@ -354,12 +365,23 @@ function Register() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
+            disabled={isSubmitting}
             className="w-full py-3.5 px-6 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg font-semibold text-white relative overflow-hidden group"
           >
             <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%)] bg-[length:250%_250%] animate-shimmer" />
             <span className="relative flex items-center justify-center gap-2">
-              Complete Registration
-              <FiArrowRight className="w-4 h-4" />
+              {isSubmitting ? (
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ repeat: Infinity, duration: 1 }}
+                  className="w-5 h-5 border-2 border-white/50 border-t-white rounded-full"
+                />
+              ) : (
+                <>
+                  Complete Registration
+                  <FiArrowRight className="w-4 h-4" />
+                </>
+              )}
             </span>
           </motion.button>
         </motion.form>

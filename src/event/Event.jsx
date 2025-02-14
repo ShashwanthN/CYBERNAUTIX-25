@@ -59,7 +59,7 @@ const Event = ({ onNavigate }) => {
         {/* Non-Technical Events Section */}
         <div 
           ref={secondImage}
-          onClick={() => onNavigate('/nontech')}
+          onClick={() => onNavigate('/suprise')}
           className="w-full md:w-1/3 h-1/2 md:h-full relative group cursor-pointer transition-all duration-300 hover:opacity-90"
         >
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30 z-10" />

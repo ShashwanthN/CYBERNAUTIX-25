@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../backend/firebase';
+import { motion } from 'framer-motion';
+import { FiArrowRight } from 'react-icons/fi';
 
 function Login({ onLogin, onNavigate }) {
   const nav = useNavigate();
@@ -12,13 +14,16 @@ function Login({ onLogin, onNavigate }) {
     password: ''
   });
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setIsSubmitting(true);
 
     if (!formData.email || !formData.password) {
       setError('Please enter both email and password.');
+      setIsSubmitting(false);
       return;
     }
 
@@ -36,6 +41,7 @@ function Login({ onLogin, onNavigate }) {
       
       if (!userSnap.exists()) {
         setError('User data not found');
+        setIsSubmitting(false);
         return;
       }
 
@@ -71,6 +77,8 @@ function Login({ onLogin, onNavigate }) {
         default:
           setError('Failed to login. Please try again');
       }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -219,11 +227,22 @@ function Login({ onLogin, onNavigate }) {
 
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="relative w-full py-3 px-6 rounded-lg overflow-hidden group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-600 transition-transform duration-300 group-hover:scale-105"></div>
                 <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%)] bg-[length:250%_250%] animate-shimmer"></div>
-                <span className="relative text-white font-medium tracking-wider">Sign In</span>
+                <span className="relative text-white font-medium tracking-wider">
+                  {isSubmitting ? (
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ repeat: Infinity, duration: 1 }}
+                      className="w-5 h-5 border-2 border-white/50 border-t-white rounded-full mx-auto"
+                    />
+                  ) : (
+                    'Sign In'
+                  )}
+                </span>
               </button>
             </form>
           </div>
