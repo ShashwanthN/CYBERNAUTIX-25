@@ -341,7 +341,7 @@ function Register({ onLogin }) {
               </div>
 
               <div className="space-y-4">
-                <h3 className="text-lg font-medium text-green-400">Non-Technical Events</h3>
+                <h3 className="text-lg font-medium text-green-400">Extra</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {nonTechnicalEvents.map(event => (
                     <EventPill
