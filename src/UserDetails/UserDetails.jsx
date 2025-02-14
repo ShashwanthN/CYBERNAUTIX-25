@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { db } from '../backend/firebase';
 import { doc, getDoc } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';  // Import useParams to get the userId from the URL and useNavigate for navigation
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useParams to get the userId from the URL and useNavigate for navigation
+import { db } from '../backend/firebase';
 import './UserDetails.css';
 
 function UserDetails({ onNavigate }) {
@@ -56,10 +56,15 @@ function UserDetails({ onNavigate }) {
 
     const downloadPDF = () => {
         const doc = new jsPDF();
-
+    
         doc.setFontSize(18);
         doc.text("RMK ENGINEERING COLLEGE\nCYBERNAUTIX-25", 14, 20);
-
+    
+        // Format technical events with team names
+        const technicalEventsWithTeams = user.technicalEvents
+            .map(event => `${event} - ${user.teamNames[event]}`)
+            .join('\n');
+    
         const userDetails = [
             ['Name', user.name],
             ['Email', user.email],
@@ -69,13 +74,14 @@ function UserDetails({ onNavigate }) {
             ['Year', user.year],
             ['Unique Id', user.unique_id?.substring(0, 6)],
             ['Total Events', user.no_of_events],
-            ['Technical Events', user.technicalEvents.join(', ')],
-            ['Non-Technical Events', user.nonTechnicalEvents.join(', ')],
+            ['Technical Events', technicalEventsWithTeams], // Updated this line
+            ['Surprise Events', user.nonTechnicalEvents.join(', ')],
         ];
-
+    
         doc.autoTable({ startY: 30, head: [['Field', 'Value']], body: userDetails });
         doc.save('Cybernautix-25.pdf');
     };
+    
 
     if (!user) return <p>Loading user details...</p>;
 
@@ -91,8 +97,16 @@ function UserDetails({ onNavigate }) {
                 <p><strong>Year:</strong> {user.year}</p>
                 <p><strong>UniqueId:</strong> {user.unique_id?.substring(0, 6)}</p>
                 <p><strong>Total Events:</strong> {user.no_of_events}</p>
-                <p><strong>Technical Events:</strong> {user.technicalEvents.join(', ')}</p>
-                <p><strong>Non-Technical Events:</strong> {user.nonTechnicalEvents.join(', ')}</p>
+                <p><strong>Technical Events:</strong></p>
+            <ul>
+                {user.technicalEvents.map(event => (
+                    <li key={event} className='text-black'>
+                        <strong>{event}</strong> - <>{user.teamNames[event]}</>
+                    </li>
+                ))}
+            </ul>
+                <p><strong>Surprise Event:</strong> {user.nonTechnicalEvents.join(', ')}</p>
+                
             </div>
             <button className="ud-download-btn" onClick={downloadPDF}>Download as PDF</button>
         </div>
