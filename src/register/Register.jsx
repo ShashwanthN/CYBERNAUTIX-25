@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Register.css';
 import { auth } from '../backend/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { db } from '../backend/firebase';
@@ -7,19 +8,22 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiUser, FiMail, FiLock, FiPhone, FiBook, FiArrowRight } from 'react-icons/fi';
 
-const NeonText = ({ children }) => (
-  <motion.h1 
-    initial={{ textShadow: '0 0 10px #fff' }}
-    animate={{ textShadow: ['0 0 10px #fff', '0 0 20px #4f46e5', '0 0 10px #fff'] }}
+const NeonPulse = ({ children }) => (
+  <motion.h1
+    initial={{ opacity: 0.8 }}
+    animate={{ opacity: 1 }}
     transition={{ duration: 2, repeat: Infinity }}
-    className="text-4xl md:text-5xl font-bold text-indigo-400 mb-8 text-center"
+    className="text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent mb-8 text-center"
   >
     {children}
   </motion.h1>
 );
 
 const EventPill = ({ children, checked, onChange, name, value, eventType }) => (
-  <label className={`relative cursor-pointer transition-all ${checked ? 'scale-105' : ''}`}>
+  <motion.label 
+    whileHover={{ scale: 1.02 }}
+    className={`relative block cursor-pointer transition-all ${checked ? 'scale-[1.02]' : ''}`}
+  >
     <input
       type="checkbox"
       name={name}
@@ -28,16 +32,16 @@ const EventPill = ({ children, checked, onChange, name, value, eventType }) => (
       onChange={(e) => onChange(e, eventType)}
       className="peer absolute opacity-0"
     />
-    <div className={`p-6 ml-1 rounded-none border-2 ${
+    <div className={`p-4 rounded-lg border-2 ${
       checked 
-        ? 'border-[#00ff9f] bg-[#00ff9f]/10 shadow-lg shadow-[#00ff9f]/20'
-        : 'border-gray-600 hover:border-[#00ff9f]'
+        ? 'border-green-500 bg-green-900/20 shadow-lg shadow-green-500/20'
+        : 'border-gray-600 hover:border-green-500'
     } transition-all`}>
-      <span className={`text-md ${checked ? 'text-indigo-300' : 'text-gray-300'}`}>
+      <span className={`text-sm font-medium ${checked ? 'text-green-400' : 'text-gray-300'}`}>
         {children}
       </span>
     </div>
-  </label>
+  </motion.label>
 );
 
 function Register() {
@@ -56,6 +60,7 @@ function Register() {
     paperDetails: '',  // For Paper Presentation drive link
     teamName: ''      // New field for team name
   });
+  const [formError, setFormError] = useState('');
 
   const technicalEvents = [
     "Paper Present Research X",
@@ -117,6 +122,7 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setFormError('');
     
     const totalEvents = formData.technicalEvents.length + formData.nonTechnicalEvents.length;
     
@@ -175,220 +181,157 @@ function Register() {
   };
   
   return (
-    <div className="min-h-screen pb-4 py-2 sm:px-6 lg:px-4">
-      <div className="max-w-7xl mx-auto h-full">
-        {/* <NeonText>Cybernautix '25 Registration</NeonText> */}
-        
+    <div className="h-screen overflow-hidden bg-gradient-to-br from-gray-900 to-black relative">
+      {/* Animated Background Elements */}
+      <div className="absolute h-full w-full inset-0 z-0 fixed">
+        <div className="absolute inset-0 bg-[linear-gradient(40deg,rgba(0,255,128,0.05)_0%,rgba(0,0,0,0)_50%,rgba(0,255,128,0.05)_100%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,128,0.1),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,128,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,128,0.1)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+      </div>
+
+      <div className="relative h-full z-10 container mx-auto  py-4 flex flex-col">
+        <NeonPulse>Cybernautix '25 Registration</NeonPulse>
+
         <motion.form 
           onSubmit={handleSubmit}
-          className="bg-black/30 backdrop-blur-lg rounded-none shadow-xl p-8 space-y-8 border-2 border-[#00ff9f] mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex-1 lg:max-w-3xl w-full mx-auto bg-black/40 backdrop-blur-lg rounded-xl shadow-2xl p-8 border space-y-8 border-green-500/30 overflow-y-auto scrollbar-hide"
         >
+          {/* Error Message */}
+          {formError && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="p-4 bg-red-900/30 border border-red-500/50 rounded-lg text-red-400 text-sm"
+            >
+              {formError}
+            </motion.div>
+          )}
+
           {/* Personal Info Section */}
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-[#00ff9f] mb-6 border-l-4 border-[#00ff9f] pl-4">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00ff9f] to-[#00cc7a]">
-                Personal Details
-              </span>
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="relative">
-                <FiUser className="absolute top-4 left-4 text-gray-400" />
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Full Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full pl-12 pr-4 py-3 bg-gray-800/50 rounded-lg border border-gray-700 focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50 text-gray-100 placeholder-gray-400 transition-all"
-                  required
-                />
-              </div>
-
-              <div className="relative">
-                <FiMail className="absolute top-4 left-4 text-gray-400" />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email Address"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full pl-12 pr-4 py-3 bg-gray-800/50 rounded-lg border border-gray-700 focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50 text-gray-100 placeholder-gray-400 transition-all"
-                  required
-                />
-              </div>
-
-              <div className="relative">
-                <FiLock className="absolute top-4 left-4 text-gray-400" />
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  className="w-full pl-12 pr-4 py-3 bg-gray-800/50 rounded-lg border border-gray-700 focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50 text-gray-100 placeholder-gray-400 transition-all"
-                  required
-                />
-              </div>
-
-              <div className="relative">
-                <FiLock className="absolute top-4 left-4 text-gray-400" />
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Confirm Password"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  className="w-full pl-12 pr-4 py-3 bg-gray-800/50 rounded-lg border border-gray-700 focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50 text-gray-100 placeholder-gray-400 transition-all"
-                  required
-                />
-              </div>
-
-              <div className="relative">
-                <FiPhone className="absolute top-4 left-4 text-gray-400" />
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder="Phone Number"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="w-full pl-12 pr-4 py-3 bg-gray-800/50 rounded-lg border border-gray-700 focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50 text-gray-100 placeholder-gray-400 transition-all"
-                  required
-                />
-              </div>
+          <motion.div 
+            className="space-y-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <div className="border-l-4 border-green-500 pl-4">
+              <h2 className="text-xl font-semibold text-green-400">Personal Details</h2>
+              <p className="text-sm text-gray-400 mt-1">All fields are required</p>
             </div>
-          </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {[
+                { icon: FiUser, name: 'name', placeholder: 'Full Name', type: 'text' },
+                { icon: FiMail, name: 'email', placeholder: 'Email Address', type: 'email' },
+                { icon: FiLock, name: 'password', placeholder: 'Password', type: 'password' },
+                { icon: FiLock, name: 'confirmPassword', placeholder: 'Confirm Password', type: 'password' },
+                { icon: FiPhone, name: 'phone', placeholder: 'Phone Number', type: 'tel' },
+              ].map((field, idx) => (
+                <div key={field.name} className="relative">
+                  <field.icon className="absolute top-3 left-3 text-green-500" />
+                  <input
+                    {...field}
+                    value={formData[field.name]}
+                    onChange={handleChange}
+                    className="w-full pl-10 pr-4 py-2.5 bg-black/30 rounded-lg border border-gray-700 focus:border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
+                  />
+                </div>
+              ))}
+            </div>
+          </motion.div>
 
           {/* College Info Section */}
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-[#00ff9f] mb-6 border-l-4 border-[#00ff9f] pl-4">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00ff9f] to-[#00cc7a]">
-                College Information
-              </span>
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="relative">
-                <FiBook className="absolute top-4 left-4 text-gray-400" />
-                <input
-                  type="text"
-                  name="college"
-                  placeholder="College Name"
-                  value={formData.college}
-                  onChange={handleChange}
-                  className="w-full pl-12 pr-4 py-3 bg-gray-800/50 rounded-lg border border-gray-700 focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50 text-gray-100 placeholder-gray-400 transition-all"
-                  required
-                />
-              </div>
-
-              <div className="relative">
-                <FiBook className="absolute top-4 left-4 text-gray-400" />
-                <input
-                  type="text"
-                  name="department"
-                  placeholder="Department"
-                  value={formData.department}
-                  onChange={handleChange}
-                  className="w-full pl-12 pr-4 py-3 bg-gray-800/50 rounded-lg border border-gray-700 focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50 text-gray-100 placeholder-gray-400 transition-all"
-                  required
-                />
-              </div>
-
-              <div className="relative">
-                <FiBook className="absolute top-4 left-4 text-gray-400" />
-                <input
-                  type="text"
-                  name="year"
-                  placeholder="Year of study"
-                  value={formData.year}
-                  onChange={handleChange}
-                  className="w-full pl-12 pr-4 py-3 bg-gray-800/50 rounded-lg border border-gray-700 focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50 text-gray-100 placeholder-gray-400 transition-all"
-                  required
-                />
-              </div>
+          <motion.div 
+            className="space-y-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <div className="border-l-4 border-green-500 pl-4">
+              <h2 className="text-xl font-semibold text-green-400">College Information</h2>
+              <p className="text-sm text-gray-400 mt-1">Your academic details</p>
             </div>
-          </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                { icon: FiBook, name: 'college', placeholder: 'College Name' },
+                { icon: FiBook, name: 'department', placeholder: 'Department' },
+                { icon: FiBook, name: 'year', placeholder: 'Year of Study' },
+              ].map((field) => (
+                <div key={field.name} className="relative">
+                  <field.icon className="absolute top-3 left-3 text-green-500" />
+                  <input
+                    {...field}
+                    type="text"
+                    value={formData[field.name]}
+                    onChange={handleChange}
+                    className="w-full pl-10 pr-4 py-2.5 bg-black/30 rounded-lg border border-gray-700 focus:border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
+                  />
+                </div>
+              ))}
+            </div>
+          </motion.div>
 
           {/* Event Selection */}
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-[#00ff9f] mb-6 border-l-4 border-[#00ff9f] pl-4">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00ff9f] to-[#00cc7a]">
-                Event Selection (Max 2)
-              </span>
-            </h2>
-            
+          <motion.div 
+            className="space-y-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <div className="border-l-4 border-green-500 pl-4">
+              <h2 className="text-xl font-semibold text-green-400">Event Selection</h2>
+              <p className="text-sm text-gray-400 mt-1">Choose up to 2 events</p>
+            </div>
+
             <div className="space-y-8">
               <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-[#00ff9f]">Technical Events</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {technicalEvents.map(event => {
-                    if (event === "Paper Present Research X" || event === "Cinequery") {
-                      return (
-                        <div key={event} className="space-y-2">
-                          <EventPill
-                            name="technicalEvents"
-                            value={event}
-                            checked={formData.technicalEvents.includes(event)}
-                            onChange={handleEventSelection}
-                            eventType="technicalEvents"
-                          >
-                            {event}
-                          </EventPill>
-                          {formData.technicalEvents.includes(event) && (
-                            <div className="flex flex-col space-y-2">
-                              <input 
-                                type="text"
-                                name="teamName"
-                                placeholder="Team Name"
-                                value={formData.teamName}
-                                onChange={handleChange}
-                                className="w-full pt-2 pr-4 pb-2 pl-2 bg-gray-800/50 rounded-none border border-gray-700 focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50 text-gray-100 placeholder-gray-400 transition-all"
-                              />
-                              {event === "Paper Present Research X" && (
-                                <div className="flex items-center space-x-2">
-                                  <input 
-                                    type="text"
-                                    name="paperDetails"
-                                    placeholder="G-drive link"
-                                    value={formData.paperDetails}
-                                    onChange={handleChange}
-                                    className="w-full pt-2 pr-4 pb-2 pl-2 bg-gray-800/50 rounded-none border border-gray-700 focus:border-[#00ff9f] focus:ring-2 focus:ring-[#00ff9f]/50 text-gray-100 placeholder-gray-400 transition-all"
-                                  />
-                                  <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    type="button"
-                                    className="whitespace-nowrap py-2 px-4 bg-gradient-to-r from-[#00ff9f] to-[#00cc7a] font-bold text-md text-white"
-                                  >
-                                    Submit
-                                  </motion.button>
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                      );
-                    } else {
-                      return (
-                        <EventPill
-                          key={event}
-                          name="technicalEvents"
-                          value={event}
-                          checked={formData.technicalEvents.includes(event)}
-                          onChange={handleEventSelection}
-                          eventType="technicalEvents"
+                <h3 className="text-lg font-medium text-green-400">Technical Events</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {technicalEvents.map(event => (
+                    <div key={event} className="space-y-2">
+                      <EventPill
+                        name="technicalEvents"
+                        value={event}
+                        checked={formData.technicalEvents.includes(event)}
+                        onChange={handleEventSelection}
+                        eventType="technicalEvents"
+                      >
+                        {event}
+                      </EventPill>
+                      {formData.technicalEvents.includes(event) && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          className="space-y-2"
                         >
-                          {event}
-                        </EventPill>
-                      );
-                    }
-                  })}
+                          <input 
+                            type="text"
+                            name="teamName"
+                            placeholder="Team Name"
+                            value={formData.teamName}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2.5 bg-black/30 rounded-lg border border-gray-700 focus:border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
+                          />
+                          {event === 'Paper Present Research X' && (
+                            <input 
+                              type="text"
+                              name="paperDetails"
+                              placeholder="Research Paper Drive Link"
+                              value={formData.paperDetails}
+                              onChange={handleChange}
+                              className="w-full px-4 py-2.5 bg-black/30 rounded-lg border border-gray-700 focus:border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
+                            />
+                          )}
+                        </motion.div>
+                      )}
+                    </div>
+                  ))}
                 </div>
               </div>
 
               <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-[#00ff9f]">Suprise Events</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <h3 className="text-lg font-medium text-green-400">Non-Technical Events</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {nonTechnicalEvents.map(event => (
                     <EventPill
                       key={event}
@@ -404,16 +347,20 @@ function Register() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
+          {/* Submit Button */}
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             type="submit"
-            className="w-full py-4 px-8 bg-gradient-to-r from-[#00ff9f] to-[#00cc7a] rounded-xl font-bold text-lg text-white flex items-center justify-center space-x-3 hover:shadow-[#00ff9f]/30 transition-all"
+            className="w-full py-3.5 px-6 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg font-semibold text-white relative overflow-hidden group"
           >
-            <span>Complete Registration</span>
-            <FiArrowRight className="w-5 h-5" />
+            <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%)] bg-[length:250%_250%] animate-shimmer" />
+            <span className="relative flex items-center justify-center gap-2">
+              Complete Registration
+              <FiArrowRight className="w-4 h-4" />
+            </span>
           </motion.button>
         </motion.form>
       </div>
