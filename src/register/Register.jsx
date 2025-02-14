@@ -63,9 +63,9 @@ function Register() {
   const [formError, setFormError] = useState('');
 
   const technicalEvents = [
-    "Paper Present Research X",
-    "Coding InnovateX",
-    "UI/UX RepliCraft",
+    "Research X",
+    "InnovateX",
+    "RepliCraft",
     "Cinequery"
   ];
 
@@ -104,7 +104,7 @@ function Register() {
         const index = currentTechnical.indexOf(value);
         if (index > -1) currentTechnical.splice(index, 1);
         // Clear the paper details when Paper Presentation is unchecked
-        if (value === 'Paper Presentation') {
+        if (value === 'Research X') {
           setFormData(prevState => ({ ...prevState, paperDetails: '' }));
         }
       } else {
@@ -132,7 +132,7 @@ function Register() {
     }
   
     // Check: if Paper Presentation or Cinequery is selected, team name must be provided
-    if ((formData.technicalEvents.includes("Paper Present Research X") || 
+    if ((formData.technicalEvents.includes("Research X") || 
          formData.technicalEvents.includes("Cinequery")) && 
         formData.teamName.trim() === "") {
       alert("Please enter your team name");
