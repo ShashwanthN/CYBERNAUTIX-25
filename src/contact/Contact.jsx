@@ -1,6 +1,4 @@
-import React from "react";
 import "./Contact.css";
-import TiltedCard from "../blocks/Components/TiltedCard/TiltedCard";
 
 function Contact() {
   return (
@@ -68,7 +66,10 @@ function Contact() {
                 </div>
                 <div className="ct-info-text">
                   <h3>Phone</h3>
-                  <p>+91 9876543210</p>
+                  <section>
+                  <p>+91 90806 39960</p>
+                  <p>+91 99522 76785</p>
+                  </section>
                 </div>
               </div>
 
@@ -78,7 +79,7 @@ function Contact() {
                 </div>
                 <div className="ct-info-text">
                   <h3>Email</h3>
-                  <p>info@rmkec.ac.in</p>
+                  <p>rmkcybernautics@gmail.com</p>
                 </div>
               </div>
             </div>
