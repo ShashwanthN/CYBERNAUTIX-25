@@ -16,59 +16,61 @@ const Technical = ({ onNavigate }) => {
   const EventSection = ({ imageSrc, title, description, rules, contactName, contactNumber, reverse }) => (
     <motion.section 
       className={`group relative flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} 
-      gap-6 p-4 md:p-8 overflow-hidden`}
+      gap-4 p-4 md:p-6 overflow-hidden`}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-25%" }}
+      viewport={{ once: true, margin: "-20%" }}
     >
       <div className={`md:w-1/2 relative ${reverse ? 'md:-rotate-1' : 'md:rotate-1'} 
         transition-transform duration-300 hover:rotate-0`}>
-        <TiltedCard imageSrc={imageSrc} className="rounded-2xl shadow-2xl" />
+        <TiltedCard imageSrc={imageSrc} className="rounded-xl shadow-xl" />
       </div>
 
-      <div className="md:w-1/2 space-y-4 p-4 bg-black/30 backdrop-blur-sm rounded-3xl
-        border-2 border-emerald-400/20">
-        <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 
-          bg-clip-text text-transparent">{title}</h2>
+      <div className="md:w-1/2 space-y-3 p-4 bg-gradient-to-br from-emerald-900/30 to-transparent 
+        backdrop-blur-lg rounded-2xl border border-emerald-400/20 shadow-[0_8px_32px_rgba(0,255,159,0.05)]">
+        <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 
+          bg-clip-text text-transparent tracking-tight">{title}</h2>
         
-        <p className="text-gray-300 text-sm md:text-base leading-relaxed">{description}</p>
+        <p className="text-gray-300 text-xs md:text-sm leading-relaxed opacity-90">{description}</p>
 
         <div className="space-y-2">
-          <h3 className="text-emerald-400/80 text-lg font-semibold">Rules & Regulations:</h3>
-          <ul className="space-y-1.5 text-sm text-gray-400">
+          <h3 className="text-emerald-400/80 text-sm font-semibold tracking-wide">RULES & REGULATIONS</h3>
+          <ul className="grid gap-2 text-xs md:text-sm text-gray-300">
             {rules.map((rule, i) => (
               <li key={i} className="flex items-start gap-2">
-                <span className="text-emerald-400">▹</span>
-                {rule}
+                <span className="shrink-0 text-emerald-400 mt-0.5">•</span>
+                <span className="opacity-90">{rule}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Contact Name and Number */}
-        <div className="mt-4">
-          <h3 className="text-emerald-400/80 text-lg font-semibold">{contactName}</h3>
-          <div className="flex items-center gap-2 text-emerald-300">
-            <Phone className="w-5 h-5 text-emerald-400" />
-            <span className="text-sm md:text-base">{contactNumber}</span>
+        <div className="pt-2 border-t border-emerald-400/10">
+          <div className="flex items-center justify-between text-xs md:text-sm">
+            <div>
+              <p className="text-emerald-400/80 font-medium">{contactName}</p>
+              <div className="flex items-center gap-1.5 text-emerald-300/90">
+                <Phone className="w-4 h-4 text-emerald-400/80" />
+                <span>{contactNumber}</span>
+              </div>
+            </div>
+            <button
+              onClick={handleRegisterClick}
+              className="px-4 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 
+              text-emerald-300 hover:bg-emerald-400/15 transition-all flex items-center gap-1.5 
+              text-xs md:text-sm"
+            >
+              Register
+              <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+            </button>
           </div>
         </div>
-
-        <button
-          onClick={handleRegisterClick}
-          className="mt-4 px-6 py-2.5 rounded-full bg-emerald-400/10 border border-emerald-400/30 
-          text-emerald-300 hover:bg-emerald-400/20 transition-all flex items-center gap-2 
-          text-sm md:text-base"
-        >
-          <span>Register Now</span>
-          <span className="group-hover:translate-x-1 transition-transform">→</span>
-        </button>
       </div>
     </motion.section>
   );
 
   return (
-    <div className="relative max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-20">
+    <div className="relative max-w-7xl mx-auto px-4 md:px-8 py-12 ">
       <h1 className="text-5xl md:text-7xl font-bold text-center mb-16 md:mb-24 
         bg-gradient-to-r from-[#00FF9F] to-[#00FF9F] bg-clip-text text-transparent">
         Technical Events
@@ -93,7 +95,10 @@ const Technical = ({ onNavigate }) => {
           title="Research X"
           description="Showcase your research and paper presentation skills by discussing innovative ideas on trending topics."
           rules={[
-            "Submission 2 days prior",
+            "Participants must submit their PPT before March 5",
+            "Selected students will receive mail",
+            "Students must bring laptop and pendrive (internet will be provided)",
+            "PPT can be done by your own formatting",
             "10 minute presentation limit",
             "Teams of 2 allowed"
           ]}

@@ -190,6 +190,14 @@ module.exports = {
   			float: {
   				'0%, 100%': { transform: 'translate(-50%, -50%) translateY(-10px)' },
   				'50%': { transform: 'translate(-50%, -50%) translateY(10px)' },
+  			},
+  			fadeIn: {
+  				'0%': { opacity: '0', transform: 'translateY(20px)' },
+  				'100%': { opacity: '1', transform: 'translateY(0)' }
+  			},
+  			slideIn: {
+  				'0%': { opacity: '0', transform: 'translateX(20px)' },
+  				'100%': { opacity: '1', transform: 'translateX(0)' }
   			}
   		},
   		animation: {
@@ -199,6 +207,8 @@ module.exports = {
   			aurora: 'aurora 60s linear infinite',
   			grid: 'grid 15s linear infinite',
   			'float': 'float 6s ease-in-out infinite',
+  			'fade-in-up': 'fadeIn 0.5s ease-out',
+  			'slide-in-right': 'slideIn 0.4s ease-out'
   		},
   		fontFamily: {
   			poppins: [
