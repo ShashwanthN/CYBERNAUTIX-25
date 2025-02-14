@@ -82,7 +82,7 @@ function Login({ onLogin, onNavigate }) {
   };
 
   return (
-    <div className="min-h-100 bg-[#020014] flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-100  flex items-center justify-center p-4 relative overflow-hidden">
       {/* Animated background effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[linear-gradient(40deg,rgba(0,255,128,0.05)_0%,rgba(0,0,0,0)_50%,rgba(0,255,128,0.05)_100%)]"></div>

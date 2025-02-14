@@ -199,7 +199,7 @@ function App() {
               
               
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Home onNavigate={handleInternalNavigation} />} />
                 <Route path="/events" element={<EventPage onNavigate={handleInternalNavigation} />} />
                 <Route path="/tech" element={<Technical onNavigate={handleInternalNavigation} />} />
                 <Route path="/suprise" element={<SupriseEvent onNavigate={handleInternalNavigation} />} />

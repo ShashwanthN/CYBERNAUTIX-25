@@ -20,7 +20,7 @@ import { MorphingText } from "@/components/magicui/morphing-text";
 import { Meteors } from "@/components/magicui/meteors";
 
 
-function Home() {
+function Home({ onNavigate }) {
   const navigate = useNavigate();
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -79,7 +79,12 @@ function Home() {
   }, []); // Empty dependency array means this effect runs once on mount
 
   const handleRegisterClick = () => {
-    navigate("/register"); // Navigate to register page
+    // Use the custom navigation handler if available, else fallback
+    if (onNavigate) {
+      onNavigate("/register");
+    } else {
+      navigate("/register");
+    }
   };
 
   return (
