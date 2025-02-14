@@ -89,7 +89,7 @@ function Contact() {
         <div className="ct-map-section">
           <div className="map-wrapper">
             <a 
-              href="https://goo.gl/maps/QZPp7CS8UN82" 
+              href="https://www.google.co.in/maps/place/R.M.K.+Engineering+College/@13.3566859,80.1413034,17z/data=!3m1!4b1!4m6!3m5!1s0x3a4d807de229f987:0x11cc13e2927bfabc!8m2!3d13.3566859!4d80.1413034!16zL20vMGM1dmd4?entry=ttu&g_ep=EgoyMDI1MDIxMS4wIKXMDSoASAFQAw%3D%3D" 
               target="_blank" 
               rel="noopener noreferrer"
               className="map-link"
