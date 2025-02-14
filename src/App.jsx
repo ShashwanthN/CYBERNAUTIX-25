@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import Loading from './components/Loading';
+import SplashScreen from './components/splashscreen';
 import Home from './home/Home'; // Changed to Home      
 import Register from './register/Register';
 import Contact from './contact/Contact';
@@ -157,6 +157,10 @@ function App() {
     }
   }, [navigate, setOpenFiles, setActiveTab]);
 
+  if (isLoading) {
+    return <SplashScreen />;
+  }
+
   return (
     <div className="ide-container">
       {isMobile && (
@@ -203,7 +207,14 @@ function App() {
                 <Route path="/events" element={<EventPage onNavigate={handleInternalNavigation} />} />
                 <Route path="/tech" element={<Technical onNavigate={handleInternalNavigation} />} />
                 <Route path="/suprise" element={<SupriseEvent onNavigate={handleInternalNavigation} />} />
-                <Route path="/register" element={<Register onLogin={handleInternalNavigation} />} />
+                <Route path="/register" element={
+                  <Register 
+                    onLogin={(path) => {
+                      setIsLoggedIn(true);
+                      if (path) handleInternalNavigation(path);
+                    }} 
+                  />
+                } />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/bus" element={<Bus />} />
                 <Route path="/login" element={

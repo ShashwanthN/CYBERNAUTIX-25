@@ -198,6 +198,27 @@ module.exports = {
   			slideIn: {
   				'0%': { opacity: '0', transform: 'translateX(20px)' },
   				'100%': { opacity: '1', transform: 'translateX(0)' }
+  			},
+  			'fade-in': {
+  				'0%': { opacity: '0' },
+  				'100%': { opacity: '1' },
+  			},
+  			'fade-in-delayed': {
+  				'0%': { opacity: '0' },
+  				'100%': { opacity: '1' },
+  			},
+  			'spin': {
+  				'0%': { transform: 'rotate(0deg)' },
+  				'100%': { transform: 'rotate(360deg)' },
+  			},
+  			'pulse-slow': {
+  				'0%': { opacity: '1' },
+  				'50%': { opacity: '0.5' },
+  				'100%': { opacity: '1' }
+  			},
+  			progress: {
+  				'0%': { transform: 'translateX(-100%)' },
+  				'100%': { transform: 'translateX(100%)' },
   			}
   		},
   		animation: {
@@ -208,7 +229,12 @@ module.exports = {
   			grid: 'grid 15s linear infinite',
   			'float': 'float 6s ease-in-out infinite',
   			'fade-in-up': 'fadeIn 0.5s ease-out',
-  			'slide-in-right': 'slideIn 0.4s ease-out'
+  			'slide-in-right': 'slideIn 0.4s ease-out',
+  			'fade-in': 'fadeIn 1.5s ease-in-out',
+  			'fade-in-delayed': 'fadeIn 1.5s ease-in-out 0.5s forwards',
+  			'spin': 'spin 1s linear infinite',
+  			'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+  			'progress': 'progress 2s linear infinite',
   		},
   		fontFamily: {
   			poppins: [

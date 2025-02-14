@@ -179,14 +179,14 @@ function Home({ onNavigate }) {
                   transition={{ duration: 0.5, delay: 0.7 }}
                 >
                   <button 
-                    className="relative group bg-transparent border-2 border-[#00FF9F] hover:bg-[#00FF9F]/10 text-[#00FF9F] px-8 py-3 transition-all duration-300"
+                    className="relative group bg-transparent !border-2 !border-[#00FF9F] hover:bg-[#00FF9F]/10 text-[#00FF9F] px-8 py-3 transition-all duration-300"
                     onClick={handleRegisterClick}
                   >
                     {/* Corner accents */}
-                    <span className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-[#00FF9F]"></span>
-                    <span className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-[#00FF9F]"></span>
-                    <span className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-[#00FF9F]"></span>
-                    <span className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-[#00FF9F]"></span>
+                    <span className="absolute top-0 left-0 w-2 h-2 !border-t-2 !border-l-2 !border-[#00FF9F]"></span>
+                    <span className="absolute top-0 right-0 w-2 h-2 !border-t-2 !border-r-2 !border-[#00FF9F]"></span>
+                    <span className="absolute bottom-0 left-0 w-2 h-2 !border-b-2 !border-l-2 !border-[#00FF9F]"></span>
+                    <span className="absolute bottom-0 right-0 w-2 h-2 !border-b-2 !border-r-2 !border-[#00FF9F]"></span>
                     
                     {/* Glitch effect spans */}
                     <span className="absolute inset-0 block opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-[#00FF9F] blur-[2px]"></span>

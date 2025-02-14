@@ -7,6 +7,8 @@ import { setDoc, doc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiUser, FiMail, FiLock, FiPhone, FiBook, FiArrowRight } from 'react-icons/fi';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NeonPulse = ({ children }) => (
   <motion.h1
@@ -91,7 +93,15 @@ function Register({ onLogin }) {
       const totalSelected = currentTechnical.length + currentNonTechnical.length;
       if (totalSelected >= 2) {
         e.preventDefault();
-        alert('You can only select a maximum of 2 events in total');
+        toast.warning('You can only select a maximum of 2 events in total', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "dark",
+        });
         return;
       }
       
@@ -140,7 +150,7 @@ function Register({ onLogin }) {
     setFormError('');
     setIsSubmitting(true);
     
-    let user; // Declare user outside try block
+    let user;
 
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
@@ -172,18 +182,35 @@ function Register({ onLogin }) {
           expires: Date.now() + (3 * 24 * 60 * 60 * 1000)
         }));
 
+        // Call onLogin first to update the login state
         if (onLogin) {
-          onLogin(`/user/${user.uid}`); // Pass the correct path to onLogin
+          onLogin(); // Call without arguments first to set login state
+          onLogin(`/user/${user.uid}`); // Then call with path to navigate
         }
         
         console.log("User registered and data stored successfully.");
-        alert('Registered successfully');
+        toast.success('Registered successfully', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "dark",
+        });
       }
     } catch (error) {
       console.error("Error storing data:", error.message);
-      alert(error.message);
+      toast.error(error.message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
       if (user) {
-        // If user was created but other errors occurred
         navigate(`/user/${user.uid}`);
       } else {
         setFormError('Registration failed. Please try again.');
@@ -195,6 +222,7 @@ function Register({ onLogin }) {
   
   return (
     <div className="h-screen overflow-hidden bg-gradient-to-br from-gray-900 to-black relative">
+      <ToastContainer />
       {/* Animated Background Elements */}
       <div className="absolute h-full w-full inset-0 z-0">
         <div className="absolute inset-0 bg-[linear-gradient(40deg,rgba(0,255,128,0.05)_0%,rgba(0,0,0,0)_50%,rgba(0,255,128,0.05)_100%)]"></div>
@@ -247,7 +275,7 @@ function Register({ onLogin }) {
                     {...field}
                     value={formData[field.name]}
                     onChange={handleChange}
-                    className="w-full pl-10 pr-4 py-2.5 bg-black/30 rounded-lg border border-gray-700 focus:border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 bg-black/30 rounded-lg !border !border-gray-700 focus:!border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
                   />
                 </div>
               ))}
@@ -278,7 +306,7 @@ function Register({ onLogin }) {
                     type="text"
                     value={formData[field.name]}
                     onChange={handleChange}
-                    className="w-full pl-10 pr-4 py-2.5 bg-black/30 rounded-lg border border-gray-700 focus:border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 bg-black/30 rounded-lg !border !border-gray-700 focus:!border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
                   />
                 </div>
               ))}
@@ -322,7 +350,7 @@ function Register({ onLogin }) {
                             placeholder="Team Name"
                             value={formData.teamNames[event] || ''}
                             onChange={(e) => handleTeamNameChange(e, event)}
-                            className="w-full px-4 py-2.5 bg-black/30 rounded-lg border border-gray-700 focus:border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
+                            className="w-full px-4 py-2.5 bg-black/30 rounded-lg !border !border-gray-700 focus:!border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
                           />
                           {event === 'Research X' && (
                             <input 
@@ -330,7 +358,7 @@ function Register({ onLogin }) {
                               placeholder="Research Paper Drive Link"
                               value={formData.paperDetails || ''}
                               onChange={(e) => setFormData(prev => ({ ...prev, paperDetails: e.target.value }))}
-                              className="w-full px-4 py-2.5 bg-black/30 rounded-lg border border-gray-700 focus:border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
+                              className="w-full px-4 py-2.5 bg-black/30 rounded-lg !border !border-gray-700 focus:!border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
                             />
                           )}
                         </motion.div>

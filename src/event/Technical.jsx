@@ -75,9 +75,11 @@ const Technical = ({ onNavigate }) => {
         bg-gradient-to-r from-[#00FF9F] to-[#00FF9F] bg-clip-text text-transparent">
         Technical Events
       </h1>
-      <div className="text-lg md:text-2xl font-light text-center mb-14 md:mb-22 
-        bg-gradient-to-r from-[#00FF9F] to-[#00FF9F] bg-clip-text text-transparent">
-        Technical Events
+      <div className="text-md md:text-xl font-light text-center mb-14 md:mb-22 
+        bg-gradient-to-r from-[#00FF9F] to-[#72d0ff] bg-clip-text text-transparent">
+        Compete to earn rewards—1,000 Rs for champion and 500 Rs for runner-up.<br />
+        <span className='text-white'>Venues to be announced soon.
+          </span>
       </div>
 
       <div className="space-y-20 md:space-y-32">
