@@ -86,6 +86,14 @@ function Home({ onNavigate }) {
       navigate("/register");
     }
   };
+  const handleRulesClick = () => {
+    // Use the custom navigation handler if available, else fallback
+    if (onNavigate) {
+      onNavigate("/generalnorms");
+    } else {
+      navigate("/generalnorms");
+    }
+  };
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -194,6 +202,23 @@ function Home({ onNavigate }) {
                     
                     {/* Button text */}
                     <span className="relative font-mono text-lg  tracking-wider">REGISTER NOW</span>
+                  </button>
+                  <button 
+                    className="ml-2 relative group bg-transparent !border-2 !border-[#00FF9F] hover:bg-[#00FF9F]/10 text-[#00FF9F] px-8 py-3 transition-all duration-300"
+                    onClick={handleRulesClick}
+                  >
+                    {/* Corner accents */}
+                    <span className="absolute top-0 left-0 w-2 h-2 !border-t-2 !border-l-2 !border-[#00FF9F]"></span>
+                    <span className="absolute top-0 right-0 w-2 h-2 !border-t-2 !border-r-2 !border-[#00FF9F]"></span>
+                    <span className="absolute bottom-0 left-0 w-2 h-2 !border-b-2 !border-l-2 !border-[#00FF9F]"></span>
+                    <span className="absolute bottom-0 right-0 w-2 h-2 !border-b-2 !border-r-2 !border-[#00FF9F]"></span>
+                    
+                    {/* Glitch effect spans */}
+                    <span className="absolute inset-0 block opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-[#00FF9F] blur-[2px]"></span>
+                    <span className="absolute inset-0 block opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-[#00FF9F] blur-[4px]"></span>
+                    
+                    {/* Button text */}
+                    <span className="relative font-mono text-lg  tracking-wider">GENERAL NORMS</span>
                   </button>
                   <div className=" flex flex-col mt-4 text-[#00ff9f] w-full">
                     <div className="flex justify-between pr-20 w-full">
