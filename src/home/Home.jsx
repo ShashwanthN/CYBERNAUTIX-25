@@ -18,6 +18,7 @@ import { HyperText } from "@/components/magicui/hyper-text";
 import { SpinningText } from "@/components/magicui/spinning-text";
 import { MorphingText } from "@/components/magicui/morphing-text";
 import { Meteors } from "@/components/magicui/meteors";
+import CYLogo from '../assets/CY.png'; // Adjust path as needed
 
 
 function Home({ onNavigate }) {
@@ -97,9 +98,20 @@ function Home({ onNavigate }) {
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
+      <img 
+        src={CYLogo}
+        alt="CY Logo"
+        className="absolute left-1/2 -translate-x-1/2 lg:left-auto lg:right-0 lg:translate-x-0 top-1/2 -translate-y-1/2 
+               h-[80vh] lg:h-[120vh] w-auto max-w-[90vw] lg:max-w-none opacity-20 grayscale z-0 pointer-events-none 
+               transition-all duration-300"
+        style={{
+          maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 90%)',
+          WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 90%)'
+        }}
+      />
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                <Meteors number={20} />
-              </div>
+        <Meteors number={20} />
+      </div>
       <div className="bg-black">
         <RetroGrid className="absolute top-0 left-0 w-full h-full opacity-20" />
       </div>

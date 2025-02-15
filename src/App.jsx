@@ -55,28 +55,28 @@ function App() {
     return baseFiles;
   }, [isLoggedIn]);
 
-  useEffect(() => {
-    // Only show loading screen on home page ('/')
-    if (location.pathname === '/') {
-      // Check if this is the first visit or a page reload
-      const isFirstVisit = !sessionStorage.getItem('visited');
-      const isPageReload = performance.navigation.type === 1;
+  // useEffect(() => {
+  //   if (location.pathname === '/') {
+  //     const isFirstVisit = !sessionStorage.getItem('visited');
+  //     // Modern method to detect page reload
+  //     const navigationEntry = performance.getEntriesByType('navigation')[0];
+  //     const isPageReload = navigationEntry?.type === 'reload';
 
-      if (isFirstVisit || isPageReload) {
-        setIsLoading(true);
-        sessionStorage.setItem('visited', 'true');
-        
-        // Hide loading screen after animation
-        const timer = setTimeout(() => {
-          setIsLoading(false);
-        }, 3000); // Adjust timing as needed
+  //     if (isFirstVisit || isPageReload) {
+  //       setIsLoading(true);
+  //       sessionStorage.setItem('visited', 'true');
 
-        return () => clearTimeout(timer);
-      }
-    } else {
-      setIsLoading(false);
-    }
-  }, [location.pathname]);
+  //       // Reduce timer to 2 seconds (2000ms)
+  //       const timer = setTimeout(() => {
+  //         setIsLoading(false);
+  //       }, 2000);
+
+  //       return () => clearTimeout(timer);
+  //     }
+  //   } else {
+  //     setIsLoading(false);
+  //   }
+  // }, [location.pathname]);
 
   useEffect(() => {
     setTabHistory(prev => {
@@ -159,9 +159,9 @@ function App() {
     }
   }, [navigate, setOpenFiles, setActiveTab]);
 
-  if (isLoading) {
-    return <SplashScreen />;
-  }
+  // if (isLoading) {
+  //   return <SplashScreen />;
+  // }
 
   return (
     <div className="ide-container">
