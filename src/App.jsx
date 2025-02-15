@@ -225,7 +225,7 @@ function App() {
                     onNavigate={handleInternalNavigation}
                   />
                 } />
-                <Route path='/admin' element={<AdminDashboard/>} />
+                <Route path='/admin184507' element={<AdminDashboard/>} />
                 <Route path="/user/:userId" element={<UserDetails onNavigate={handleInternalNavigation} />} />
                 <Route path="/generalnorms" element={<Rules />} />
               </Routes>
