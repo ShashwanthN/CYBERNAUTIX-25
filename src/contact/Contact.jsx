@@ -79,7 +79,7 @@ function Contact() {
                 </div>
                 <div className="ct-info-text">
                   <h3>Email</h3>
-                  <p>rmkcybernautics@gmail.com</p>
+                  <p>cybernautix@rmkec.ac.in</p>
                 </div>
               </div>
             </div>

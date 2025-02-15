@@ -273,16 +273,60 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .ct-main-container {
+    padding: 2rem 1rem;
+  }
+
   .ct-grid-container {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   .ct-main-title {
     font-size: 2.5rem;
   }
 
-  .ct-main-container {
-    padding: 2rem 1rem;
+  .ct-subtitle {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .ct-form-input,
+  .ct-form-textarea {
+    padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+  }
+
+  .ct-submit-btn {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+
+  .ct-info-text h3 {
+    font-size: 1rem;
+  }
+
+  .ct-info-text p {
+    font-size: 0.9rem;
+  }
+
+  .ct-map-section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+  }
+
+  .map-container {
+    height: 300px;
+  }
+
+  .ct-info-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ct-info-icon {
+    margin-bottom: 1rem;
   }
 }
 
