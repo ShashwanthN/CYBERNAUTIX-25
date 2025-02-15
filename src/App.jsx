@@ -45,7 +45,7 @@ function App() {
       { name: 'Contact', path: '/contact', extension: 'jsx' },
       { name: 'Bus', path: '/bus', extension: 'jsx' },
       { name: 'Login', path: '/login', extension: 'jsx' },
-      { name: 'Rules', path: '/rules', extension: 'jsx' },
+      { name: 'Rules', path: '/generalnorms', extension: 'jsx' },
     ];
 
     if (isLoggedIn) {
@@ -227,7 +227,7 @@ function App() {
                 } />
                 <Route path='/admin' element={<AdminDashboard/>} />
                 <Route path="/user/:userId" element={<UserDetails onNavigate={handleInternalNavigation} />} />
-                <Route path="/rules" element={<Rules />} />
+                <Route path="/generalnorms" element={<Rules />} />
               </Routes>
             </div>
           </div>
