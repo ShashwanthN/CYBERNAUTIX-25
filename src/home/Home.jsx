@@ -102,7 +102,7 @@ function Home({ onNavigate }) {
         src={CYLogo}
         alt="CY Logo"
         className="absolute left-1/2 -translate-x-1/2 lg:left-auto lg:right-0 lg:translate-x-0 top-1/2 -translate-y-1/2 
-               h-[80vh] lg:h-[120vh] w-auto max-w-[90vw] lg:max-w-none opacity-20 grayscale z-0 pointer-events-none 
+               w-[90vw] h-auto lg:h-[120vh] lg:w-auto max-w-none opacity-20 grayscale z-0 pointer-events-none 
                transition-all duration-300"
         style={{
           maskImage: 'linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 90%)',
@@ -150,7 +150,7 @@ function Home({ onNavigate }) {
                   <h3 className="text-xs sm:text-sm md:text-base lg:text-lg text-white/60 italic">Presents</h3>
                 </motion.div>
 
-                <div className="flex flex-col w-full mt-20 lg:mt-0 md:mt-0 relative">
+                <div className="flex flex-col w-full mt-12 lg:mt-0 md:mt-0 relative">
                   <Vortex
                     baseHue={120}
                     rangeHue={40}
@@ -162,14 +162,14 @@ function Home({ onNavigate }) {
                   >
                     <div className="text-6xl sm:text-5xl md:text-6xl lg:text-8xl lg:px-4 font-bold lg:tracking-widest font-mono text-[#00FF9F] inline-block relative text-center lg:text-left">
                       {/* Mobile View */}
-                      <div className="block lg:hidden">
+                      <div className="block lg:hidden mb-4">
                         {"CYBERNAUTIX".split("").map((char, index) => (
                           <span 
                             key={index}
                             className="inline-block"
                             style={{ 
                               transform: `translateY(${
-                                Math.sin((index / 5) * Math.PI / 1.5) * 4
+                                Math.sin((index / 5) * Math.PI / 1.5) * 2
                               }px)`
                             }}
                           >
@@ -193,49 +193,53 @@ function Home({ onNavigate }) {
                 </div>
                 
                 <motion.div
-                  className="px-4 mt-12 sm:mt-16 md:mt-20"
+                  className="px-4 mt-12 sm:mt-16 md:mt-20 flex flex-col items-center lg:items-start"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.7 }}
                 >
-                  <button 
-                    className="relative group bg-transparent !border-2 !border-[#00FF9F] hover:bg-[#00FF9F]/10 text-[#00FF9F] px-8 py-3 transition-all duration-300"
-                    onClick={handleRegisterClick}
-                  >
-                    {/* Corner accents */}
-                    <span className="absolute top-0 left-0 w-2 h-2 !border-t-2 !border-l-2 !border-[#00FF9F]"></span>
-                    <span className="absolute top-0 right-0 w-2 h-2 !border-t-2 !border-r-2 !border-[#00FF9F]"></span>
-                    <span className="absolute bottom-0 left-0 w-2 h-2 !border-b-2 !border-l-2 !border-[#00FF9F]"></span>
-                    <span className="absolute bottom-0 right-0 w-2 h-2 !border-b-2 !border-r-2 !border-[#00FF9F]"></span>
-                    
-                    {/* Glitch effect spans */}
-                    <span className="absolute inset-0 block opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-[#00FF9F] blur-[2px]"></span>
-                    <span className="absolute inset-0 block opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-[#00FF9F] blur-[4px]"></span>
-                    
-                    {/* Button text */}
-                    <span className="relative font-mono text-lg  tracking-wider">REGISTER NOW</span>
-                  </button>
-                  <button 
-                    className="ml-2 relative group bg-transparent !border-2 !border-[#00FF9F] hover:bg-[#00FF9F]/10 text-[#00FF9F] px-8 py-3 transition-all duration-300"
-                    onClick={handleRulesClick}
-                  >
-                    {/* Corner accents */}
-                    <span className="absolute top-0 left-0 w-2 h-2 !border-t-2 !border-l-2 !border-[#00FF9F]"></span>
-                    <span className="absolute top-0 right-0 w-2 h-2 !border-t-2 !border-r-2 !border-[#00FF9F]"></span>
-                    <span className="absolute bottom-0 left-0 w-2 h-2 !border-b-2 !border-l-2 !border-[#00FF9F]"></span>
-                    <span className="absolute bottom-0 right-0 w-2 h-2 !border-b-2 !border-r-2 !border-[#00FF9F]"></span>
-                    
-                    {/* Glitch effect spans */}
-                    <span className="absolute inset-0 block opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-[#00FF9F] blur-[2px]"></span>
-                    <span className="absolute inset-0 block opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-[#00FF9F] blur-[4px]"></span>
-                    
-                    {/* Button text */}
-                    <span className="relative font-mono text-lg  tracking-wider">GENERAL NORMS</span>
-                  </button>
-                  <div className=" flex flex-col mt-4 text-[#00ff9f] w-full">
-                    <div className="flex justify-between pr-20 w-full">
+                  <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+                    <button 
+                      className="relative group bg-transparent !border-2 !border-[#00FF9F] hover:bg-[#00FF9F]/10 text-[#00FF9F] 
+                                px-6 lg:px-8 py-2 lg:py-3 transition-all duration-300 text-sm lg:text-lg"
+                      onClick={handleRegisterClick}
+                    >
+                      {/* Corner accents */}
+                      <span className="absolute top-0 left-0 w-2 h-2 !border-t-2 !border-l-2 !border-[#00FF9F]"></span>
+                      <span className="absolute top-0 right-0 w-2 h-2 !border-t-2 !border-r-2 !border-[#00FF9F]"></span>
+                      <span className="absolute bottom-0 left-0 w-2 h-2 !border-b-2 !border-l-2 !border-[#00FF9F]"></span>
+                      <span className="absolute bottom-0 right-0 w-2 h-2 !border-b-2 !border-r-2 !border-[#00FF9F]"></span>
+                      
+                      {/* Glitch effect spans */}
+                      <span className="absolute inset-0 block opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-[#00FF9F] blur-[2px]"></span>
+                      <span className="absolute inset-0 block opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-[#00FF9F] blur-[4px]"></span>
+                      
+                      {/* Button text */}
+                      <span className="relative font-mono tracking-wider">REGISTER NOW</span>
+                    </button>
+                    <button 
+                      className="relative group bg-transparent !border-2 !border-[#00FF9F] hover:bg-[#00FF9F]/10 text-[#00FF9F] 
+                                px-6 lg:px-8 py-2 lg:py-3 transition-all duration-300 text-sm lg:text-lg"
+                      onClick={handleRulesClick}
+                    >
+                      {/* Corner accents */}
+                      <span className="absolute top-0 left-0 w-2 h-2 !border-t-2 !border-l-2 !border-[#00FF9F]"></span>
+                      <span className="absolute top-0 right-0 w-2 h-2 !border-t-2 !border-r-2 !border-[#00FF9F]"></span>
+                      <span className="absolute bottom-0 left-0 w-2 h-2 !border-b-2 !border-l-2 !border-[#00FF9F]"></span>
+                      <span className="absolute bottom-0 right-0 w-2 h-2 !border-b-2 !border-r-2 !border-[#00FF9F]"></span>
+                      
+                      {/* Glitch effect spans */}
+                      <span className="absolute inset-0 block opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-[#00FF9F] blur-[2px]"></span>
+                      <span className="absolute inset-0 block opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-[#00FF9F] blur-[4px]"></span>
+                      
+                      {/* Button text */}
+                      <span className="relative font-mono tracking-wider">GENERAL NORMS</span>
+                    </button>
+                  </div>
+                  <div className="flex flex-col mt-4 text-[#00ff9f] w-full">
+                    <div className="flex justify-between lg:pr-20 w-full px-4 lg:px-0 text-center lg:text-left">
                       <motion.div
-                        className="pt-20 text-xl sm:text-2xl text-center lg:text-right"
+                        className="pt-20 text-xl sm:text-2xl text-center"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 1.2 }}
@@ -256,7 +260,7 @@ function Home({ onNavigate }) {
                         ))}
                       </motion.div>
                       <motion.div
-                        className="pt-20 text-xl sm:text-2xl text-[#00ff9f] text-center lg:text-left"
+                        className="pt-20 text-xl sm:text-2xl text-[#00ff9f] text-center"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.8 }}
@@ -277,7 +281,7 @@ function Home({ onNavigate }) {
                         ))}
                       </motion.div>
                       <motion.div
-                        className="pt-20 text-xl sm:text-2xl text-center lg:text-right"
+                        className="pt-20 text-xl sm:text-2xl text-center"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 1.6 }}
