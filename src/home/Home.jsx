@@ -162,27 +162,35 @@ function Home({ onNavigate }) {
                   >
                     <div className="text-6xl sm:text-5xl md:text-6xl lg:text-8xl lg:px-4 font-bold lg:tracking-widest font-mono text-[#00FF9F] inline-block relative text-center lg:text-left">
                       {/* Mobile View */}
-                      <div className="block lg:hidden mb-4">
-                        {"CYBERNAUTIX".split("").map((char, index) => (
-                          <span 
-                            key={index}
-                            className="inline-block"
-                            style={{ 
-                              transform: `translateY(${
-                                Math.sin((index / 5) * Math.PI / 1.5) * 2
-                              }px)`
-                            }}
-                          >
-                            {char}
-                          </span>
-                        ))}
+                      <div className="block lg:hidden mb-4 flex flex-wrap justify-center">
+                        <div className="w-full flex flex-wrap justify-center" style={{ 
+                          fontSize: 'min(12vw, 4rem)',  // This will make text responsive to viewport width
+                          letterSpacing: '-0.05em'
+                        }}>
+                          {"CYBERNAUTIX".split("").map((char, index) => (
+                            <span 
+                              key={index}
+                              className="inline-block tracking-tighter"
+                              style={{ 
+                                transform: `translateY(${
+                                  Math.sin((index / 5) * Math.PI / 1.5) * 2
+                                }px)`
+                              }}
+                            >
+                              {char}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                       
                       {/* Desktop View */}
                       <div className="hidden lg:block">
                         <MorphingText 
                           texts={texts}
-                          className="!text-[#00FF9F] !font-mono !text-6xl sm:!text-5xl md:!text-6xl lg:!text-8xl"
+                          className="!text-[#00FF9F] !font-mono"
+                          style={{ 
+                            fontSize: 'min(8vw, 6rem)'  // Responsive font size for desktop
+                          }}
                         />
                       </div>
                       <div className="text-5xl lg:mt-4 sm:text-5xl md:text-6xl lg:text-8xl font-extralight italic text-[#00FF9F] w-full sm:text-center lg:text-right">
@@ -311,30 +319,30 @@ function Home({ onNavigate }) {
             </motion.div>
 
             <div className="flex items-center justify-center sm:w-3/4 lg:w-auto lg:px-4 h-full">
-              <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 w-full items-center justify-center">
+              <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 w-full items-center justify-center px-4">
                 <div className="countdown-item">
-                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-8xl text-white/60">
+                  <span className="countdown font-mono text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white/60">
                     <span style={{ "--value": timeLeft.days }}></span>
                   </span>
-                  <span className="text-xs sm:text-sm lg:text-md text-white">DAYS</span>
+                  <span className="text-[10px] sm:text-sm lg:text-md text-white">DAYS</span>
                 </div>
                 <div className="countdown-item">
-                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-8xl text-white/40">
+                  <span className="countdown font-mono text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white/40">
                     <span style={{ "--value": timeLeft.hours }}></span>
                   </span>
-                  <span className="text-xs sm:text-sm lg:text-md text-white/80">HOURS</span>
+                  <span className="text-[10px] sm:text-sm lg:text-md text-white/80">HOURS</span>
                 </div>
                 <div className="countdown-item">
-                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-8xl text-white/20">
+                  <span className="countdown font-mono text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white/20">
                     <span style={{ "--value": timeLeft.minutes }}></span>
                   </span>
-                  <span className="text-xs sm:text-sm lg:text-md text-white/60">MINUTES</span>
+                  <span className="text-[10px] sm:text-sm lg:text-md text-white/60">MINUTES</span>
                 </div>
                 <div className="countdown-item">
-                  <span className="countdown font-mono text-7xl sm:text-6xl md:text-7xl lg:text-8xl text-white/10">
+                  <span className="countdown font-mono text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white/10">
                     <span style={{ "--value": timeLeft.seconds }}></span>
                   </span>
-                  <span className="text-xs sm:text-sm lg:text-md text-white/40">SECONDS</span>
+                  <span className="text-[10px] sm:text-sm lg:text-md text-white/40">SECONDS</span>
                 </div>
               </div>
             </div>

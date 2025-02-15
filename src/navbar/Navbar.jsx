@@ -42,16 +42,18 @@ function Navbar({ onNavigate, isLoggedIn, onLogout }) {
 
   return (
     <nav className="mobile-nav">
-      <div className="nav-items">
+      <div className="nav-items overflow-x-auto whitespace-nowrap">
         {getNavItems().map(({ to, icon, label }) => (
           <Link
             key={to}
             to={to}
-            className={`nav-item ${location.pathname === to ? "active" : ""}`}
+            className={`nav-item min-w-[70px] ${location.pathname === to ? "active" : ""}`}
             onClick={(e) => handleNavClick(to, e)}
           >
             <i className={icon}></i>
-            <span className="nav-label">{label}</span>
+            <span className="nav-label text-xs sm:text-sm">
+              {label}
+            </span>
           </Link>
         ))}
       </div>

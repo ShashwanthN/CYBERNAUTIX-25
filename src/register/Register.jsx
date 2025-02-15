@@ -175,20 +175,16 @@ function Register({ onLogin }) {
           unique_id: user.uid
         });
 
-        // Update login state and navigation
         localStorage.setItem('user', JSON.stringify({
           uid: user.uid,
           unique_id: user.uid,
           expires: Date.now() + (3 * 24 * 60 * 60 * 1000)
         }));
 
-        // Call onLogin first to update the login state
         if (onLogin) {
-          onLogin(); // Call without arguments first to set login state
-          onLogin(`/user/${user.uid}`); // Then call with path to navigate
+          onLogin(`/user/${user.uid}`);
         }
         
-        console.log("User registered and data stored successfully.");
         toast.success('Registered successfully', {
           position: "top-right",
           autoClose: 3000,
@@ -210,11 +206,7 @@ function Register({ onLogin }) {
         draggable: true,
         theme: "dark",
       });
-      if (user) {
-        navigate(`/user/${user.uid}`);
-      } else {
-        setFormError('Registration failed. Please try again.');
-      }
+      setFormError('Registration failed. Please try again.');
     } finally {
       setIsSubmitting(false);
     }

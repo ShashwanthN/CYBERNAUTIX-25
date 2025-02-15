@@ -67,7 +67,7 @@ function Contact() {
                       <field.icon className="absolute top-3 left-3 text-green-500" />
                       <input
                         {...field}
-                        className="w-full pl-10 pr-4 py-2.5 bg-black/30 rounded-lg !border !border-gray-700 focus:!border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
+                        className="w-full pl-10 pr-4 py-2 text-sm md:text-base bg-black/30 rounded-lg !border !border-gray-700 focus:!border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
                       />
                     </div>
                   ))}
@@ -78,7 +78,7 @@ function Contact() {
                       name="message"
                       placeholder="Your Message"
                       rows="4"
-                      className="w-full pl-10 pr-4 py-2.5 bg-black/30 rounded-lg !border !border-gray-700 focus:!border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
+                      className="w-full pl-10 pr-4 py-2 text-sm md:text-base bg-black/30 rounded-lg !border !border-gray-700 focus:!border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
                     ></textarea>
                   </div>
                 </div>
@@ -139,7 +139,7 @@ function Contact() {
                       </div>
                       <div>
                         <h3 className="text-green-400 font-medium mb-1">{item.title}</h3>
-                        <div className="text-gray-300 text-sm space-y-1">
+                        <div className="text-gray-300 text-sm space-y-1 whitespace-normal break-words">
                           {item.content}
                         </div>
                       </div>
@@ -168,8 +168,8 @@ function Contact() {
                 referrerPolicy="no-referrer-when-downgrade"
                 title="RMK Engineering College Location"
               />
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent text-center">
-                <span className="text-green-400 text-sm font-medium">
+              <div className="absolute bottom-0 left-0 right-0 p-2 md:p-4 bg-gradient-to-t from-black/80 to-transparent text-center">
+                <span className="text-green-400 text-xs md:text-sm font-medium">
                   Click to open in Google Maps →
                 </span>
               </div>
