@@ -79,7 +79,7 @@ const Technical = ({ onNavigate }) => {
       </h1>
       <div className="text-md md:text-xl font-light text-center mb-14 md:mb-22 
         bg-gradient-to-r from-[#00FF9F] to-[#72d0ff] bg-clip-text text-transparent">
-        Compete to earn rewards Rs 1,000 Rs for champion and Rs 500 for runner-up.<br />
+        Compete to earn rewards Rs 1,000 for champion and Rs 500 for runner-up.<br />
         <span className='text-white'>Venues to be announced soon.</span>
       </div>
 
