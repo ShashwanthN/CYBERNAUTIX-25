@@ -61,27 +61,27 @@ function Bus() {
     {
       place: "Thiruvanmiyur",
       busNumber: "111",
-      stops: "Porur Signal(6:35 AM), Valasarawakkam (6:50 AM), Alwar thiruNagar, Virukambakkam, Avichi school(7:00 AM), Chinmayanagar, Koyambedu Roundana, Thirumangalam (7:15 AM), Rettery(7:20 AM), Vinayagapuram, College (8:00 AM)"
+      stops: "Thiruvanmiyur Bus Terminus (Bypass) (6.20) – Adyar Depot (6.30) – Adyar Signal (6.35) – Madhya Kailash (6.37) –  Guindy Race Course (6.50)  – Nehru Statue (6.52)  – Kasi Theatre (6.55)  –  Ashok Pillar (7.00) – Vadapalani Signal (7.10) – MMDA (7.12) – Koyambedu  Roundana (7.15) –  College (8.10)."
     },
     {
       place: "Porur",
       busNumber: "121",
-      stops: "Porur Signal (6.40 am), Valasarawakkam (6.50), Saligramam (6.55) Avichi, Vadapalani Bus Terminus, Ambika Empire (7.05), MMDA, Koyambedu (7.10), Ambedkar Nagar (Temple School) (7.25), College (8.10)."
+      stops: "Iyappan Thangal (6.35) – Porur Signal (6.45) – Valasarawakkam (6.50) – virugambakkam (6.55)  – Avichi (6.58) – Natesan Nagar  (7.00) – Chinmaya nagar (7.05) –  Koyambedu (7.10)  – Anna Nagar Depot (7.15) – College (8.10). "
     },
     {
       place: "Tiruvallur",
       busNumber: "131",
-      stops: "Tiruvallur Bus Terminal (6.20 am), Thiruninravur (6.40), Pattabiram (6.55), Avadi Bus Terminus (7.00), Thirumulaivoyal (7.05), Ambattur Rakki (7.10), Pudur, Puzhal Camp (7.35), College (8.10)."
+      stops: "iruvallur (6.10) –  Kakkalur (6.15) – Ramapuram (6.20) – Sevvaipettai ( 6.25) – Veppampattu ( 6.30) – Thiruninravur (6.35) – Jaya College (6.40) – Pattabiram (6.50) – Hindu College (6.55) – Avadi Bus Terminus (7.00) – Thirumulaivoyal (7.05) – Ambattur Rakki (7.10)  – College (8.10)."
     },
     {
       place: "Ambattur",
       busNumber: "132",
-      stops: "Ambathur Rakki (7.10 am), Oragadam (7.15), Pudur (7.20), Kallikuppam (7.23), Puzhal Camp (7.35) College (8.10)."
+      stops: "Ambattur TI Cycles (7.00) – Britannia – Korattur (7.10) –  Lucas –TVS (7.15)  – Senthil Nagar (7.17)  – College (8.10)"
     },
     {
-      place: "Avadi Bus Terminus",
-      busNumber: "136",
-      stops: "Avadi Bus Terminus (7.00), Thirumulaivoyal (7.05), Ambattur Rakki (7.10), Pudur, Puzhal Camp (7.35), College (8.10)."
+      place: "Avadi",
+      busNumber: "138",
+      stops: "Avadi Depot (7.00) – Murugappa Polytechnic (7.05) – Thirumullaivoyal (7.10) – College (8.10)."
     },
     {
       place: "T.Nagar",
@@ -91,7 +91,7 @@ function Bus() {
     {
       place: "Kodambakkam",
       busNumber: "145",
-      stops: "Ram Theatre (6.40), Kodambakkam, Meenakshi College (6.50), Mahalingapuram, Chetpet Signal (6.55) , Ega (6.58) , Aminjikarai Market , Shenoy Nagar (7.05), Chinthamani (7.10), Lotus Colony, K4, Nathamuni (7.15), Vinayagapuram(7.20) , College (8.00)"
+      stops: "Meenakshi College (6.50) – Mahalingapuram (6.55)  – Chetpet Signal (6.55)  – Ega (6.58)  – Pachaiyappa’s College (7.02)  – Aminjikarai Market  – Shenoy Nagar (7.10)   –   Chinthamani (7.12)  – Nathamuni (7.20) – College (8.10)"
     },
     {
       place: "Mogappair West",
@@ -106,58 +106,42 @@ function Bus() {
     {
       place: "Thiruverkadu Arch",
       busNumber: "157",
-      stops: "Thiruverkadu Arch (6.50AM) – Maduravoyal (7.05) - Anna Nagar 13th Main Road (7.10) – 11th Main Road (7.13) – 9th Main Road (7.15) - Anna Nagar West Depot (7.20) – College (8.10)."
+      stops: "Thiruverkadu Arch (6.50)  – Maduravoyal (6.55)–Nerkundram( 7.00) –- Thirumangalam Signal (7.05) – Blue Star (7.10) – Shanthi Colony (7.15) – Anna Nagar West Depot (7.20) –   College (8.10)."
     },
-    {
-      place: "Kellys",
-      busNumber: "163",
-      stops: "Kellys (6.45) - Abirami theatre - Purasawalkam Tank (6.50) – Perambur Bus Depot (7.00) – Perambur Church (7.15) –Ajantha Bakery - Venus – Agaram (7.15) – Kolathur – Rettary – College (8.00)."
-    },
-
     {
       place: "Thiru Vi Ka Nagar",
       busNumber: "166",
-      stops: "Thiru Vi Ka Nagar (7.00 am) - S.R.P Colony (7.05) – Periyar Nagar (7.10) - Kolathur Anna Statue (7.15) – Moogambikai – Rettary (7.20) – College (8.00)."
+      stops: "Thiru Vi Ka Nagar (7.05) – Agaram ( (7.10) – Periyar Nagar (7.15) – Kolathur Anna Statue (7.20)  – Moogambikai (7.25) – Retteri (7.30) – College (8.10)."
     },
     {
       place: "Tollgate",
       busNumber: "172",
-      stops: "Tollgate – I (6.45 am) – New Washermenpet – MM Theatre – Washermen Postoffice – Maharani (6.55) – Mint (7.05) - Basin Bridge – Vyasarpadi (7.10) – Sharma Nagar – College (8.00)."
+      stops: "Tollgate (6.45)  – Tondiarpet Bus Depot (6.50)  – Maharani (6.55) – Mint (7.00) – College (8.10)."
     },
     {
       place: "Manali New Town",
       busNumber: "182",
-      stops: "Manali New Town (6.55 am) – MMDA – Nappalayam (7.10) – Athipattu (7.15) – Minjur Railway Station (7.28) – Kesavapuram – Nallur - Venbakkam (7.40) – Ponneri Police Station (7.42) – Anna Statue (7.45) – Krishnapuram - Andarkuppam – Thatchur – Peruvoyal – College (8.00)."
+      stops: "Manali New Town (6.50) – MMDA – Nappalayam (6.55) – Athipattu (7.00)-Minjur (7.10)  – College (8.10)"
     },
     {
-      place: "Ponneri Bus Terminals",
+      place: "Ponneri",
       busNumber: "183",
-      stops: "Ponneri Bus Terminals (7.35 am) - Anna Statue (7.45) – Krishnapuram (7.50) – Andarkuppam (7.52) – Thatchur (7.55) – Peruvoyal (8.00) – College (8.05)."
+      stops: "Ponneri (7.40) – Anna Statue (7.45) –Thatchur (7.55) – College (8.10)"
     },
     {
       place: "Sunnambukulam",
       busNumber: "191",
-      stops: "Sunnambukulam (7.15am) - Elavur (7.30) – Pethikkuppam (7.35) Gummidipoondi (7.40) – College (8.10)."
+      stops: "Arambakkam (7.20)  –  Ramapuram (7.25) – Elavur (7.35)  –  IRT (7.40) – Gummidipoondi Bypass (7.45) – College (8.10)."
     },
     {
       place: "Uthukottai",
-      busNumber: "192",
+      busNumber: "195",
       stops: "Uthukottai (7.10 am) – Palavakkam (7.25) – Periyapalayam (7.40) – Arani (7.50) – College (8.10)."
-    },
-    {
-      place: "Manavalan Nagar",
-      busNumber: "194",
-      stops: "Manavalan Nagar (6.35 am) – Tiruvallur Raiway Station (6.40)- Tiruvallur GH (6.45) - Theradi (6.50) – Ekadu (6.55) - Thamaraipakkam kootroad (7.15) Kanniputhur (7.40) – Janapanchathiram (7.50) – College (8.10)"
     },
     {
       place: "Tambaram",
       busNumber: "112",
-      stops: "Tambaram BT (6.20 am), Chrompet (6.25), Pallavaram (6.28), Meenambakkam (6.35), Alandur (6.40), Mount Station (6.45), Guindy Kathipara (6.50), Ambal Nagar- K.K.Nagar (6.55), Vadapalani Signal (7.00), Chimaya Nagar (7.07), Koyambedu Roundtana (7.10)- College (8.10)"
-    },
-    {
-      place: "Mylapore",
-      busNumber: "162",
-      stops: "Mandaveli post office(6.15) - Kaliappa (6.25) – Mylapore (6.30) – Luz – Royapettah Hospital (6.35) – Triplicane Post Office (6.40) – Tarapore Towers – Pudupet – Egmore Commissioner Office – Dasaprakash (7.00) – ESI – Ayanavaram (7.10) – ICF – Villivakkam (7.20) – College (8.00)"
+      stops: "Tambaram Yard (6.00) – Selaiyur Bharath College (6.10) – Camp Road Junction (6.15) -Tambaram BT (6.20) – Tambaram Sanitorium (6.25) – Chrompet (6.30) – Pallavaram (6.35)  –  Meenambakkam (6.40) – Palavanthangal (6.45) – Alandur (6.48) –  Guindy Kathipara (6.50)  –  K.K. Nagar ( 6.58) – Vadapalani Signal (7.10)  –  Anna Nagar Depot (7.20) – Nallur Tollgate (7.50) – College (8.15)."
     },
     {
       place: "Kasimedu",
@@ -170,9 +154,99 @@ function Bus() {
       stops: "Manali Market (7.00 am) - Mathur (7.05) – Milk Colony FG – SG (7.10) – Arul Nagar (7.15) - Moolakadai (7.25) – College (8.00)."
     },
     {
-      place: "Thiruvottiyur",
-      busNumber: " 181",
+      place: "Tiruvottiyur",
+      busNumber: "181",
       stops: "Rajakadai (6.35 am) – Kaladipet – Thiruvottiyur Police Station – Ellaiamman Koil (6.40) – Theradi – Vellanchetti School – Ajax (6.50) – Periyar Nagar – Wimco – Ennore Lift Gate (6.55) – Jothi Nagar (6.57) – Sathyamoorthy Nagar - MFL Corner – College (8.00)."
+    },
+    {
+      place: "Korattur Bus Stand",
+      busNumber: "132A",
+      stops: "Korattur Bus Stand (7.10) – Padi Saravana Stores (7.20) – Senthil Nagar (7.25) – Ambedkar Nagar (7.28) –  Padiyanallur (7.40) – Karanodai (7.50) – College (8.10)"
+    },
+    {
+      place: " Murugappa Polytechnic",
+      busNumber: "135A",
+      stops: " Murugappa Polytechnic (7.05)  – Ambathur Rakki (7.15)  – Oragadam (7.20) – Pudur (7.35)  – Wireless- Kallikuppam – Puzhal Camp (7.35)   College (8.10). "
+    },
+    {
+      place: "Ambattur Ram Nagar",
+      busNumber: "135",
+      stops: "Ambathur Rakki (7.10)  – Oragadam (7.18) – Pudur (7.20)  – Kallikuppam (7.25) – Puzhal Camp (7.35)  – College (8.10). "
+    },
+    {
+      place: "Pattabiram",
+      busNumber: "136",
+      stops: "Murugappa Polytechnic (7.05)  – Thirumullaivoyal (7.10) – Ambattur Rakki (7.15) – Pudur(7.17) – Kallikuppam (7.20) – Surapet (7.25) – Velammal (7.30) – Kavankarai (7.40) – Red Hills (7.45) – College (8.10)"
+    },
+    {
+      place: "Puzhal Camp",
+      busNumber: "137",
+      stops: "Puzhal Camp (7.30) – Puzhal Jail Stop (7.32) – Kavankarai (7.35)- Vadakarai -(7.40) Ambika Theatre (7.45) – Redhills (7.50) – College (8.10)"
+    },
+    {
+      place: "Mandaveli",
+      busNumber: "162",
+      stops: "Kaliappa (6.35)  – Mylapore Luz (6.40)  – Ajantha  – Triplicance Post Office (6.45) –  Royapettah Hospital (6.45) Tarapore Towers  – Pudupet (6.50)  – Egmore (6.55)  – Kilpauk Garden (7.10)  – ESI (7.05) – Ayanavaram (7.07) –  I.C.F. (7.10)  –  Villivakkam (7.12)  – Nathamuni (7.15) – College (8.10)"
+    },
+    {
+      place: "Purasawalkam",
+      busNumber: "163",
+      stops: "Kelly’s Signal (6.45)  – Abirami Theatre (6.47) – Purasawalkam Tank (6.50) Doveton (6.53)  – Bhuvaneswari    (6.55)  Otteri (6.58) – Agaram (7.05)  – College (8.10)."
+    },
+    {
+      place: "Uthukottai",
+      busNumber: "192",
+      stops: "Uthukottai (7.10) – Komakkam Road (7.15) – Tharatchi ( 7.20) –  Peranthur (7.22) – Palavakkam (7.25) – Thandalam (7.35) – Periyapalayam (7.40)  – Kosavanpettai (7.45) – Arani  (7.50)  – Agaram ( 7.55) – Panapapakkam (8.00) – College (8.10)."
+    },
+    {
+      place: "Gummidipoondi Bazar",
+      busNumber: "193",
+      stops: "Gummidipoondi Bazar (7.40) – Panapakkam (7.50) – College (8.10)"
+    },
+    {
+      place: "Thiruvallur-Manavalan Nagar",
+      busNumber: "194",
+      stops: "Manavalan Nagar (6.35) – Tiruvallur Railway Station (6.40)– Govt.Hospital  (6.45) – Tiruvallur Bus Stand (6.48) – Theradi (6.50) – Thamaraipakkam kootroad (7.20) – Periyapalayam (7.40) – Arani (7.50) – College (8.10)"
+    },
+    {
+      place: "Tiruvottiyur Ajax",
+      busNumber: "184",
+      stops: "Tiruvottiyur Ajax (6.50) – Ennore Lift Gate (7.00) – Jothi Nagar (7.05) – Sathyamurthy Nagar (7.10) – Minjur(7.30) –  Ponneri (7.45) – College (8.10)"
+    },
+    {
+      place: "Kolathur Anna Statue",
+      busNumber: "167",
+      stops: "Kolathur Anna Statue(7.10) – Moogambigai (7.15) – Rettery (7.20) – Vinayagapuram (7.25) – College (8.10)."
+    },
+    {
+      place: "Ambedkar College Viyasarpadi",
+      busNumber: "174",
+      stops: "Mathur 1st Main Road (7.05) – Milk Colony Gate (7.10) – Arul Nagar (7.15) – Thapal Petty (7.20) –  Moolakadai (7.30) – Madhavaram  100 ft Road (7.37) – Camp (7.45) – Cycle Shop (7.25)  – Ambika Theatre (7.35) – College (8.10)."
+    },
+    {
+      place: "Madhavaram Bus Stand",
+      busNumber: "176",
+      stops: "Moolakkadai (7.20) – Thapalpetty (7.25) – Madhavaram Bus Stand (7.30) – Madhavaram Roundana (7.40) – College (8.05)"
+    },
+    {
+      place: "Thiruvallur",
+      busNumber: "196",
+      stops: "Thiruvallur (6.45) – Theradi(6.40) – Ekadu (7.00) – Thamaraipakkam kootroad (7.15) –  Vengal (7.30) – Kanniputhur(7.40) – Manjankaranai (7.45) – Janappanchathiram (7.55) – College (8.10)"
+    },
+    {
+      place: "Wheels India",
+      busNumber: "Bus",
+      stops: "Wheels India(8.00) – College (9.00) (Only for any Break down maintenance purpose)"
+    },
+    {
+      place: "Perambur",
+      busNumber: "165",
+      stops: "Perambur Bus Depot (7.00) – Perambur Church (7.05) – Venus – Kolathur (7.15)Rettery (7.20) College (8.10)."
+    },
+    {
+      place: "Collector Nagar",
+      busNumber: "158",
+      stops: "Collector Nagar Bus Stop (7.05) – Padikuppam Road (7.07) – Thirumangalam (7.15) – College (8.10)."
     }
   ];
 
