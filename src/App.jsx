@@ -22,6 +22,7 @@ import { StatusBar } from './components/ide/StatusBar';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import Navbar from './navbar/Navbar';
 import { auth } from './backend/firebase';
+import Rules from './Rules';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -44,6 +45,7 @@ function App() {
       { name: 'Contact', path: '/contact', extension: 'jsx' },
       { name: 'Bus', path: '/bus', extension: 'jsx' },
       { name: 'Login', path: '/login', extension: 'jsx' },
+      { name: 'Rules', path: '/rules', extension: 'jsx' },
     ];
 
     if (isLoggedIn) {
@@ -225,6 +227,7 @@ function App() {
                 } />
                 <Route path='/admin' element={<AdminDashboard/>} />
                 <Route path="/user/:userId" element={<UserDetails onNavigate={handleInternalNavigation} />} />
+                <Route path="/rules" element={<Rules />} />
               </Routes>
             </div>
           </div>
