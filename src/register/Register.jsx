@@ -214,7 +214,14 @@ function Register({ onLogin }) {
   
   return (
     <div className="h-screen overflow-hidden bg-gradient-to-br from-gray-900 to-black relative">
-      <ToastContainer />
+      <ToastContainer 
+        style={{
+          zIndex: 1001,
+          position: 'fixed',
+          top: '4rem',
+          right: '1rem',
+        }}
+      />
       {/* Animated Background Elements */}
       <div className="absolute h-full w-full inset-0 z-0">
         <div className="absolute inset-0 bg-[linear-gradient(40deg,rgba(0,255,128,0.05)_0%,rgba(0,0,0,0)_50%,rgba(0,255,128,0.05)_100%)]"></div>
