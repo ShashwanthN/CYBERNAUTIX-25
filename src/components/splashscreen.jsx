@@ -10,26 +10,26 @@ const SplashScreen = () => {
       {/* Main content container */}
       <div className="relative flex flex-col items-center p-8 space-y-8 z-10">
         {/* Logo container */}
-        <div className="p-4   border-[#00FF9F]/30">
+        <div className="p-4 border-[#00FF9F]/30">
           <img 
             src={rmkIcon} 
             alt="RMK" 
-            className="w-48 h-48 md:w-64 md:h-64 object-contain filter drop-shadow-[0_0_8px_rgba(0,255,159,0.3)]"
+            className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 object-contain filter drop-shadow-[0_0_8px_rgba(0,255,159,0.3)]"
           />
         </div>
 
         {/* Text content */}
         <div className="text-center space-y-6">
-          <h1 className="text-6xl md:text-7xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-[#00FF9F] to-[#008F5B]">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-[#00FF9F] to-[#008F5B]">
             <span className="text-shadow-lg shadow-[#00FF9F]/30">CYBERNAUTIX</span>
           </h1>
-          <p className="text-2xl md:text-md text-[#FFFFFF] font-mono tracking-widest">
+          <p className="text-lg sm:text-xl md:text-2xl text-[#FFFFFF] font-mono tracking-widest">
             A NATIONAL LEVEL SYMPOSIUM
           </p>
         </div>
 
         {/* Loading indicator */}
-        <div className="w-48 h-1 bg-[#00FF9F]/20 overflow-hidden">
+        <div className="w-32 sm:w-48 h-1 bg-[#00FF9F]/20 overflow-hidden">
           <div className="w-full h-full bg-gradient-to-r from-[#00FF9F] to-[#006B3C] animate-progress"></div>
         </div>
       </div>
@@ -41,4 +41,4 @@ const SplashScreen = () => {
   );
 };
 
-export default SplashScreen; 
+export default SplashScreen;
