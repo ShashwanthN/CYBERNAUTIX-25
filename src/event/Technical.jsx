@@ -4,7 +4,7 @@ import pp from '../assets/paper_img.png';
 import uiux_img from '../assets/uiux_img.png';
 import cq from '../assets/cq.png';
 import { motion } from 'framer-motion';
-import { Phone } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 
 import TiltedCard from '../blocks/Components/TiltedCard/TiltedCard';
 
@@ -13,7 +13,7 @@ const Technical = ({ onNavigate }) => {
     onNavigate('/register');
   };
 
-  const EventSection = ({ imageSrc, title, description, rules, contactName, contactNumber, reverse }) => (
+  const EventSection = ({ imageSrc, title, description, rules, reverse, whatsappLink }) => (
     <motion.section 
       className={`group relative flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} 
       gap-4 p-4 md:p-6 overflow-hidden`}
@@ -45,25 +45,27 @@ const Technical = ({ onNavigate }) => {
           </ul>
         </div>
 
-        <div className="pt-4 border-t border-emerald-400/10">
-          <div className="flex items-center justify-between gap-4 text-xs md:text-sm p-2">
-            <div className="space-y-1.5">
-              <p className="text-emerald-400/80 font-medium">{contactName}</p>
-              <div className="flex items-center gap-2 text-emerald-300/90">
-                <Phone className="w-3.5 h-3.5 text-emerald-400/80" />
-                <span>{contactNumber}</span>
-              </div>
-            </div>
-            <button
-              onClick={handleRegisterClick}
-              className="px-5 py-2 rounded-full bg-emerald-400/10 border border-emerald-400/20 
-              text-emerald-300 hover:bg-emerald-400/15 transition-all flex items-center gap-2 
-              text-xs md:text-sm whitespace-nowrap"
-            >
-              Register
-              <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+        <div className="pt-4 border-t border-emerald-400/10 flex justify-between">
+        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="no-underline">
+          <button
+          className="px-5 py-2 rounded-full bg-emerald-400/10 border border-emerald-400/20 
+          text-emerald-300 hover:bg-emerald-400/15 transition-all flex items-center gap-2 
+          text-xs md:text-sm whitespace-nowrap no-underline" >
+            <FaWhatsapp className="w-4 h-4 text-emerald-400" />
+            <span className="no-underline">Join with us</span>
             </button>
-          </div>
+            </a>
+
+
+          <button
+            onClick={handleRegisterClick}
+            className="px-5 py-2 rounded-full bg-emerald-400/10 border border-emerald-400/20 
+            text-emerald-300 hover:bg-emerald-400/15 transition-all flex items-center gap-2 
+            text-xs md:text-sm whitespace-nowrap"
+          >
+            Register
+            <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+          </button>
         </div>
       </div>
     </motion.section>
@@ -77,9 +79,8 @@ const Technical = ({ onNavigate }) => {
       </h1>
       <div className="text-md md:text-xl font-light text-center mb-14 md:mb-22 
         bg-gradient-to-r from-[#00FF9F] to-[#72d0ff] bg-clip-text text-transparent">
-        Compete to earn rewards—1,000 Rs for champion and 500 Rs for runner-up.<br />
-        <span className='text-white'>Venues to be announced soon.
-          </span>
+        Compete to earn rewards Rs 1,000 Rs for champion and Rs 500 for runner-up.<br />
+        <span className='text-white'>Venues to be announced soon.</span>
       </div>
 
       <div className="space-y-20 md:space-y-32">
@@ -92,8 +93,7 @@ const Technical = ({ onNavigate }) => {
             "AI usage strictly prohibited",
             "2 hour time limit"
           ]}
-          contactName="Chokkalingam"
-          contactNumber="9894703845"
+          whatsappLink="https://chat.whatsapp.com/B5Pd3uRtq5zFbzG0o4whfb"
         />
 
         <EventSection
@@ -108,8 +108,7 @@ const Technical = ({ onNavigate }) => {
             "10 minute presentation limit",
             "Teams of 2 allowed"
           ]}
-          contactName="Shai Kumar"
-          contactNumber="9941746227"
+          whatsappLink="https://chat.whatsapp.com/DYjEjRKSOTKIWC0LRrn0tx"
           reverse
         />
 
@@ -122,8 +121,7 @@ const Technical = ({ onNavigate }) => {
             "3 hour duration",
             "Theme-based design"
           ]}
-          contactName="Rohit Vijayan"
-          contactNumber="9986913189"
+          whatsappLink="https://chat.whatsapp.com/JtYhBuwbCHo0ceqeU3Fe7j"
         />
 
         <EventSection
@@ -135,15 +133,9 @@ const Technical = ({ onNavigate }) => {
             "Pre-provided schemas only",
             "2 member teams"
           ]}
-          contactName="Sudhir Raja"
-          contactNumber="9042162169"
+          whatsappLink="https://chat.whatsapp.com/DU3oIZneaJhCpLLPg6w6bE"
           reverse
         />
-      </div>
-
-      {/* Animated grid background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
       </div>
     </div>
   );
