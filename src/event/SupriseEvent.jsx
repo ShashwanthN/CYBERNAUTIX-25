@@ -1,24 +1,28 @@
-import React from 'react'
-import './SupriseEvent.css'
-import {useNavigate} from 'react-router-dom';
-import confidentialStamp from '../assets/confidential-stamp.png'
-import TiltedCard from '../blocks/Components/TiltedCard/TiltedCard'
+import React from 'react';
+import './SupriseEvent.css';
+import { useNavigate } from 'react-router-dom';
+import { FaWhatsapp } from 'react-icons/fa';
+import confidentialStamp from '../assets/confidential-stamp.png';
 
 const NonTechnical = ({ onNavigate }) => {
   const handleRegisterClick = () => {
     onNavigate('/register');
   };
 
+  const handleWhatsAppClick = () => {
+    window.open('https://chat.whatsapp.com/HgdabJPtGxU7lowui2c5Uk', '_blank');
+  };
+
   return (
     <div className="min-h-screen bg-zinc-900 pt-4 px-4 pb-20 md:pt-8 md:px-8 md:pb-32 lg:mt-0 mt-2 relative">
-      {/* Caution Tape Decorat ion */}
+      {/* Caution Tape Decoration */}
       <div className="absolute bottom-10 left-0 w-full h-12 bg-yellow-400 transform -rotate-6 flex items-center justify-center overflow-hidden">
         <div className="text-black font-bold text-xl tracking-wider repeating-pattern whitespace-nowrap overflow-hidden">
           CONFIDENTIAL ⚠️ TOP SECRET ⚠️ CONFIDENTIAL ⚠️ TOP SECRET
         </div>
       </div>
       
-      <div className="max-w-6xl mx-auto  relative">
+      <div className="max-w-6xl mx-auto relative">
         {/* Main Content Container */}
         <div className="bg-zinc-800 rounded-lg p-6 md:p-8 border-2 border-yellow-400 shadow-xl">
           {/* Top Secret Header */}
@@ -29,10 +33,16 @@ const NonTechnical = ({ onNavigate }) => {
             <div className="flex flex-col md:flex-row items-center lg:gap-4">
               <button 
                 onClick={handleRegisterClick}
-                className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-lg 
-                           transform transition-all hover:scale-105 active:scale-95"
+                className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-lg transform transition-all hover:scale-105 active:scale-95"
               >
                 ACCEPT MISSION
+              </button>
+              <button 
+                onClick={handleWhatsAppClick} 
+                className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg flex items-center gap-2 transform transition-all hover:scale-105 active:scale-95"
+              >
+                <FaWhatsapp className="text-xl" />
+                Join with us
               </button>
               <img 
                 src={confidentialStamp} 
@@ -62,7 +72,6 @@ const NonTechnical = ({ onNavigate }) => {
               <p>• Teams of 2 members only</p>
               <p>• Time limit: 1 hour</p>
               <p>• Original content only - Plagiarism will result in immediate disqualification</p>
-              {/*   */}
             </div>
           </div>
         </div>
@@ -75,7 +84,7 @@ const NonTechnical = ({ onNavigate }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NonTechnical
+export default NonTechnical;
