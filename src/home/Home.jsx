@@ -202,7 +202,8 @@ function Home({ onNavigate }) {
                     <button 
                       className="relative group bg-transparent !border-2 !border-[#00FF9F] hover:bg-[#00FF9F]/10 text-[#00FF9F] 
                                 px-6 lg:px-8 py-2 lg:py-3 transition-all duration-300 text-sm lg:text-lg"
-                      onClick={handleRegisterClick}
+
+                                onClick={handleRegisterClick}
                     >
                       {/* Corner accents */}
                       <span className="absolute top-0 left-0 w-2 h-2 !border-t-2 !border-l-2 !border-[#00FF9F]"></span>

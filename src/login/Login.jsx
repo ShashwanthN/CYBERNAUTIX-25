@@ -56,7 +56,7 @@ function Login({ onLogin, onNavigate }) {
       localStorage.setItem('user', JSON.stringify(userState));
       
       onLogin();
-      nav(`/user/${userData.unique_id}`);
+      onNavigate(`/user/${userData.unique_id}`);
       
     } catch (error) {
       console.error('Login error:', error);

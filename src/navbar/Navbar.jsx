@@ -11,6 +11,7 @@ function Navbar({ onNavigate, isLoggedIn, onLogout }) {
     const baseItems = [
       { to: "/", icon: "fas fa-home", label: "Home" },
       { to: "/events", icon: "fas fa-calendar-alt", label: "Events" },
+      { to: "/generalnorms", icon: "fas fa-scroll", label: "Rules" },
       { to: "/register", icon: "fas fa-user-plus", label: "Register" },
       { to: "/contact", icon: "fas fa-envelope", label: "Contact" },
       { to: "/bus", icon: "fas fa-bus", label: "Bus" },
