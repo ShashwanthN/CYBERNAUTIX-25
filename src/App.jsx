@@ -23,8 +23,10 @@ import { useMediaQuery } from './hooks/useMediaQuery';
 import Navbar from './navbar/Navbar';
 import { auth } from './backend/firebase';
 import Rules from './Rules';
+import SplashScreen from './components/SplashScreen';
+
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [showSplash, setShowSplash] = useState(true);
   const location = useLocation();
   const [activeTab, setActiveTab] = useState('/');
   const [openFiles, setOpenFiles] = useState(['/']);
@@ -56,28 +58,21 @@ function App() {
     return baseFiles;
   }, [isLoggedIn]);
 
-  // useEffect(() => {
-  //   if (location.pathname === '/') {
-  //     const isFirstVisit = !sessionStorage.getItem('visited');
-  //     // Modern method to detect page reload
-  //     const navigationEntry = performance.getEntriesByType('navigation')[0];
-  //     const isPageReload = navigationEntry?.type === 'reload';
+  useEffect(() => {
+    const navigationEntry = performance.getEntriesByType('navigation')[0];
+    const isPageReload = navigationEntry?.type === 'reload';
+    const hasSeenSplash = sessionStorage.getItem('splashShown');
 
-  //     if (isFirstVisit || isPageReload) {
-  //       setIsLoading(true);
-  //       sessionStorage.setItem('visited', 'true');
-
-  //       // Reduce timer to 2 seconds (2000ms)
-  //       const timer = setTimeout(() => {
-  //         setIsLoading(false);
-  //       }, 2000);
-
-  //       return () => clearTimeout(timer);
-  //     }
-  //   } else {
-  //     setIsLoading(false);
-  //   }
-  // }, [location.pathname]);
+    if (!hasSeenSplash || isPageReload) {
+      sessionStorage.setItem('splashShown', 'true');
+      const timer = setTimeout(() => {
+        setShowSplash(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    } else {
+      setShowSplash(false);
+    }
+  }, []);
 
   useEffect(() => {
     setTabHistory(prev => {
@@ -160,9 +155,9 @@ function App() {
     }
   }, [navigate, setOpenFiles, setActiveTab]);
 
-  // if (isLoading) {
-  //   return <SplashScreen />;
-  // }
+  if (showSplash) {
+    return <SplashScreen />;
+  }
 
   return (
     <div className="ide-container">
