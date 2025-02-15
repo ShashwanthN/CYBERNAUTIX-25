@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import './App.css';
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import SplashScreen from './components/splashscreen';
+import Loading from './components/Loading';
 import Home from './home/Home'; // Changed to Home      
 import Register from './register/Register';
 import Contact from './contact/Contact';
@@ -23,7 +23,6 @@ import { useMediaQuery } from './hooks/useMediaQuery';
 import Navbar from './navbar/Navbar';
 import { auth } from './backend/firebase';
 import Rules from './Rules';
-
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
@@ -45,7 +44,6 @@ function App() {
       { name: 'Contact', path: '/contact', extension: 'jsx' },
       { name: 'Bus', path: '/bus', extension: 'jsx' },
       { name: 'Login', path: '/login', extension: 'jsx' },
-      { name: 'Rules', path: '/rules', extension: 'jsx' },
     ];
 
     if (isLoggedIn) {
@@ -159,10 +157,6 @@ function App() {
     }
   }, [navigate, setOpenFiles, setActiveTab]);
 
-  if (isLoading) {
-    return <SplashScreen />;
-  }
-
   return (
     <div className="ide-container">
       {isMobile && (
@@ -209,14 +203,7 @@ function App() {
                 <Route path="/events" element={<EventPage onNavigate={handleInternalNavigation} />} />
                 <Route path="/tech" element={<Technical onNavigate={handleInternalNavigation} />} />
                 <Route path="/suprise" element={<SupriseEvent onNavigate={handleInternalNavigation} />} />
-                <Route path="/register" element={
-                  <Register 
-                    onLogin={(path) => {
-                      setIsLoggedIn(true);
-                      if (path) handleInternalNavigation(path);
-                    }} 
-                  />
-                } />
+                <Route path="/register" element={<Register onLogin={handleInternalNavigation} />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/bus" element={<Bus />} />
                 <Route path="/login" element={

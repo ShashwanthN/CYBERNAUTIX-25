@@ -423,7 +423,7 @@ button:hover::before {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem;
+  text-align: center;
 }
 
 /* Add responsive padding for different screen sizes */
@@ -478,31 +478,58 @@ button:hover::before {
 
 /* Add these new mobile-specific styles */
 @media (max-width: 768px) {
+  .home-container {
+    overflow-y: auto !important;
+    padding-bottom: 80px !important; /* Space for mobile navbar */
+  }
+
   .details {
-    text-align: center;
-    padding: 1rem;
+    height: auto !important;
+    min-height: unset !important;
+    overflow: visible !important;
   }
 
   .countdown-item {
-    padding: 0.25rem;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 0.75rem !important;
+    margin-bottom: 0.5rem;
   }
 
-  /* Adjust spacing for mobile */
-  .pt-20 {
-    padding-top: 0.75rem !important;
+  .countdown {
+    font-size: 2.5rem !important;
+    line-height: 1;
   }
 
-  /* Center the date and free entry text on mobile */
+  /* Adjust the info text layout */
   .flex.justify-between {
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-    padding-right: 0;
+    gap: 1rem;
+    padding-right: 0 !important;
   }
 
-  /* Ensure the countdown grid stays centered */
+  .text-xl.sm\:text-2xl {
+    font-size: 1.25rem;
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+
+  /* Center the countdown grid */
   .grid-cols-2 {
     place-items: center;
+    gap: 0.75rem !important;
+  }
+
+  /* Ensure buttons stack properly */
+  .flex.flex-col.sm\:flex-row {
+    gap: 1rem !important;
+  }
+
+  /* Add some breathing room between sections */
+  .motion-content-container > * {
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -525,6 +552,104 @@ button:hover::before {
   .flex.justify-between {
     flex-direction: row;
     padding-right: 5rem;
+  }
+}
+
+/* Add these styles for the info grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.info-item {
+  text-align: center;
+  font-size: 1.25rem;
+  color: #00ff9f;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .info-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .info-item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    background: rgba(0, 255, 159, 0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+  }
+}
+
+/* Desktop styles remain unchanged */
+@media (min-width: 769px) {
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .info-item {
+    font-size: 1.25rem;
+  }
+}
+
+/* Add these styles for the college info section */
+@media (max-width: 768px) {
+  .home-container {
+    padding-top: 0 !important;
+  }
+
+  /* College info styles */
+  .text-center.space-y-2 {
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    border-bottom: 1px solid rgba(0, 255, 159, 0.1);
+    padding: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Remove the fixed padding since we're not using fixed positioning */
+  .details {
+    padding-top: 1rem !important;
+  }
+
+  /* Make text more readable */
+  h1, h2, h3 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Adjust spacing for mobile layout */
+  .pt-20 {
+    padding-top: 4rem !important; /* Reduced padding */
+  }
+}
+
+/* Preserve desktop layout */
+@media (min-width: 769px) {
+  .text-center.space-y-2 {
+    position: relative;
+    background: none;
+    backdrop-filter: none;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+
+  .details {
+    padding-top: 2rem;
   }
 }
                
