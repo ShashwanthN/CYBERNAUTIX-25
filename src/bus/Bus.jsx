@@ -21,35 +21,17 @@ const BusCard = ({ route }) => (
           <span className="text-xs sm:text-sm text-[#00ff9f]/80">Route Details</span>
         </div>
       </div>
-      <FiArrowRight className="text-[#00ff9f] w-5 h-5 sm:w-6 sm:h-6 ml-2" />
     </div>
 
     <div className="space-y-3 relative pl-3 sm:pl-4 border-l-2 border-[#00ff9f]/20">
-      {route.stops.split('-').map((stop, index) => {
-        const [timeMatch] = stop.match(/\(([^)]+)\)/g) || [];
-        const stopText = stop.replace(/\(([^)]+)\)/g, '').trim();
-        
-        return (
-          <div key={index} className="relative flex items-start group">
-            <div className="absolute w-2 h-2 sm:w-3 sm:h-3 bg-[#00ff9f] rounded-full -left-[7px] sm:-left-[9px] top-2 border-2 border-[#00ff9f]/30" />
-            <div className="flex-1 ml-3 sm:ml-4">
-              <div className="flex flex-wrap sm:flex-nowrap justify-between items-start gap-1">
-                <span className="text-xs sm:text-sm font-medium text-white break-words">
-                  {stopText}
-                </span>
-                {timeMatch && (
-                  <span className="text-[10px] sm:text-xs text-[#00ff9f]/70 bg-[#00ff9f]/10 px-2 py-1 rounded-md flex-shrink-0">
-                    {timeMatch.replace(/[()]/g, '')}
-                  </span>
-                )}
-              </div>
-              {index < route.stops.split('-').length - 1 && (
-                <div className="h-[1px] bg-[#00ff9f]/10 w-full my-2" />
-              )}
-            </div>
-          </div>
-        )
-      })}
+      <div className="relative flex items-start group">
+        <div className="absolute w-2 h-2 sm:w-3 sm:h-3 bg-[#00ff9f] rounded-full -left-[7px] sm:-left-[9px] top-2 border-2 border-[#00ff9f]/30" />
+        <div className="flex-1 ml-3 sm:ml-4">
+          <span className="text-xs sm:text-sm font-medium text-white break-words">
+            {route.stops}
+          </span>
+        </div>
+      </div>
     </div>
   </motion.div>
 );
@@ -91,12 +73,12 @@ function Bus() {
     {
       place: "Kodambakkam",
       busNumber: "145",
-      stops: "Meenakshi College (6.50) – Mahalingapuram (6.55)  – Chetpet Signal (6.55)  – Ega (6.58)  – Pachaiyappa’s College (7.02)  – Aminjikarai Market  – Shenoy Nagar (7.10)   –   Chinthamani (7.12)  – Nathamuni (7.20) – College (8.10)"
+      stops: "Meenakshi College (6.50) – Mahalingapuram (6.55)  – Chetpet Signal (6.55)  – Ega (6.58)  – Pachaiyappa's College (7.02)  – Aminjikarai Market  – Shenoy Nagar (7.10)   –   Chinthamani (7.12)  – Nathamuni (7.20) – College (8.10)"
     },
     {
       place: "Mogappair West",
       busNumber: "153",
-      stops: "Mogappair West Depot (7.00AM), Golden Flats (7.05), Collector Nagar Bus Stop (7.05), Padikuppam Road (7.07)- Thirumangalam, (7.10) Anna Nagar West Depot (7.20), College (8.10)."
+      stops: "Mogappair West Depot (7.00), Golden Flats (7.05), Collector Nagar Bus Stop (7.05), Padikuppam Road (7.07)- Thirumangalam, (7.10) Anna Nagar West Depot (7.20), College (8.10)."
     },
     {
       place: "Mogappair East",
@@ -106,12 +88,12 @@ function Bus() {
     {
       place: "Thiruverkadu Arch",
       busNumber: "157",
-      stops: "Thiruverkadu Arch (6.50)  – Maduravoyal (6.55)–Nerkundram( 7.00) –- Thirumangalam Signal (7.05) – Blue Star (7.10) – Shanthi Colony (7.15) – Anna Nagar West Depot (7.20) –   College (8.10)."
+      stops: "Thiruverkadu Arch (6.50)  – Maduravoyal (6.55) – Nerkundram( 7.00) – Thirumangalam Signal (7.05) – Blue Star (7.10) – Shanthi Colony (7.15) – Anna Nagar West Depot (7.20) –   College (8.10)."
     },
     {
       place: "Thiru Vi Ka Nagar",
       busNumber: "166",
-      stops: "Thiru Vi Ka Nagar (7.05) – Agaram ( (7.10) – Periyar Nagar (7.15) – Kolathur Anna Statue (7.20)  – Moogambikai (7.25) – Retteri (7.30) – College (8.10)."
+      stops: "Thiru Vi Ka Nagar (7.05) – Agaram (7.10) – Periyar Nagar (7.15) – Kolathur Anna Statue (7.20)  – Moogambikai (7.25) – Retteri (7.30) – College (8.10)."
     },
     {
       place: "Tollgate",
@@ -141,7 +123,7 @@ function Bus() {
     {
       place: "Tambaram",
       busNumber: "112",
-      stops: "Tambaram Yard (6.00) – Selaiyur Bharath College (6.10) – Camp Road Junction (6.15) -Tambaram BT (6.20) – Tambaram Sanitorium (6.25) – Chrompet (6.30) – Pallavaram (6.35)  –  Meenambakkam (6.40) – Palavanthangal (6.45) – Alandur (6.48) –  Guindy Kathipara (6.50)  –  K.K. Nagar ( 6.58) – Vadapalani Signal (7.10)  –  Anna Nagar Depot (7.20) – Nallur Tollgate (7.50) – College (8.15)."
+      stops: "Tambaram Yard – Selaiyur Bharath College – Camp Road Junction -Tambaram BT – Tambaram Sanitorium – Chrompet – Pallavaram – Meenambakkam – Palavanthangal – Alandur – Guindy Kathipara – K.K. Nagar – Vadapalani Signal – Anna Nagar Depot – Nallur Tollgate – College."
     },
     {
       place: "Kasimedu",
@@ -191,7 +173,7 @@ function Bus() {
     {
       place: "Purasawalkam",
       busNumber: "163",
-      stops: "Kelly’s Signal (6.45)  – Abirami Theatre (6.47) – Purasawalkam Tank (6.50) Doveton (6.53)  – Bhuvaneswari    (6.55)  Otteri (6.58) – Agaram (7.05)  – College (8.10)."
+      stops: "Kelly's Signal (6.45)  – Abirami Theatre (6.47) – Purasawalkam Tank (6.50) Doveton (6.53)  – Bhuvaneswari    (6.55)  Otteri (6.58) – Agaram (7.05)  – College (8.10)."
     },
     {
       place: "Uthukottai",
@@ -234,11 +216,6 @@ function Bus() {
       stops: "Thiruvallur (6.45) – Theradi(6.40) – Ekadu (7.00) – Thamaraipakkam kootroad (7.15) –  Vengal (7.30) – Kanniputhur(7.40) – Manjankaranai (7.45) – Janappanchathiram (7.55) – College (8.10)"
     },
     {
-      place: "Wheels India",
-      busNumber: "Bus",
-      stops: "Wheels India(8.00) – College (9.00) (Only for any Break down maintenance purpose)"
-    },
-    {
       place: "Perambur",
       busNumber: "165",
       stops: "Perambur Bus Depot (7.00) – Perambur Church (7.05) – Venus – Kolathur (7.15)Rettery (7.20) College (8.10)."
@@ -247,6 +224,11 @@ function Bus() {
       place: "Collector Nagar",
       busNumber: "158",
       stops: "Collector Nagar Bus Stop (7.05) – Padikuppam Road (7.07) – Thirumangalam (7.15) – College (8.10)."
+    },
+    {
+      place: "Wheels India",
+      busNumber: "Bus",
+      stops: "Wheels India – College (Only for any Break down maintenance purpose)"
     }
   ];
 
