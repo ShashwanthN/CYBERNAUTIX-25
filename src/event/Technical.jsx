@@ -16,7 +16,7 @@ const Technical = ({ onNavigate }) => {
   const EventSection = ({ imageSrc, title, description, rules, reverse, whatsappLink }) => (
     <motion.section 
       className={`group relative flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} 
-        gap-2 sm:gap-4 p-2 sm:p-4 md:p-6 overflow-x-hidden w-full`}
+        gap-2 sm:gap-4 p-2 sm:p-4 md:p-6 w-full`}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-20%" }}
@@ -45,12 +45,12 @@ const Technical = ({ onNavigate }) => {
           </ul>
         </div>
 
-        <div className="pt-4 border-t border-emerald-400/10 flex flex-wrap gap-2 justify-between">
+        <div className="pt-4 border-t border-emerald-400/10 flex flex-wrap gap-2 md:justify-between">
           <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="no-underline">
             <button
-            className="px-3 sm:px-5 py-2 rounded-full bg-emerald-400/10 border border-emerald-400/20 
-            text-emerald-300 hover:bg-emerald-400/15 transition-all flex items-center gap-2 
-            text-xs md:text-sm whitespace-nowrap no-underline" >
+              className="px-3 sm:px-5 py-2 rounded-full bg-emerald-400/10 border border-emerald-400/20 
+              text-emerald-300 hover:bg-emerald-400/15 transition-all flex items-center gap-2 
+              text-xs md:text-sm whitespace-nowrap no-underline" >
               <FaWhatsapp className="w-4 h-4 text-emerald-400" />
               <span className="no-underline">Join with us</span>
             </button>
@@ -60,7 +60,7 @@ const Technical = ({ onNavigate }) => {
             onClick={handleRegisterClick}
             className="px-3 sm:px-5 py-2 rounded-full bg-emerald-400/10 border border-emerald-400/20 
             text-emerald-300 hover:bg-emerald-400/15 transition-all flex items-center gap-2 
-            text-xs md:text-sm whitespace-nowrap"
+            text-xs md:text-sm whitespace-nowrap ml-auto sm:ml-0"
           >
             Register
             <span className="group-hover:translate-x-0.5 transition-transform">→</span>
@@ -86,11 +86,14 @@ const Technical = ({ onNavigate }) => {
         <EventSection
           imageSrc={logo}
           title="InnovateX"
-          description="Put your programming skills to the test! Solve algorithmic problems and coding challenges in a race against the clock."
+          description="InnovateX is an on-the-spot problem-solving event where participants will be challenged to create innovative and feasible solutions. Participants will draft and present their solutions in a PPT format to a panel of juries. They can utilize tools like Canva or Microsoft PowerPoint, and systems with internet access will be provided.
+"
           rules={[
-            "Languages: C, C++, Java, Python",
-            "AI usage strictly prohibited",
-            "2 hour time limit"
+            "Participants can compete individually or in teams of up to 3 members.",
+            "A total of 1.5 hours will be given to draft the solution and prepare the presentation.",
+            "Present solutions using Canva, PowerPoint, or similar tools within 4-5 minutes, including Q&A.",
+            "Sticking to the allocated time is important for a smooth flow of the event.",
+            "Judging criteria will be based on innovation, originality, feasibility, attractiveness, usefulness, and presentation quality."
           ]}
           whatsappLink="https://chat.whatsapp.com/B5Pd3uRtq5zFbzG0o4whfb"
         />
@@ -98,14 +101,16 @@ const Technical = ({ onNavigate }) => {
         <EventSection
           imageSrc={pp}
           title="Research X"
-          description="Showcase your research and paper presentation skills by discussing innovative ideas on trending topics."
+          description="Research X is a platform for thinkers, researchers, and innovators to showcase their ideas and research. Participants will present their papers on cutting-edge topics, competing for recognition and prizes. This event fosters intellectual exchange, innovation, and technical expertise."
           rules={[
-            "Participants must submit their PPT before March 5",
-            "Selected students will receive mail",
-            "Students must bring laptop and pendrive (internet will be provided)",
-            "PPT can be done by your own formatting",
-            "10 minute presentation limit",
-            "Teams of 2 allowed"
+            "Eligibility: Open to students pursuing UG and PG",
+            "Team Size: Individual or a team of max 3 members.",
+            "Topic Selection: Papers must be original and related to science, technology, engineering, or management.",
+            "Abstract Submission: Required before the deadline. Only selected participants can present.",
+            "Presentation Time: 5-8 minutes per team, followed by a Q&A session.",
+            "Plagiarism: Strictly prohibited.",
+            "File Format: Submit in PDF or PPT format as per event guidelines.",
+            "Time Adherence: Exceeding the time limit may lead to point deductions."
           ]}
           whatsappLink="https://chat.whatsapp.com/DYjEjRKSOTKIWC0LRrn0tx"
           reverse
@@ -114,11 +119,12 @@ const Technical = ({ onNavigate }) => {
         <EventSection
           imageSrc={uiux_img}
           title="RepliCraft"
-          description="Dive into the world of design and create intuitive, user-friendly interfaces."
+          description="Think you've got what it takes to pixel-perfectly recreate a design under pressure?.Welcome to RepliCraft—the ultimate UI/UX showdown where speed meets precision! You'll get a UI design and just 1 hour to bring it to life using any tech stack you prefer. No teams, no shortcuts — just you, your skills, and the countdown ticking away.Ready to flex your skills? Build fast, pixel-perfect, and beat the clock."
           rules={[
-            "Figma/Adobe XD/Sketch",
-            "3 hour duration",
-            "Theme-based design"
+            "All work must be done individually (no teams).",
+            "Participants may use available resources and tools, but the final submission must be their own work.",
+            "Submissions must be made within the time limit.",
+            "Plagiarism or direct copying from external sources will result in disqualification."
           ]}
           whatsappLink="https://chat.whatsapp.com/JtYhBuwbCHo0ceqeU3Fe7j"
         />
@@ -130,7 +136,7 @@ const Technical = ({ onNavigate }) => {
           rules={[
             "Essential SQL elements required",
             "Pre-provided schemas only",
-            "2 member teams"
+            "2 members per team"
           ]}
           whatsappLink="https://chat.whatsapp.com/DU3oIZneaJhCpLLPg6w6bE"
           reverse
