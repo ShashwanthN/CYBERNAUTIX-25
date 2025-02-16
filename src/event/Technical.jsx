@@ -16,28 +16,31 @@ const Technical = ({ onNavigate }) => {
   const EventSection = ({ imageSrc, title, description, rules, reverse, whatsappLink }) => (
     <motion.section 
       className={`group relative flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} 
-        gap-2 sm:gap-4 p-2 sm:p-4 md:p-6 w-full`}
+        gap-2 p-1 sm:p-4 md:p-6 w-[90%] xs:w-[90%] md:w-full ml-0 mr-auto`}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-20%" }}
     >
       <div className={`md:w-1/2 relative ${reverse ? 'md:-rotate-1' : 'md:rotate-1'} 
-        transition-transform duration-300 hover:rotate-0 w-full p-2 sm:p-0`}>
+        transition-transform duration-300 hover:rotate-0 w-[90%] xs:w-[90%] md:w-full ml-0 mr-auto p-0.5 md:p-2`}>
         <TiltedCard imageSrc={imageSrc} className="rounded-xl shadow-xl w-full" />
       </div>
 
-      <div className="md:w-1/2 space-y-3 p-2 sm:p-3 md:p-4 bg-gradient-to-br from-emerald-900/30 to-transparent 
-        backdrop-blur-lg rounded-2xl border border-emerald-400/20 shadow-[0_8px_32px_rgba(0,255,159,0.05)] w-full">
-        <h2 className="text-xl md:text-3xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 
-          bg-clip-text text-transparent tracking-tight">{title}</h2>
+      <div className="md:w-1/2 space-y-1 p-1.5 xs:p-2 md:p-4 bg-gradient-to-br from-emerald-900/30 to-transparent 
+        backdrop-blur-lg rounded-2xl border border-emerald-400/20 shadow-[0_8px_32px_rgba(0,255,159,0.05)] 
+        w-[90%] xs:w-[90%] md:w-full ml-0 mr-auto">
+        <h2 className="text-[10px] xs:text-sm md:text-3xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 
+          bg-clip-text text-transparent tracking-tight leading-tight">{title}</h2>
         
-        <p className="text-gray-300 text-xs md:text-sm leading-relaxed opacity-90">{description}</p>
+        <p className="text-[8px] xs:text-xs md:text-sm leading-relaxed opacity-90 text-gray-300 mt-1">{description}</p>
 
-        <div className="space-y-2">
-          <h3 className="text-emerald-400/80 text-sm font-semibold tracking-wide">RULES & REGULATIONS</h3>
-          <ul className="grid gap-2 text-xs md:text-sm text-gray-300">
+        <div className="space-y-0.5 mt-1">
+          <h3 className="text-[9px] xs:text-xs md:text-sm text-emerald-400/80 font-semibold tracking-wide">
+            RULES & REGULATIONS
+          </h3>
+          <ul className="grid gap-0.5 text-[8px] xs:text-xs md:text-sm text-gray-300">
             {rules.map((rule, i) => (
-              <li key={i} className="flex items-start gap-2">
+              <li key={i} className="flex items-start gap-1">
                 <span className="shrink-0 text-emerald-400 mt-0.5">•</span>
                 <span className="opacity-90">{rule}</span>
               </li>
@@ -45,22 +48,21 @@ const Technical = ({ onNavigate }) => {
           </ul>
         </div>
 
-        <div className="pt-4 border-t border-emerald-400/10 flex flex-wrap gap-2 md:justify-between">
+        <div className="pt-1.5 mt-1 border-t border-emerald-400/10 flex flex-wrap gap-1">
           <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="no-underline">
-            <button
-              className="px-3 sm:px-5 py-2 rounded-full bg-emerald-400/10 border border-emerald-400/20 
-              text-emerald-300 hover:bg-emerald-400/15 transition-all flex items-center gap-2 
-              text-xs md:text-sm whitespace-nowrap no-underline" >
-              <FaWhatsapp className="w-4 h-4 text-emerald-400" />
+            <button className="px-1.5 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20 
+              text-emerald-300 hover:bg-emerald-400/15 transition-all flex items-center gap-1 
+              text-[8px] xs:text-xs md:text-sm whitespace-nowrap no-underline">
+              <FaWhatsapp className="w-2.5 h-2.5 md:w-4 md:h-4 text-emerald-400" />
               <span className="no-underline">Join with us</span>
             </button>
           </a>
 
           <button
             onClick={handleRegisterClick}
-            className="px-3 sm:px-5 py-2 rounded-full bg-emerald-400/10 border border-emerald-400/20 
-            text-emerald-300 hover:bg-emerald-400/15 transition-all flex items-center gap-2 
-            text-xs md:text-sm whitespace-nowrap ml-auto sm:ml-0"
+            className="px-1.5 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/20 
+            text-emerald-300 hover:bg-emerald-400/15 transition-all flex items-center gap-1 
+            text-[8px] xs:text-xs md:text-sm whitespace-nowrap ml-auto"
           >
             Register
             <span className="group-hover:translate-x-0.5 transition-transform">→</span>
@@ -71,15 +73,17 @@ const Technical = ({ onNavigate }) => {
   );
 
   return (
-    <div className="relative max-w-7xl mx-auto px-3 md:px-8 py-8 md:py-12 ">
-      <h1 className="text-4xl md:text-7xl font-bold text-center mb-4 md:mb-8 
-        bg-gradient-to-r from-[#00FF9F] to-[#00FF9F] bg-clip-text text-transparent">
+    <div className="relative max-w-7xl mx-auto px-1 xs:px-2 md:px-8 py-8 md:py-12">
+      <h1 className="text-2xl xs:text-3xl md:text-7xl font-bold text-left md:text-center mb-4 md:mb-8 
+        bg-gradient-to-r from-[#00FF9F] to-[#00FF9F] bg-clip-text text-transparent w-[90%] ml-0 mr-auto">
         Technical Events
       </h1>
-      <div className="text-sm md:text-xl font-light text-center mb-14 md:mb-22 
+      <div className="w-[90%] ml-0 mr-auto md:mx-auto text-[9px] xs:text-xs md:text-xl font-light text-left md:text-center mb-8 md:mb-16 
         bg-gradient-to-r from-[#00FF9F] to-[#72d0ff] bg-clip-text text-transparent">
-        Compete to earn rewards Rs 1,000 for champion and Rs 500 for runner-up.<br />
-        <span className='text-white'>Venues to be announced soon.</span>
+        Compete to earn rewards Rs 1,000 for champion and Rs 500 for runner-up.
+        <div className='text-white text-[8px] xs:text-xs md:text-xl mt-1'>
+          Venues to be announced soon.
+        </div>
       </div>
 
       <div className="space-y-20 md:space-y-32">
