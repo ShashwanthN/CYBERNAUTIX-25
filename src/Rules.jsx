@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 function Rules() {
   const rules = [
     { text: "Students must bring their respective college ID card.", icon: "fas fa-id-card" },
-    { text: "Mobile phones are not allowed inside the campus.", icon: "fas fa-mobile-alt" },
+    { text: "Usage of mobile phones and other electronic gadgets inside the campus should be avoided.", icon: "fas fa-mobile-alt" },
     { text: "Confirmation mail for selection will be sent to your registered mail id.", icon: "fas fa-envelope" },
     { text: "Participants must only use the college bus which will be available on March 17th.", icon: "fas fa-bus" },
     { text: "Boys must come in formal with clean shave.", icon: "fas fa-user-tie" },
@@ -17,6 +17,7 @@ function Rules() {
     { time: "8:30 - 9:00", event: "Registration starts at RM Block entrance" },
     { time: "9:00 - 10:00", event: "Inauguration ceremony at Seminar Hall - New block" },
     { time: "10:00 - 12:00", event: "Events (Time and venue will be informed shortly)" },
+    { time: "12:00 - 1:30", event: "Lunch" },
     { time: "1:30 - 2:00", event: "Valedictory ceremony" }
   ];
 

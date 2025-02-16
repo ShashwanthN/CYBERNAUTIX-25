@@ -148,6 +148,102 @@ function Register({ onLogin }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormError('');
+    
+    // Validate all required fields are filled
+    const requiredFields = [
+      { field: 'name', label: 'Name' },
+      { field: 'email', label: 'Email' },
+      { field: 'password', label: 'Password' },
+      { field: 'confirmPassword', label: 'Confirm Password' },
+      { field: 'phone', label: 'Phone Number' },
+      { field: 'college', label: 'College Name' },
+      { field: 'department', label: 'Department' },
+      { field: 'year', label: 'Year of Study' }
+    ];
+
+    for (const { field, label } of requiredFields) {
+      if (!formData[field] || formData[field].trim() === '') {
+        toast.error(`${label} is required`, {
+          position: "top-right",
+          autoClose: 3000,
+          theme: "dark",
+        });
+        return;
+      }
+    }
+
+    // Validate at least one event is selected
+    if (formData.technicalEvents.length === 0 && formData.nonTechnicalEvents.length === 0) {
+      toast.error('Please select at least one event', {
+        position: "top-right",
+        autoClose: 3000,
+        theme: "dark",
+      });
+      return;
+    }
+
+    // Validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error('Please enter a valid email address', {
+        position: "top-right",
+        autoClose: 3000,
+        theme: "dark",
+      });
+      return;
+    }
+
+    // Validate password
+    if (formData.password.length < 6) {
+      toast.error('Password must be at least 6 characters long', {
+        position: "top-right",
+        autoClose: 3000,
+        theme: "dark",
+      });
+      return;
+    }
+
+    // Validate password confirmation
+    if (formData.password !== formData.confirmPassword) {
+      toast.error('Passwords do not match', {
+        position: "top-right",
+        autoClose: 3000,
+        theme: "dark",
+      });
+      return;
+    }
+
+    // Validate phone number
+    if (!/^\d{10}$/.test(formData.phone)) {
+      toast.error('Phone number must be exactly 10 digits', {
+        position: "top-right",
+        autoClose: 3000,
+        theme: "dark",
+      });
+      return;
+    }
+
+    // Validate team names and drive link for selected events
+    for (const event of formData.technicalEvents) {
+      if (!formData.teamNames[event] || formData.teamNames[event].trim() === '') {
+        toast.error(`Team name is required for ${event}`, {
+          position: "top-right",
+          autoClose: 3000,
+          theme: "dark",
+        });
+        return;
+      }
+
+      if (event === 'Research X' && (!formData.paperDetails || formData.paperDetails.trim() === '')) {
+        toast.error('Drive link is required for Research X', {
+          position: "top-right",
+          autoClose: 3000,
+          theme: "dark",
+        });
+        return;
+      }
+    }
+
     setIsSubmitting(true);
     
     let user;
@@ -214,13 +310,19 @@ function Register({ onLogin }) {
   
   return (
     <div className="h-screen overflow-hidden bg-gradient-to-br from-gray-900 to-black relative">
-      <ToastContainer 
-        style={{
-          zIndex: 1001,
-          position: 'fixed',
-          top: '4rem',
-          right: '1rem',
-        }}
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        style={{ zIndex: 99999 }}
+        className="!top-4 sm:!top-4"
       />
       {/* Animated Background Elements */}
       <div className="absolute h-full w-full inset-0 z-0">
@@ -266,14 +368,23 @@ function Register({ onLogin }) {
                 { icon: FiMail, name: 'email', placeholder: 'Email Address', type: 'email' },
                 { icon: FiLock, name: 'password', placeholder: 'Password', type: 'password' },
                 { icon: FiLock, name: 'confirmPassword', placeholder: 'Confirm Password', type: 'password' },
-                { icon: FiPhone, name: 'phone', placeholder: 'Phone Number', type: 'tel' },
+                { icon: FiPhone, name: 'phone', placeholder: 'Phone Number (10 digits)', type: 'tel' },
               ].map((field, idx) => (
                 <div key={field.name} className="relative">
                   <field.icon className="absolute top-3 left-3 text-green-500" />
                   <input
-                    {...field}
+                    type={field.type}
+                    name={field.name}
+                    placeholder={field.placeholder}
+                    required
                     value={formData[field.name]}
-                    onChange={handleChange}
+                    onChange={field.name === 'phone' 
+                      ? (e) => {
+                          const value = e.target.value.replace(/\D/g, '').slice(0, 10);
+                          handleChange({ target: { name: field.name, value } });
+                        }
+                      : handleChange
+                    }
                     className="w-full pl-10 pr-4 py-2.5 bg-black/30 rounded-lg !border !border-gray-700 focus:!border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
                   />
                 </div>
@@ -303,6 +414,7 @@ function Register({ onLogin }) {
                   <input
                     {...field}
                     type="text"
+                    required
                     value={formData[field.name]}
                     onChange={handleChange}
                     className="w-full pl-10 pr-4 py-2.5 bg-black/30 rounded-lg !border !border-gray-700 focus:!border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"

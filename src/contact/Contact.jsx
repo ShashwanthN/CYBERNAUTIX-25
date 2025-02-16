@@ -110,7 +110,7 @@ function Contact() {
                   {
                     icon: FiMapPin,
                     title: 'Address',
-                    content: 'R.M.K. Engineering College, Tamil Nadu',
+                    content: 'RSM Nagar, Gummidipoondi Taluk, Kavaraipettai, Tamil Nadu 601206.',
                   },
                   // {
                   //   icon: FiPhone,
