@@ -302,7 +302,7 @@ function Register({ onLogin }) {
         draggable: true,
         theme: "dark",
       });
-      setFormError('Registration failed. Please try again.');
+      setFormError(error.message);
     } finally {
       setIsSubmitting(false);
     }
