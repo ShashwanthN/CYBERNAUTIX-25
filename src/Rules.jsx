@@ -10,7 +10,7 @@ function Rules() {
     { text: "Participants must only use the college bus which will be available on March 17th.", icon: "fas fa-bus" },
     { text: "Boys must come in formal with clean shave.", icon: "fas fa-user-tie" },
     { text: "Girls should wear formal dress.", icon: "fas fa-female" },
-    { text: "No on spot Registration Allowed.", icon: "fas fa-ban" }
+    { text: "No onspot Registration Allowed.", icon: "fas fa-ban" }
   ];
 
   const timeline = [
