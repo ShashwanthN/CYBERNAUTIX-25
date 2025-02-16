@@ -21,7 +21,7 @@ const SplashScreen = () => {
         {/* Text content */}
         <div className="text-center space-y-6">
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-[#00FF9F] to-[#008F5B]">
-            <span className="text-shadow-lg shadow-[#00FF9F]/30">CYBERNAUTIX</span>
+            <span className="text-shadow-lg shadow-[#00FF9F]/30">CYBERNAUTIX'25</span>
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-[#FFFFFF] font-mono tracking-widest">
             A NATIONAL LEVEL SYMPOSIUM
