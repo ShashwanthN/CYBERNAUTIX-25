@@ -104,49 +104,41 @@ function Contact() {
                 <h2 className="text-xl font-semibold text-green-400">Contact Information</h2>
                 <p className="text-sm text-gray-400 mt-1">Reach us through these channels</p>
               </div>
+              <div className="space-y-4 sm:space-y-6 px-2 sm:px-4">
+  {[
+    {
+      icon: FiMapPin,
+      title: 'Address',
+      content: 'RSM Nagar, Gummidipoondi Taluk, Kavaraipettai, Tamil Nadu 601206.',
+    },
+    {
+      icon: FiMail,
+      title: 'Email',
+      content: 'cybernautix@rmkec.ac.in',
+    },
+  ].map((item, index) => (
+    <motion.div
+      key={index}
+      whileHover={{ scale: 1.02 }}
+      className="p-3 sm:p-4 bg-black/30 rounded-lg border border-gray-700 hover:border-green-500 transition-all w-full max-w-sm mx-auto"
+    >
+      <div className="flex items-start gap-3 sm:gap-4">
+        <div className="p-2 bg-green-500/10 rounded-lg">
+          <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-green-500" />
+        </div>
+        <div className="flex-1">
+          <h3 className="text-green-400 font-medium mb-1 text-sm sm:text-base">
+            {item.title}
+          </h3>
+          <div className="text-gray-300 text-xs sm:text-sm whitespace-normal break-words">
+            {item.content}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  ))}
+</div>
 
-              <div className="space-y-6">
-                {[
-                  {
-                    icon: FiMapPin,
-                    title: 'Address',
-                    content: 'RSM Nagar, Gummidipoondi Taluk, Kavaraipettai, Tamil Nadu 601206.',
-                  },
-                  // {
-                  //   icon: FiPhone,
-                  //   title: 'Phone',
-                  //   content: (
-                  //     <>
-                  //       <p>+91 90806 39960</p>
-                  //       <p>+91 99522 76785</p>
-                  //     </>
-                  //   ),
-                  // },
-                  {
-                    icon: FiMail,
-                    title: 'Email',
-                    content: 'cybernautix@rmkec.ac.in',
-                  },
-                ].map((item, index) => (
-                  <motion.div 
-                    key={index}
-                    whileHover={{ scale: 1.02 }}
-                    className="p-4 bg-black/30 rounded-lg !border !border-gray-700 hover:!border-green-500 transition-all"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="p-2 bg-green-500/10 rounded-lg">
-                        <item.icon className="w-6 h-6 text-green-500" />
-                      </div>
-                      <div>
-                        <h3 className="text-green-400 font-medium mb-1">{item.title}</h3>
-                        <div className="text-gray-300 text-sm space-y-1 whitespace-normal break-words">
-                          {item.content}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
             </div>
           </div>
 
