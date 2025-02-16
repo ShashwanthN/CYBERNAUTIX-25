@@ -8,7 +8,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 
 import TiltedCard from '../blocks/Components/TiltedCard/TiltedCard';
 
-const EventSection = ({ imageSrc, title, description, rules, reverse, whatsappLink }) => (
+const EventSection = ({ imageSrc, title, description, rules, reverse, whatsappLink, onNavigate }) => (
   <motion.section 
     className="relative w-full px-2 sm:px-4"
     initial={{ opacity: 0, y: 20 }}
@@ -127,6 +127,7 @@ const Technical = ({ onNavigate }) => (
               "Judging criteria will be based on innovation, originality, feasibility, attractiveness, usefulness, and presentation quality."
             ]}
             whatsappLink="https://chat.whatsapp.com/B5Pd3uRtq5zFbzG0o4whfb"
+            onNavigate={onNavigate}
           />
 
           <EventSection
@@ -145,6 +146,7 @@ const Technical = ({ onNavigate }) => (
             ]}
             whatsappLink="https://chat.whatsapp.com/DYjEjRKSOTKIWC0LRrn0tx"
             reverse
+            onNavigate={onNavigate}
           />
 
           <EventSection
@@ -158,6 +160,7 @@ const Technical = ({ onNavigate }) => (
               "Plagiarism or direct copying from external sources will result in disqualification."
             ]}
             whatsappLink="https://chat.whatsapp.com/JtYhBuwbCHo0ceqeU3Fe7j"
+            onNavigate={onNavigate}
           />
 
           <EventSection
@@ -171,6 +174,7 @@ const Technical = ({ onNavigate }) => (
             ]}
             whatsappLink="https://chat.whatsapp.com/DU3oIZneaJhCpLLPg6w6bE"
             reverse
+            onNavigate={onNavigate}
           />
         </div>
       </div>
