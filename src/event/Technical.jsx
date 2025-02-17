@@ -140,8 +140,10 @@ const Technical = ({ onNavigate }) => (
               "Topic Selection: Papers must be original and related to science, technology, engineering, or management.",
               "Abstract Submission: Required before the deadline. Only selected participants can present.",
               "Presentation Time: 5-8 minutes per team, followed by a Q&A session.",
-              "Plagiarism: Strictly prohibited.",
-              "File Format: Submit in PDF or PPT format as per event guidelines.",
+              // "Plagiarism: Strictly prohibited.",
+              "Every Participants should register individually with same team name if any team members from other college mention it with name Eg : Name ( College )",
+              "File Format: Submit in PDF format as per event guidelines.",
+              "1 person from a team should bring their Laptop for presentation",
               "Time Adherence: Exceeding the time limit may lead to point deductions."
             ]}
             whatsappLink="https://chat.whatsapp.com/DYjEjRKSOTKIWC0LRrn0tx"
