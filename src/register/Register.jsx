@@ -22,7 +22,7 @@ const NeonPulse = ({ children }) => (
 );
 
 const EventPill = ({ children, checked, onChange, name, value, eventType }) => (
-  <motion.label 
+  <motion.label
     whileHover={{ scale: 1.02 }}
     className={`relative block cursor-pointer transition-all ${checked ? 'scale-[1.02]' : ''}`}
   >
@@ -35,10 +35,10 @@ const EventPill = ({ children, checked, onChange, name, value, eventType }) => (
       className="peer absolute opacity-0"
     />
     <div className={`p-4 rounded-lg border-2 ${
-      checked 
-        ? 'border-green-500 bg-green-900/20 shadow-lg shadow-green-500/20'
-        : 'border-gray-600 hover:border-green-500'
-    } transition-all`}>
+      checked
+      ? 'border-green-500 bg-green-900/20 shadow-lg shadow-green-500/20'
+      : 'border-gray-600 hover:border-green-500'
+      } transition-all`}>
       <span className={`text-sm font-medium ${checked ? 'text-green-400' : 'text-gray-300'}`}>
         {children}
       </span>
@@ -88,7 +88,7 @@ function Register({ onLogin }) {
     const { value, checked } = e.target;
     const currentTechnical = eventType === 'technicalEvents' ? [...formData.technicalEvents] : formData.technicalEvents;
     const currentNonTechnical = eventType === 'nonTechnicalEvents' ? [...formData.nonTechnicalEvents] : formData.nonTechnicalEvents;
-    
+
     if (checked) {
       const totalSelected = currentTechnical.length + currentNonTechnical.length;
       if (totalSelected >= 2) {
@@ -104,7 +104,7 @@ function Register({ onLogin }) {
         });
         return;
       }
-      
+
       if (eventType === 'technicalEvents') {
         currentTechnical.push(value);
       } else {
@@ -117,10 +117,10 @@ function Register({ onLogin }) {
         // Clear the team name and paper details when event is unchecked
         const updatedTeamNames = { ...formData.teamNames };
         delete updatedTeamNames[value];
-        setFormData(prevState => ({ 
-          ...prevState, 
+        setFormData(prevState => ({
+          ...prevState,
           teamNames: updatedTeamNames,
-          paperDetails: value === 'Research X' ? '' : prevState.paperDetails 
+          paperDetails: value === 'Research X' ? '' : prevState.paperDetails
         }));
       } else {
         const index = currentNonTechnical.indexOf(value);
@@ -148,7 +148,7 @@ function Register({ onLogin }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormError('');
-    
+
     // Validate all required fields are filled
     const requiredFields = [
       { field: 'name', label: 'Name' },
@@ -245,7 +245,7 @@ function Register({ onLogin }) {
     }
 
     setIsSubmitting(true);
-    
+
     let user;
 
     try {
@@ -254,7 +254,7 @@ function Register({ onLogin }) {
 
       if (user) {
         const userDocRef = doc(db, "Users", user.uid);
-  
+
         await setDoc(userDocRef, {
           name: formData.name,
           email: formData.email,
@@ -280,7 +280,7 @@ function Register({ onLogin }) {
         if (onLogin) {
           onLogin(`/user/${user.uid}`);
         }
-        
+
         toast.success('Registered successfully', {
           position: "top-right",
           autoClose: 3000,
@@ -307,22 +307,18 @@ function Register({ onLogin }) {
       setIsSubmitting(false);
     }
   };
-  
+
   return (
     <div className="h-screen overflow-hidden bg-gradient-to-br from-gray-900 to-black relative">
       <ToastContainer
-        position="top-center"
+        style={{ marginTop: "80px" }} // Adjust this value based on your navbar height
+        position="top-right"
         autoClose={3000}
         hideProgressBar={false}
-        newestOnTop={true}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
+        closeOnClick={true}
+        pauseOnHover={true}
+        draggable={true}
         theme="dark"
-        style={{ zIndex: 99999 }}
-        className="!top-4 sm:!top-4"
       />
       {/* Animated Background Elements */}
       <div className="absolute h-full w-full inset-0 z-0">
@@ -334,7 +330,7 @@ function Register({ onLogin }) {
       <div className="relative h-full z-10 container mx-auto  py-4 flex flex-col">
         <NeonPulse>Cybernautix '25 Registration</NeonPulse>
 
-        <motion.form 
+        <motion.form
           onSubmit={handleSubmit}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -352,7 +348,7 @@ function Register({ onLogin }) {
           )}
 
           {/* Personal Info Section */}
-          <motion.div 
+          <motion.div
             className="space-y-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -378,11 +374,11 @@ function Register({ onLogin }) {
                     placeholder={field.placeholder}
                     required
                     value={formData[field.name]}
-                    onChange={field.name === 'phone' 
+                    onChange={field.name === 'phone'
                       ? (e) => {
-                          const value = e.target.value.replace(/\D/g, '').slice(0, 10);
-                          handleChange({ target: { name: field.name, value } });
-                        }
+                        const value = e.target.value.replace(/\D/g, '').slice(0, 10);
+                        handleChange({ target: { name: field.name, value } });
+                      }
                       : handleChange
                     }
                     className="w-full pl-10 pr-4 py-2.5 bg-black/30 rounded-lg !border !border-gray-700 focus:!border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
@@ -393,7 +389,7 @@ function Register({ onLogin }) {
           </motion.div>
 
           {/* College Info Section */}
-          <motion.div 
+          <motion.div
             className="space-y-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -425,7 +421,7 @@ function Register({ onLogin }) {
           </motion.div>
 
           {/* Event Selection */}
-          <motion.div 
+          <motion.div
             className="space-y-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -456,7 +452,7 @@ function Register({ onLogin }) {
                           animate={{ opacity: 1, height: 'auto' }}
                           className="space-y-2"
                         >
-                          <input 
+                          <input
                             type="text"
                             placeholder="Team Name"
                             value={formData.teamNames[event] || ''}
@@ -464,12 +460,12 @@ function Register({ onLogin }) {
                             className="w-full px-4 py-2.5 bg-black/30 rounded-lg !border !border-gray-700 focus:!border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
                           />
                           {event === 'Research X' && (
-                            <input 
+                            <input
                               type="text"
-                              placeholder="Research Paper Drive Link"
+                              placeholder="Upload abstract drive link"
                               value={formData.paperDetails || ''}
                               onChange={(e) => setFormData(prev => ({ ...prev, paperDetails: e.target.value }))}
-                              className="w-full px-4 py-2.5 bg-black/30 rounded-lg !border !border-gray-700 focus:!border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
+                              className="w-full px-4 py-2.5 bg-black/30 rounded-lg !border !border-gray-700 focus:!border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all placeholder:text-sm sm:placeholder:text-base"
                             />
                           )}
                         </motion.div>

@@ -121,6 +121,7 @@ const Technical = ({ onNavigate }) => (
 "
             rules={[
               "Participants can compete individually or in teams of up to 3 members.",
+              "Registered attendees, please join our WhatsApp group via the provided link to access the event.",
               "A total of 1.5 hours will be given to draft the solution and prepare the presentation.",
               "Present solutions using Canva, PowerPoint, or similar tools within 4-5 minutes, including Q&A.",
               "Sticking to the allocated time is important for a smooth flow of the event.",
@@ -136,6 +137,7 @@ const Technical = ({ onNavigate }) => (
             description="Research X is a platform for thinkers, researchers, and innovators to showcase their ideas and research. Participants will present their papers on cutting-edge topics, competing for recognition and prizes. This event fosters intellectual exchange, innovation, and technical expertise."
             rules={[
               "Eligibility: Open to students pursuing UG and PG",
+              "Registered attendees, please join our WhatsApp group via the provided link to access the event.",
               "Team Size: Individual or a team of max 3 members.",
               "Topic Selection: Papers must be original and related to science, technology, engineering, or management.",
               "Abstract Submission: Required before the deadline. Only selected participants can present.",
@@ -157,6 +159,7 @@ const Technical = ({ onNavigate }) => (
             description="Think you've got what it takes to pixel-perfectly recreate a design under pressure?.Welcome to RepliCraft—the ultimate UI/UX showdown where speed meets precision! You'll get a UI design and just 1 hour to bring it to life using any tech stack you prefer. No teams, no shortcuts — just you, your skills, and the countdown ticking away.Ready to flex your skills? Build fast, pixel-perfect, and beat the clock."
             rules={[
               "All work must be done individually (no teams).",
+              "Registered attendees, please join our WhatsApp group via the provided link to access the event.",
               "Participants may use available resources and tools, but the final submission must be their own work.",
               "Submissions must be made within the time limit.",
               "Plagiarism or direct copying from external sources will result in disqualification."
@@ -171,6 +174,7 @@ const Technical = ({ onNavigate }) => (
             description="A thrilling DBMS-based competition crafting SQL stories with movie themes."
             rules={[
               "Essential SQL elements required",
+              "Registered attendees, please join our WhatsApp group via the provided link to access the event.",
               "Pre-provided schemas only",
               "2 members per team"
             ]}

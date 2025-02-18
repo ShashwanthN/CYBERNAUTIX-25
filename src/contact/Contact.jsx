@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
-import { FiUser, FiMail, FiMessageSquare, FiMapPin, FiPhone, FiArrowRight } from 'react-icons/fi';
+import { FiUser, FiMail, FiMessageSquare, FiMapPin, FiArrowRight } from 'react-icons/fi';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '@/backend/firebase';
+import { useState } from 'react';
 
 const NeonPulse = ({ children }) => (
   <motion.h1
@@ -15,22 +18,72 @@ const NeonPulse = ({ children }) => (
 );
 
 function Contact() {
-  const handleSubmit = (e) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.success('Message sent successfully!', {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      theme: "dark",
-    });
+
+    try {
+      // Add timestamp to the message
+      const messageData = {
+        ...formData,
+        timestamp: new Date()
+      };
+
+      // Add to Firestore
+      await addDoc(collection(db, 'message'), messageData);
+
+      // Show success message
+      toast.success('Message sent successfully!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
+
+      // Clear form
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
+    } catch (error) {
+      toast.error('Error sending message. Please try again.', {
+        position: "top-right",
+        autoClose: 3000,
+        theme: "dark",
+      });
+      console.error("Error adding message: ", error);
+    }
   };
 
   return (
     <div className="h-screen overflow-hidden bg-gradient-to-br from-gray-900 to-black relative">
-      <ToastContainer />
+      <ToastContainer
+        style={{ marginTop: "80px" }} // Adjust this value based on your navbar height
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick={true}
+        pauseOnHover={true}
+        draggable={true}
+        theme="dark"
+      />
       {/* Animated Background Elements */}
       <div className="absolute h-full w-full inset-0 z-0">
         <div className="absolute inset-0 bg-[linear-gradient(40deg,rgba(0,255,128,0.05)_0%,rgba(0,0,0,0)_50%,rgba(0,255,128,0.05)_100%)]"></div>
@@ -41,14 +94,14 @@ function Contact() {
       <div className="relative h-full z-10 container mx-auto py-4 flex flex-col">
         <NeonPulse>Get in Touch</NeonPulse>
 
-        <motion.div 
+        <motion.div
           className="flex-1 lg:max-w-4xl w-full mx-auto bg-black/40 backdrop-blur-lg rounded-xl shadow-2xl p-8 !border space-y-8 !border-green-500/30 overflow-y-auto scrollbar-hide"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Contact Form */}
-            <motion.form 
+            <motion.form
               onSubmit={handleSubmit}
               className="space-y-6"
             >
@@ -67,6 +120,9 @@ function Contact() {
                       <field.icon className="absolute top-3 left-3 text-green-500" />
                       <input
                         {...field}
+                        value={formData[field.name]}
+                        onChange={handleChange}
+                        required
                         className="w-full pl-10 pr-4 py-2 text-sm md:text-base bg-black/30 rounded-lg !border !border-gray-700 focus:!border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
                       />
                     </div>
@@ -78,6 +134,9 @@ function Contact() {
                       name="message"
                       placeholder="Your Message"
                       rows="4"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
                       className="w-full pl-10 pr-4 py-2 text-sm md:text-base bg-black/30 rounded-lg !border !border-gray-700 focus:!border-green-500 focus:ring-1 focus:ring-green-500/50 text-gray-100 placeholder-gray-500 transition-all"
                     ></textarea>
                   </div>
@@ -105,48 +164,48 @@ function Contact() {
                 <p className="text-sm text-gray-400 mt-1">Reach us through these channels</p>
               </div>
               <div className="space-y-4 sm:space-y-6 px-2 sm:px-4">
-  {[
-    {
-      icon: FiMapPin,
-      title: 'Address',
-      content: 'RSM Nagar, Gummidipoondi Taluk, Kavaraipettai, Tamil Nadu 601206.',
-    },
-    {
-      icon: FiMail,
-      title: 'Email',
-      content: 'cybernautix@rmkec.ac.in',
-    },
-  ].map((item, index) => (
-    <motion.div
-      key={index}
-      whileHover={{ scale: 1.02 }}
-      className="p-3 sm:p-4 bg-black/30 rounded-lg border border-gray-700 hover:border-green-500 transition-all w-full max-w-sm mx-auto"
-    >
-      <div className="flex items-start gap-3 sm:gap-4">
-        <div className="p-2 bg-green-500/10 rounded-lg">
-          <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-green-500" />
-        </div>
-        <div className="flex-1">
-          <h3 className="text-green-400 font-medium mb-1 text-sm sm:text-base">
-            {item.title}
-          </h3>
-          <div className="text-gray-300 text-xs sm:text-sm whitespace-normal break-words">
-            {item.content}
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  ))}
-</div>
+                {[
+                  {
+                    icon: FiMapPin,
+                    title: 'Address',
+                    content: 'RSM Nagar, Gummidipoondi Taluk, Kavaraipettai, Tamil Nadu 601206.',
+                  },
+                  {
+                    icon: FiMail,
+                    title: 'Email',
+                    content: 'cybernautix@rmkec.ac.in',
+                  },
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    whileHover={{ scale: 1.02 }}
+                    className="p-3 sm:p-4 bg-black/30 rounded-lg border border-gray-700 hover:border-green-500 transition-all w-full max-w-sm mx-auto"
+                  >
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="p-2 bg-green-500/10 rounded-lg">
+                        <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-green-500" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-green-400 font-medium mb-1 text-sm sm:text-base">
+                          {item.title}
+                        </h3>
+                        <div className="text-gray-300 text-xs sm:text-sm whitespace-normal break-words">
+                          {item.content}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
 
             </div>
           </div>
 
           {/* Map Section */}
           <div className="mt-8 rounded-xl overflow-hidden !border !border-gray-700 hover:!border-green-500 transition-all">
-            <a 
-              href="https://www.google.co.in/maps/place/R.M.K.+Engineering+College/@13.3566859,80.1413034,17z/data=!3m1!4b1!4m6!3m5!1s0x3a4d807de229f987:0x11cc13e2927bfabc!8m2!3d13.3566859!4d80.1413034!16zL20vMGM1dmd4?entry=ttu&g_ep=EgoyMDI1MDIxMS4wIKXMDSoASAFQAw%3D%3D" 
-              target="_blank" 
+            <a
+              href="https://www.google.co.in/maps/place/R.M.K.+Engineering+College/@13.3566859,80.1413034,17z/data=!3m1!4b1!4m6!3m5!1s0x3a4d807de229f987:0x11cc13e2927bfabc!8m2!3d13.3566859!4d80.1413034!16zL20vMGM1dmd4?entry=ttu&g_ep=EgoyMDI1MDIxMS4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
               rel="noopener noreferrer"
               className="block relative group"
             >
@@ -174,4 +233,3 @@ function Contact() {
 }
 
 export default Contact;
-          
