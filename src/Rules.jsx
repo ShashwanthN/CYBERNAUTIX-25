@@ -16,7 +16,7 @@ function Rules() {
   const timeline = [
     { time: "8:30 - 9:00", event: "Registration starts at RM Block entrance" },
     { time: "9:00 - 10:00", event: "Inauguration ceremony at Seminar Hall - New block" },
-    { time: "10:00 - 12:00", event: "Events (Time and venue will be informed shortly)" },
+    { time: "10:00 - 12:00", event: "Events (Technical Events)" },
     { time: "12:00 - 1:30", event: "Lunch" },
     { time: "1:30 - 2:00", event: "Valedictory ceremony" }
   ];

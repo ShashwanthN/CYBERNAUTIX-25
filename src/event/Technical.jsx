@@ -101,7 +101,7 @@ const Technical = ({ onNavigate }) => (
           animate={{ opacity: 1 }}
           className="text-3xl sm:text-4xl lg:text-6xl font-bold text-center mb-4 bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent"
         >
-          Technical Events
+          Technical Events 
         </motion.h1>
 
         <motion.p 

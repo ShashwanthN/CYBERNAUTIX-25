@@ -89,49 +89,64 @@ function Register({ onLogin }) {
     const currentTechnical = eventType === 'technicalEvents' ? [...formData.technicalEvents] : formData.technicalEvents;
     const currentNonTechnical = eventType === 'nonTechnicalEvents' ? [...formData.nonTechnicalEvents] : formData.nonTechnicalEvents;
 
-    if (checked) {
-      const totalSelected = currentTechnical.length + currentNonTechnical.length;
-      if (totalSelected >= 2) {
-        e.preventDefault();
-        toast.warning('You can only select a maximum of 2 events in total', {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "dark",
-        });
-        return;
-      }
+    // Define the exclusive technical events
+    const exclusiveTechnicalEvents = ["RepliCraft", "InnovateX", "Cinequery", "Research X"];
 
-      if (eventType === 'technicalEvents') {
-        currentTechnical.push(value);
-      } else {
-        currentNonTechnical.push(value);
-      }
+    if (checked) {
+        const totalSelected = currentTechnical.length + currentNonTechnical.length;
+
+        // Check if the selected event is one of the exclusive events
+        if (exclusiveTechnicalEvents.includes(value)) {
+            // If it's an exclusive event, uncheck any other exclusive events
+            currentTechnical.forEach(event => {
+                if (exclusiveTechnicalEvents.includes(event)) {
+                    const index = currentTechnical.indexOf(event);
+                    if (index > -1) currentTechnical.splice(index, 1);
+                }
+            });
+        }
+
+        if (totalSelected >= 2) {
+            e.preventDefault();
+            toast.warning('You can only select a maximum of 2 events in total', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "dark",
+            });
+            return;
+        }
+
+        if (eventType === 'technicalEvents') {
+            currentTechnical.push(value);
+        } else {
+            currentNonTechnical.push(value);
+        }
     } else {
-      if (eventType === 'technicalEvents') {
-        const index = currentTechnical.indexOf(value);
-        if (index > -1) currentTechnical.splice(index, 1);
-        // Clear the team name and paper details when event is unchecked
-        const updatedTeamNames = { ...formData.teamNames };
-        delete updatedTeamNames[value];
-        setFormData(prevState => ({
-          ...prevState,
-          teamNames: updatedTeamNames,
-          paperDetails: value === 'Research X' ? '' : prevState.paperDetails
-        }));
-      } else {
-        const index = currentNonTechnical.indexOf(value);
-        if (index > -1) currentNonTechnical.splice(index, 1);
-      }
+        if (eventType === 'technicalEvents') {
+            const index = currentTechnical.indexOf(value);
+            if (index > -1) currentTechnical.splice(index, 1);
+            // Clear the team name and paper details when event is unchecked
+            const updatedTeamNames = { ...formData.teamNames };
+            delete updatedTeamNames[value];
+            setFormData(prevState => ({
+                ...prevState,
+                teamNames: updatedTeamNames,
+                paperDetails: value === 'Research X' ? '' : prevState.paperDetails
+            }));
+        } else {
+            const index = currentNonTechnical.indexOf(value);
+            if (index > -1) currentNonTechnical.splice(index, 1);
+        }
     }
 
     setFormData(prevState => ({
-      ...prevState,
-      technicalEvents: currentTechnical,
-      nonTechnicalEvents: currentNonTechnical
+        ...prevState,
+        technicalEvents: currentTechnical,
+        nonTechnicalEvents: currentNonTechnical
     }));
   };
 
@@ -433,7 +448,7 @@ function Register({ onLogin }) {
 
             <div className="space-y-8">
               <div className="space-y-4">
-                <h3 className="text-lg font-medium text-green-400">Technical Events</h3>
+                <h3 className="text-lg font-medium text-green-400">Technical Events <span className='text-zinc-400 text-sm'>(Only 1 Technical Event Allowed due to time constraints)</span> </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {technicalEvents.map(event => (
                     <div key={event} className="space-y-2">
