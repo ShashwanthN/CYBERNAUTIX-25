@@ -10,6 +10,10 @@ import { FiUser, FiMail, FiLock, FiPhone, FiBook, FiArrowRight } from 'react-ico
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// Hardcoded array of events with closed registrations
+const CLOSED_EVENTS = ["Research X", "InnovateX", "RepliCraft", "Surprise Event"];
+// Only "Cinequery" is still open for registration
+
 const NeonPulse = ({ children }) => (
   <motion.h1
     initial={{ opacity: 0.8 }}
@@ -21,27 +25,33 @@ const NeonPulse = ({ children }) => (
   </motion.h1>
 );
 
-const EventPill = ({ children, checked, onChange, name, value, eventType }) => (
+const EventPill = ({ children, checked, onChange, name, value, eventType, disabled }) => (
   <motion.label
-    whileHover={{ scale: 1.02 }}
-    className={`relative block cursor-pointer transition-all ${checked ? 'scale-[1.02]' : ''}`}
+    whileHover={{ scale: disabled ? 1 : 1.02 }}
+    className={`relative block transition-all ${checked ? 'scale-[1.02]' : ''} ${disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
   >
     <input
       type="checkbox"
       name={name}
       value={value}
       checked={checked}
-      onChange={(e) => onChange(e, eventType)}
+      onChange={(e) => !disabled && onChange(e, eventType)}
+      disabled={disabled}
       className="peer absolute opacity-0"
     />
     <div className={`p-4 rounded-lg border-2 ${
       checked
       ? 'border-green-500 bg-green-900/20 shadow-lg shadow-green-500/20'
-      : 'border-gray-600 hover:border-green-500'
+      : disabled 
+        ? 'border-gray-700 bg-gray-900/20'
+        : 'border-gray-600 hover:border-green-500'
       } transition-all`}>
-      <span className={`text-sm font-medium ${checked ? 'text-green-400' : 'text-gray-300'}`}>
+      <span className={`text-sm font-medium ${checked ? 'text-green-400' : disabled ? 'text-gray-500' : 'text-gray-300'}`}>
         {children}
       </span>
+      {disabled && (
+        <div className="mt-1 text-xs text-red-400">Registration closed</div>
+      )}
     </div>
   </motion.label>
 );
@@ -76,6 +86,11 @@ function Register({ onLogin }) {
     "Surprise Event"
   ];
 
+  // Function to check if an event is closed for registration
+  const isEventClosed = (eventName) => {
+    return CLOSED_EVENTS.includes(eventName);
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -86,6 +101,17 @@ function Register({ onLogin }) {
 
   const handleEventSelection = (e, eventType) => {
     const { value, checked } = e.target;
+    
+    // If the event is closed, prevent selection
+    if (isEventClosed(value)) {
+      toast.error(`Registration for ${value} is closed`, {
+        position: "top-right",
+        autoClose: 3000,
+        theme: "dark",
+      });
+      return;
+    }
+
     const currentTechnical = eventType === 'technicalEvents' ? [...formData.technicalEvents] : formData.technicalEvents;
     const currentNonTechnical = eventType === 'nonTechnicalEvents' ? [...formData.nonTechnicalEvents] : formData.nonTechnicalEvents;
 
@@ -163,6 +189,19 @@ function Register({ onLogin }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormError('');
+
+    // Check if user has selected any closed events (defensive check)
+    const selectedEvents = [...formData.technicalEvents, ...formData.nonTechnicalEvents];
+    const hasClosedEvent = selectedEvents.some(event => isEventClosed(event));
+    
+    if (hasClosedEvent) {
+      toast.error('You have selected events that are no longer available for registration', {
+        position: "top-right",
+        autoClose: 3000,
+        theme: "dark",
+      });
+      return;
+    }
 
     // Validate all required fields are filled
     const requiredFields = [
@@ -342,7 +381,7 @@ function Register({ onLogin }) {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,128,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,128,0.1)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
       </div>
 
-      <div className="relative h-full z-10 container mx-auto  py-4 flex flex-col">
+      <div className="relative h-full z-10 container mx-auto py-4 flex flex-col">
         <NeonPulse>Cybernautix '25 Registration</NeonPulse>
 
         <motion.form
@@ -351,6 +390,16 @@ function Register({ onLogin }) {
           animate={{ opacity: 1, y: 0 }}
           className="flex-1 lg:max-w-3xl w-full mx-auto bg-black/40 backdrop-blur-lg rounded-xl shadow-2xl p-8 border space-y-8 border-green-500/30 overflow-y-auto scrollbar-hide"
         >
+          {/* Event Closed Alert */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="p-4 bg-red-900/30 border border-red-500/50 rounded-lg text-red-400 text-sm"
+          >
+            <div className="font-bold mb-1">Important Notice</div>
+            <div>Registration for all events except Cinequery is now closed due to filled slots.</div>
+          </motion.div>
+
           {/* Error Message */}
           {formError && (
             <motion.div
@@ -458,6 +507,7 @@ function Register({ onLogin }) {
                         checked={formData.technicalEvents.includes(event)}
                         onChange={handleEventSelection}
                         eventType="technicalEvents"
+                        disabled={isEventClosed(event)}
                       >
                         {event}
                       </EventPill>
@@ -501,6 +551,7 @@ function Register({ onLogin }) {
                       checked={formData.nonTechnicalEvents.includes(event)}
                       onChange={handleEventSelection}
                       eventType="nonTechnicalEvents"
+                      disabled={isEventClosed(event)}
                     >
                       {event}
                     </EventPill>
