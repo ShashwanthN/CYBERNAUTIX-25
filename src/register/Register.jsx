@@ -11,7 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Hardcoded array of events with closed registrations
-const CLOSED_EVENTS = ["Research X", "InnovateX", "RepliCraft",];
+const CLOSED_EVENTS = ["Research X", "InnovateX", "RepliCraft", "Cinequery"];
 // Only "Cinequery" is still open for registration
 
 const NeonPulse = ({ children }) => (
@@ -397,7 +397,7 @@ function Register({ onLogin }) {
             className="p-4 bg-red-900/30 border border-red-500/50 rounded-lg text-red-400 text-sm"
           >
             <div className="font-bold mb-1">Important Notice</div>
-            <div>Registration for all events except Cinequery and Surprise Events are now closed due to filled slots.</div>
+            <div>Registration for all events except the Surprise Events are now closed due to filled slots.</div>
           </motion.div>
 
           {/* Error Message */}
